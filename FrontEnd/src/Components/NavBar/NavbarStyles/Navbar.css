@@ -1,0 +1,11 @@
+
+@media All and (max-width:576px){
+    #NavDesktop{
+        display: none;
+    }
+}
+@media All and (min-width:576px){
+    #NavMobile{
+        display: none;
+    }
+}
