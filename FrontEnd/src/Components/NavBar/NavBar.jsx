@@ -1,6 +1,7 @@
 import React from 'react'
 import NavbarDesktop from './NavbarDesktop'
 import "./NavbarStyles/Navbar.css"
+import NavbarMobile from './NavbarMobile'
 
 const NavBar = () => {
   return (
@@ -10,7 +11,7 @@ const NavBar = () => {
 
       </div>
       <div id='NavMobile'>
-nM
+         <NavbarMobile/>
       </div>
     </div>
   )

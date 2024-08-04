@@ -1,11 +1,11 @@
 import React from 'react'
-
+import logo from "/src/assets/FoodHub.png"
 const NavbarDesktop = () => {
   return (
     <div>
-     <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+     <nav className="navbar navbar-expand-sm ">
   <div className="container-fluid">
-    <a className="navbar-brand" href="#">Logo</a>
+    <a className="navbar-brand" href="#"><img className='img-fluid' src={logo} alt="" style={{width:"60px"}} /></a>
     <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
       <ul className="navbar-nav">
         <li className="nav-item">

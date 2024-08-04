@@ -3,7 +3,7 @@ let App = Express();
 let Mongoose = require("mongoose");
 require("dotenv").config();
 
-Mongoose.connect(process.env.MONGODBURI)
+Mongoose.connect(process.env.MONGODBURL)
 .then(()=>{
     console.log("Database Connected!");
 })
