@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+CU:wght@100..400&display=swap');
 
 @media All and (max-width:576px){
     #NavDesktop{
@@ -9,3 +10,60 @@
         display: none;
     }
 }
+
+
+/* NavbarDesktop */
+
+#navBg-desk{
+    background-color: #01f98d;
+}
+.font{
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+.header-font{
+    font-family: "Concert One", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+/* NavbarMobile */
+
+#navBg-mobile{
+    background-color:#01f98d;
+}
+
+#Brand_Desktop{
+    color:#006769;
+}
+.txt-color{
+    color:#006769;
+}
+
+/* media-query for Desktop and tablet! */
+@media All and (max-width:1400px){
+    #Brand_Desktop{
+       margin-left: 450px;
+ }
+}
+@media All and (max-width:1280px){
+    #Brand_Desktop{
+       margin-left: 450px;
+ }
+}
+@media All and (max-width:885px){
+    #Brand_Desktop{
+       margin-left: 250px;
+ }
+}
+@media All and (max-width:835px){
+ #Brand_Desktop{
+    margin-left: 200px;
+ }
+}
+@media All and (max-width:768px){
+    #Brand_Desktop{
+       margin-left: 150px;
+    }
+   }

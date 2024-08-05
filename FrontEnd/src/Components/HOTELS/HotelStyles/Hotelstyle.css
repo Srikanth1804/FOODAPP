@@ -1,0 +1,13 @@
+#search-bar{
+    border: none;
+    border-right: 1px solid gray;
+}
+#location-bar{
+    border: none;
+    border-right: 1px solid grey;
+}
+#submit-btn{
+    border: none;
+    background-color:rgb(204, 203, 183) ;
+    margin-left: 2px;
+}
