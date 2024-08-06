@@ -40,6 +40,9 @@
 .txt-color{
     color:#006769;
 }
+.icon:hover{
+background-color:cornsilk;
+}
 
 /* media-query for Desktop and tablet! */
 @media All and (max-width:1400px){
@@ -49,21 +52,21 @@
 }
 @media All and (max-width:1280px){
     #Brand_Desktop{
-       margin-left: 450px;
+       margin-left: 400px;
  }
 }
 @media All and (max-width:885px){
     #Brand_Desktop{
-       margin-left: 250px;
+       margin-left: 200px;
  }
 }
 @media All and (max-width:835px){
  #Brand_Desktop{
-    margin-left: 200px;
+    margin-left: 150px;
  }
 }
 @media All and (max-width:768px){
     #Brand_Desktop{
-       margin-left: 150px;
+       margin-left: 120px;
     }
    }

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "../HOTELS/HotelStyles/Hotelstyle.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {faLocationDot} from "@fortawesome/free-solid-svg-icons"
 
 const HotelSearch = () => {
 
@@ -13,9 +14,9 @@ const HotelSearch = () => {
 
 <div className="input-group mt-3 shadow p-3 mb-4 bg-white">
 
-  <FontAwesomeIcon className='mt-2' icon={faMagnifyingGlass}/>
-  <input type="text" list="browsers" name="browser" className="form-control" placeholder="Search for a dish" id='search-bar' />
-
+  <FontAwesomeIcon className='mt-3' icon={faMagnifyingGlass}/>
+  <input type="text" list="browsers" name="browser" className="form-control" placeholder="Search for a hotel or a dish" id='search-bar-1' />
+  <input type="text" list="browsers" name="browser" className="form-control" placeholder=" Dish..." id='search-bar-2' />
   <datalist id="browsers">
     <option value="PureVeg">
     </option><option value="Non-Veg">
@@ -23,13 +24,14 @@ const HotelSearch = () => {
     </option><option value="Pizza">
     </option><option value="Cakes">
     </option></datalist>
-  <button className="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" id='location-bar'>Location</button> 
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Chennai</a></li>
-    <li><a class="dropdown-item" href="#">Coimbatore</a></li>
-    <li><a class="dropdown-item" href="#">Trichy</a></li>
-  </ul>
-  <button className="btn" type="button" id='submit-btn'>Submit</button> 
+    
+    <select name="" id="location-bar" className="form-control">
+    <FontAwesomeIcon icon ={faLocationDot}/>
+  <option value="Chennai" className='p-2'>Chennai</option>
+  <option value="Madurai" className='p-2'>Madurai</option>
+</select>
+
+  <button className="btn " type="button" id='submit-btn'>Search</button> 
 </div>
 
 
