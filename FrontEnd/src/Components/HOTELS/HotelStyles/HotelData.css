@@ -1,0 +1,31 @@
+#form-bg{
+    background-color: #F5EDED;
+    color: #4c7196;
+}
+#container-fluid-bg{
+    background-color: #7FA1C3;
+    color: white;
+}
+#btn-bg{
+    background-color: #7FA1C3;
+}
+.hotel-input:focus{
+    box-shadow: none;
+}
+#option-text{
+    color: #4c7196;
+}
+#hotel-logo{
+    display: none;
+}
+
+/* media-query */
+
+@media All and (max-width:576px){
+#hotel-head{
+    display: none;
+}
+#hotel-logo{
+    display: block;
+}
+}
