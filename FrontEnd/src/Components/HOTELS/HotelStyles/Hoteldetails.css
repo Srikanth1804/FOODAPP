@@ -1,0 +1,9 @@
+.img-gallery{
+    transition: .3s ease;
+}
+.img-gallery:hover{
+    transform: scale(.9);
+}
+#comment:hover{
+box-shadow: none;
+}

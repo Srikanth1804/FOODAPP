@@ -1,12 +1,18 @@
-module.exports = (req,res)=>{
+let HotelData = require("../../Model/HotelData.model");
 
-    let {Name} = req.body
-    console.log(Name);
-    
+module.exports = (req, res) => {
+  let { Dish, Location } = req.query;  
+    console.log(Dish, Location);
 
-    res.send("hotel finded!")
-
-}
-
-
-
+  HotelData.find({ FoodType: Dish, HotelLocation: Location })
+    .then((Data) => {
+      res.send(Data);
+      console.log(Data);
+      
+      
+      
+    })
+    .catch((e) => {
+      res.send("Error TO Fetch Data");
+    });
+};

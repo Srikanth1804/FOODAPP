@@ -7,7 +7,7 @@ const AddHotel = require("./Controllers/AddHotel");
 let HotelRoutes = Express.Router()
 
 
-// HotelRoutes.post("/searchhotel",FindHotel)
+ HotelRoutes.get("/searchhotel",FindHotel)
 HotelRoutes.post("/addhotel",AddHotel)
 
 module.exports = HotelRoutes;

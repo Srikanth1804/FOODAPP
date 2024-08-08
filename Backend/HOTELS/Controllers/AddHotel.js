@@ -1,20 +1,20 @@
 let HotelData = require("../../Model/HotelData.model") 
 module.exports = (req,res)=>{
 
-    let {hotelName,HotelImgO,HotelImgI,HotelCategory,HotelLocation,HotelDesc,FoodName,FoodImg,FoodType,FoodDesc,FoodPrice} = req.body
+    let { hotelname,hotelimgO,hotelimgI,hotellocation,hotelcategory,hoteldesc, foodname,foodimg,foodtype,fooddesc,foodprice} = req.body
     try{
         HotelData.create({
-            HotelName:hotelName,
-            HotelImgO:HotelImgO,
-            HotelImgI:HotelImgI,
-            HotelCategory:HotelCategory,
-            HotelLocation:HotelLocation,
-            HotelDesc:HotelDesc,
-            FoodName:FoodName,
-            FoodImg:FoodImg,
-            FoodType:FoodType,
-            FoodDesc:FoodDesc,
-            FoodPrice:FoodPrice
+            HotelName:hotelname,
+            HotelImgO:hotelimgO,
+            HotelImgI:hotelimgI,
+            HotelCategory:hotelcategory,
+            HotelLocation:hotellocation,
+            HotelDesc:hoteldesc,
+            FoodName:foodname,
+            FoodImg:foodimg,
+            FoodType:foodtype,
+            FoodDesc:fooddesc,
+            FoodPrice:foodprice
         })
         res.send("Datacreated!")
     }
