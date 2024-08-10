@@ -1,63 +1,44 @@
 let Mongoose = require("mongoose");
 
-let HotelDataschema = new Mongoose.Schema(
-    {
+let Hotelschema = new Mongoose.Schema({
+  HotelName: {
+    type: String,
+  },
+  HotelImg: {
+    type: String,
+  },
+  HotelCategory: {
+    type: String,
+  },
+  HotelLocation: {
+    type: String,
+  },
+  HotelOpen: {
+    type: String,
+  },
+  HotelClose: {
+    type: String,
+  },
+  HotelRating: {
+    type: String,
+  },
+  HotelDescription: {
+    type: String,
+  },
+  HotelBar: {
+    type: Boolean,
+    default: false,
+  },
+  HotelParking: {
+    type: Boolean,
+    default: false,
+  },
+  HotelTableBooking: {
+    type: Boolean,
+    default: false,
+  },
+});
 
-        HotelName:{
-            type:String,
-            required:true
-        },
-        HotelImgO:{
-            type:String,
-            required:true
+let HotelData = Mongoose.model("HotelInfo", Hotelschema);
 
-        },
-        HotelImgI:{
-           type:String,
-        required:true
-       },
-       HotelCategory:{
-        type:String,
-        required:true,
-       },
-       HotelLocation:{
-        type:String,
-        required:true
-
-       },
-       HotelDesc:{
-        type:String,
-        required:true
-
-       },
-       FoodName:{
-        type:String,
-        required:true
-       },
-       FoodImg:{
-        type:String,
-        required:true
-       },
-       FoodType:{
-        type:String,
-        required:true
-       },
-       FoodDesc:{
-        type:String,
-        required:true
-       },
-       FoodPrice:{
-        type:Number,
-        required:true
-       }
-       
-
-
-
-
-
-    }
-)
-
-let HotelData = Mongoose.model("HotelData",HotelDataschema);
 module.exports = HotelData;

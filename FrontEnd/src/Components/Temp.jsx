@@ -4,16 +4,16 @@ import HotelForm from "./HOTELS/HotelForm"
 import HotelFiles from "./HOTELS/HotelFiles"
 import HotelDetails from "./HOTELS/HotelDetails"
 import FoodForm from "./HOTELS/FoodForm"
+import HotelInfo from "./HOTELS/HotelInfo"
 
 const Temp = () => {
   return (
     <BrowserRouter>
     <Routes>
         <Route path="/" element={<Home />}></Route>
-       <Route path="/addhotel" element={<HotelForm />} />
-       <Route path="/addfood" element={<FoodForm/>}></Route>
        <Route path="/hotelfile" element={<HotelFiles/>}></Route>
        <Route path="/hoteldetail" element={<HotelDetails/>}></Route>
+       <Route path="/HotelInfo" element={<HotelInfo />}/>
     </Routes>
     
     </BrowserRouter>
