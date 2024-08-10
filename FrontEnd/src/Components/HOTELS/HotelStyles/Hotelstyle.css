@@ -1,22 +1,12 @@
-/* Searchbar-1 */
-#search-bar-1{
-    border: none;
-    border-right: 1px solid black;
-    outline: none;
-    box-shadow: none;
-}
-#search-bar-1:focus{
-    outline: none;
-}
-/* Searchbar-2 */
-#search-bar-2{
+/* Searchbar*/
+#search-bar{
     border: none;
     border-right: 1px solid black;
     outline: none;
     box-shadow: none;
     
 }
-#search-bar-2:focus{
+#search-bar:focus{
     outline: none;
 }
 #location-bar{
@@ -35,11 +25,3 @@
 }
 
 
-/* media-query for searchbar 1 and 2 */
-
-@media All and (max-width:576px) {
-    #search-bar-1{
-        display: none;
-    }
-   
-}

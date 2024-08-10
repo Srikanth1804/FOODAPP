@@ -1,0 +1,52 @@
+#food-form-bg{
+    /* background-color: #F5EDED;    */
+    background-color: #fff;
+  
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.info-color-food{
+    color: #FF8225;
+}
+#container-fluid-food-bg{
+    background-color: #FF8225;
+    color: white;
+}
+#btn-food-bg{
+    background-color: #FF8225;
+    font-variant: small-caps;
+    font-weight: 500;
+    color: white;
+}
+.food-input{
+    font-variant: small-caps;
+    font-size:small;
+    font-weight:400;
+    padding: 15px;
+}
+.food-input-select{
+    padding: 13px;
+}
+.food-input:focus{
+    box-shadow: none;
+}
+.food-input-switch:focus{
+    box-shadow: none;
+}
+.food-input-select:focus{
+    box-shadow: none;
+}
+#food-logo{
+    display: none;
+}
+
+/* media-query */
+
+@media All and (max-width:576px){
+#food-head{
+    display: none;
+}
+#food-logo{
+    display: block;
+}
+}

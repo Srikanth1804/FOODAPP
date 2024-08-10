@@ -60,7 +60,7 @@ let SearchData = {
 <div className="input-group mt-3 shadow p-3 mb-4 bg-white">
 
   <FontAwesomeIcon className='mt-3' icon={faMagnifyingGlass}/>
-    <input type="text" list="browsers" name="browser" className="form-control" placeholder=" Dish..." id='search-bar-2'onChange={(e)=>{setDish(e.target.value)}} />
+    <input type="text" list="browsers" name="browser" className="form-control" placeholder=" Dish..." id='search-bar'onChange={(e)=>{setDish(e.target.value)}} />
   <datalist id="browsers">
     <option value="veg">
     </option><option value="Non-Veg">
