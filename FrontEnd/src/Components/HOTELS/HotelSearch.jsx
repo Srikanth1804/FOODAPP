@@ -40,7 +40,7 @@ const HotelSearch = () => {
   return (
     <div className="container">
       <form onSubmit={HandleSubmit}>
-        <div className="input-group mt-3 shadow p-3 mb-4 bg-white">
+        <div className="input-group mt-3  p-3 mb-4 bg-white" id="hotel-search">
           <FontAwesomeIcon className="mt-3" icon={faMagnifyingGlass} />
           <input
             type="text"

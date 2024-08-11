@@ -1,72 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+CU:wght@100..400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+CU:wght@100..400&display=swap");
 
-@media All and (max-width:576px){
-    #NavDesktop{
-        display: none;
-    }
+@media All and (max-width: 576px) {
+  #NavDesktop {
+    display: none;
+  }
 }
-@media All and (min-width:576px){
-    #NavMobile{
-        display: none;
-    }
+@media All and (min-width: 576px) {
+  #NavMobile {
+    display: none;
+  }
 }
-
 
 /* NavbarDesktop */
 
-#navBg-desk{
-    background-color: #01f98d;
+#navBg-desk {
+  background-color: #ff8225;
+  font-variant: small-caps;
 }
-.font{
-    font-family: "Outfit", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+#Brand_Desktop {
+  color: white;
+  font-variant: all-small-caps;
 }
-.header-font{
-    font-family: "Concert One", sans-serif;
-    font-weight: 900;
-    font-style: normal;
+.font {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+.header-font {
+  font-family: "Concert One", sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 /* NavbarMobile */
 
-#navBg-mobile{
-    background-color:#01f98d;
+#navBg-mobile {
+  background-color: #ff8225;
+  font-variant: small-caps;
 }
-
-#Brand_Desktop{
-    color:#006769;
+#Brand_Mobile {
+  color: white;
+  font-variant: all-small-caps;
 }
-.txt-color{
-    color:#006769;
+#toggle-btn {
+  background-color: white;
+  border: none;
 }
-.icon:hover{
-background-color:cornsilk;
+.txt-color {
+  color: white;
+}
+.icon:hover {
+  background-color: cornsilk;
 }
 
 /* media-query for Desktop and tablet! */
-@media All and (max-width:1400px){
-    #Brand_Desktop{
-       margin-left: 450px;
- }
+@media All and (max-width: 1400px) {
+  #Brand_Desktop {
+    margin-left: 450px;
+  }
 }
-@media All and (max-width:1280px){
-    #Brand_Desktop{
-       margin-left: 400px;
- }
+@media All and (max-width: 1280px) {
+  #Brand_Desktop {
+    margin-left: 400px;
+  }
 }
-@media All and (max-width:885px){
-    #Brand_Desktop{
-       margin-left: 200px;
- }
+@media All and (max-width: 885px) {
+  #Brand_Desktop {
+    margin-left: 200px;
+  }
 }
-@media All and (max-width:835px){
- #Brand_Desktop{
+@media All and (max-width: 835px) {
+  #Brand_Desktop {
     margin-left: 150px;
- }
+  }
 }
-@media All and (max-width:768px){
-    #Brand_Desktop{
-       margin-left: 120px;
-    }
-   }
+@media All and (max-width: 768px) {
+  #Brand_Desktop {
+    margin-left: 120px;
+  }
+}

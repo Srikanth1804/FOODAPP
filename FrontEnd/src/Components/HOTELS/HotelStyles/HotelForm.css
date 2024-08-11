@@ -1,51 +1,51 @@
-#form-bg{
-    /* background-color: #F5EDED;    */
-    background-color: #fff;
-  
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+#form-bg {
+  /* background-color: #F5EDED;    */
+  background-color: #fff;
+
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-.info-color{
-    color: #4c7196;
+.info-color {
+  color: #4c7196;
 }
-#container-fluid-bg{
-    background-color: #7FA1C3;
-    color: white;
+#container-fluid-bg {
+  background-color: #7fa1c3;
+  color: white;
 }
-#btn-bg{
-    background-color: #7FA1C3;
-    font-variant: small-caps;
-    font-weight: 500;
+#btn-bg {
+  background-color: #7fa1c3;
+  font-variant: small-caps;
+  font-weight: 500;
 }
-.hotel-input{
-    font-variant: small-caps;
-    font-size:small;
-    font-weight:400;
-    padding: 15px;
+.hotel-input {
+  font-variant: small-caps;
+  font-size: small;
+  font-weight: 400;
+  padding: 15px;
 }
-.hotel-input-select{
-    padding: 13px;
+.hotel-input-select {
+  padding: 13px;
 }
-.hotel-input:focus{
-    box-shadow: none;
+.hotel-input:focus {
+  box-shadow: none;
 }
-.hotel-input-switch:focus{
-    box-shadow: none;
+.hotel-input-switch:focus {
+  box-shadow: none;
 }
-.hotel-input-select:focus{
-    box-shadow: none;
+.hotel-input-select:focus {
+  box-shadow: none;
 }
-#hotel-logo{
-    display: none;
+#hotel-logo {
+  display: none;
 }
 
 /* media-query */
 
-@media All and (max-width:576px){
+/* @media All and (max-width:576px){
 #hotel-head{
     display: none;
 }
 #hotel-logo{
     display: block;
 }
-}
+} */
