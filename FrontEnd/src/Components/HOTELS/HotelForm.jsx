@@ -74,7 +74,7 @@ const HotelForm = () => {
             id="hotel-head"
             style={{ fontWeight: "900" }}
           >
-            FOODHUB
+            HOTELFORM
           </h1>
         </div>
         <p

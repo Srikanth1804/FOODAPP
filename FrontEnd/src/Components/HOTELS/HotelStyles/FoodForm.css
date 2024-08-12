@@ -6,14 +6,14 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .info-color-food {
-  color: #ff8225;
+  color: #88d66c;
 }
 #container-fluid-food-bg {
-  background-color: #ff8225;
+  background-color: #88d66c;
   color: white;
 }
 #btn-food-bg {
-  background-color: #ff8225;
+  background-color: #88d66c;
   font-variant: small-caps;
   font-weight: 500;
   color: white;

@@ -7,12 +7,11 @@ import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
 import HotelFiles from "./HotelFiles";
 
-const HotelSearch = () => {
+const HotelSearch = (props) => {
   let [dish, setDish] = useState("");
   let [location, setLocation] = useState("");
-  let [Hotel, setHotel] = useState([]);
 
-  console.log(Hotel);
+  let { setHotel } = props;
 
   let HandleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ const HotelSearch = () => {
       })
       .then((res) => {
         console.log("Search Data posted!");
-        setHotel(res.data);
+        setHotel(res.data.info);
       })
       .catch((e) => {
         console.log("Error TO Past Data!");
