@@ -5,6 +5,7 @@ let Mongoose = require("mongoose");
 
 //Routes Import Section
 const HotelRoutes = require("./Module/Hotel/Hotel.routes");
+const FoodRoutes = require("./Module/Food/Food.Route");
 
 require("dotenv").config();
 App.use(Express.json());
@@ -20,6 +21,7 @@ Mongoose.connect(process.env.MONGODBURL)
 
 // Middlewire For Handler Routes
 App.use("/hotel", HotelRoutes);
+App.use("/food", FoodRoutes);
 App.listen(8000, () => {
   console.log(process.env.PORT);
 });

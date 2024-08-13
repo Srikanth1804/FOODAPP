@@ -1,9 +1,22 @@
-.img-gallery{
-    transition: .3s ease;
+.img-gallery {
+  width: 100%;
 }
-.img-gallery:hover{
-    transform: scale(.9);
+#image-container {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
-#comment:hover{
-box-shadow: none;
+#opacity-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  backdrop-filter: blur(20px) saturate(111%);
+  -webkit-backdrop-filter: blur(20px) saturate(111%);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#comment:hover {
+  box-shadow: none;
 }

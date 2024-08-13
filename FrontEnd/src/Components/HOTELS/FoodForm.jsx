@@ -42,6 +42,15 @@ const FoodForm = () => {
     setrating("1 star");
     setnotes("");
     setisavailable(false);
+
+    axios
+      .post(`${API_EndPoint}/food/addfood`, FoodData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
