@@ -5,7 +5,7 @@ let Mongoose = require("mongoose");
 
 //Routes Import Section
 const HotelRoutes = require("./Module/Hotel/Hotel.routes");
-const FoodRoutes = require("./Module/Food/Food.Route");
+const FoodRoutes = require("./Module/Food/Food.routes");
 
 require("dotenv").config();
 App.use(Express.json());

@@ -12,7 +12,7 @@ const Temp = () => {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/hotelfile" element={<HotelFiles />}></Route>
-        <Route path="/hoteldetail" element={<HotelDetails />}></Route>
+        <Route path="/hoteldetail/:name" element={<HotelDetails />}></Route>
         <Route path="/hotelinfo" element={<HotelInfo />} />
       </Routes>
     </BrowserRouter>

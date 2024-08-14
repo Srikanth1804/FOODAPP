@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import imgG1 from "/src/assets/imagegallery-1.webp";
 import Dummyimg from "/src/assets/Dummyimg.avif";
 import "../HOTELS/HotelStyles/Hoteldetails.css";
 import Menucard from "./Menucard";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { API_EndPoint } from "../GeneralData";
 const HotelDetails = () => {
+  let { name } = useParams();
+
+  let [SingleHotel, setSingleHotel] = useState([]);
+  console.log(SingleHotel);
+
+  useEffect(() => {
+    axios
+      .get(`${API_EndPoint}/food/getfood`, { params: { name } })
+      .then((res) => {
+        setSingleHotel(res.data.info);
+      })
+      .catch((e) => {
+        console.log("Error To Get DAta");
+      });
+  }, [name]);
+
   return (
     <div className="container mt-2">
       <div className="row">
         <div className="col-sm-12" id="image-container">
           <img src={imgG1} alt="" className="img-fluid img-gallery" />
           <div id="overlay">
-            <h1>The Great Kabab Factory - Radisson Blu</h1>
+            <h1>
+              {SingleHotel &&
+                SingleHotel.length > 0 &&
+                SingleHotel[0].HotelName}
+            </h1>
           </div>
         </div>
       </div>
@@ -60,7 +83,19 @@ const HotelDetails = () => {
           </div>
 
           <div className="tab-pane container active" id="menu">
-            <Menucard />
+            {SingleHotel.map((SH) => {
+              return (
+                <Menucard
+                  FoodImg={SH.FoodImg}
+                  FoodCategory={SH.FoodCategory}
+                  FoodDesc={SH.FoodDesc}
+                  FoodName={SH.FoodName}
+                  FoodPrice={SH.FoodPrice}
+                  FoodRating={SH.FoodRating}
+                  FoodAvailable={SH.FoodAvailable}
+                />
+              );
+            })}
           </div>
 
           <div className="tab-pane container fade" id="book-table">

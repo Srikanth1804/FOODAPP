@@ -6,8 +6,6 @@ module.exports = (req, res) => {
 
   HotelData.find({ HotelCategory: dish, HotelLocation: location })
     .then((data) => {
-      console.log(data);
-
       res.json({
         status: true,
         info: data,

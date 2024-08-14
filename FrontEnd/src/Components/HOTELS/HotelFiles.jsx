@@ -14,7 +14,10 @@ const HotelFiles = (props) => {
       <div className="row">
         {Hotel.map((hotel, index) => (
           <div className="col-sm-4" key={index}>
-            <Link to={`/hoteldetail`} className="text-decoration-none">
+            <Link
+              to={`/hoteldetail/${hotel.HotelName}`}
+              className="text-decoration-none"
+            >
               <div
                 className="card mt-4"
                 id="hotelfile-card"

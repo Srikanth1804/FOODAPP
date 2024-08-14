@@ -1,7 +1,16 @@
 import React from "react";
 import Dummyimg from "/src/assets/Dummyimg.avif";
 import "../HOTELS/HotelStyles/Menucard.css";
-const Menucard = () => {
+const Menucard = (props) => {
+  let {
+    FoodImg,
+    FoodCategory,
+    FoodDesc,
+    FoodName,
+    FoodPrice,
+    FoodRating,
+    FoodAvailable,
+  } = props;
   return (
     <div className="mt-5">
       <div className="row">
@@ -10,22 +19,21 @@ const Menucard = () => {
             <div className="container">
               <img
                 className="card-img-top img-fluid mt-2"
-                src={Dummyimg}
+                src={FoodImg}
                 alt="Card image"
                 style={{ borderRadius: "8px" }}
               />
               <div className="card-body">
-                <h4 className="card-title">Chicken rice</h4>
-                <p className="card-text">
-                  North Indian, Mughlai, Kebab, Desserts...
+                <h4 className="card-title">{FoodName}</h4>
+                <p className="card-text">{FoodDesc}</p>
+                <p>
+                  <b>Category:</b>
+                  {FoodCategory}
                 </p>
                 <p>
-                  <b>Category:</b>Veg & Non-veg
+                  <b>Price:</b>₹{FoodPrice}
                 </p>
-                <p>
-                  <b>Price:</b>₹ 300
-                </p>
-                <p>Radisson Blu, Egmore, Chennai</p>
+                <p>{FoodRating}</p>
                 <a href="#" className="btn" id="menucard-btn">
                   Add to cart
                 </a>
