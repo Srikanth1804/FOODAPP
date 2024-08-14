@@ -7,14 +7,15 @@ const HotelDetails = () => {
   return (
     <div className="container mt-2">
       <div className="row">
-        <div className="col-12" id="image-container">
+        <div className="col-sm-12" id="image-container">
           <img src={imgG1} alt="" className="img-fluid img-gallery" />
-          <div id="opacity-div"></div>
+          <div id="overlay">
+            <h1>The Great Kabab Factory - Radisson Blu</h1>
+          </div>
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          <h3>The Great Kabab Factory - Radisson Blu</h3>
+        <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
           <p>North Indian, Mughlai, Kebab, Desserts...</p>
           <p>
             <b>Category:</b>Veg & Non-veg
@@ -23,7 +24,7 @@ const HotelDetails = () => {
         </div>
       </div>
 
-      <div>
+      <div style={{ fontVariant: "small-caps" }}>
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <a className="nav-link " data-bs-toggle="tab" href="#review">
@@ -31,7 +32,7 @@ const HotelDetails = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" data-bs-toggle="tab" href="#menu">
+            <a className="nav-link active" data-bs-toggle="tab" href="#menu">
               Menu
             </a>
           </li>
@@ -42,16 +43,19 @@ const HotelDetails = () => {
           </li>
         </ul>
         <div className="tab-content">
-          <div className="tab-pane container fade" id="review">
-            <h2>The Great Kabab Factory - Radisson Blu Reviews</h2>
-            <div class="form-floating">
+          <div className="tab-pane container fade mt-3" id="review">
+            <h5 style={{ fontWeight: "700" }}>
+              The Great Kabab Factory - Radisson Blu Reviews
+            </h5>
+            <div className="form-floating">
               <textarea
-                class="form-control"
+                className="form-control"
                 id="comment"
                 name="text"
                 placeholder="Comment goes here"
-              ></textarea>
-              <label for="comment">Comments</label>
+                defaultValue={""}
+              />
+              <label htmlFor="comment">Comments</label>
             </div>
           </div>
 

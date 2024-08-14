@@ -3,10 +3,10 @@ import Dummyimg from "/src/assets/Dummyimg.avif";
 import "../HOTELS/HotelStyles/Menucard.css";
 const Menucard = () => {
   return (
-    <div className="container mt-5">
+    <div className="mt-5">
       <div className="row">
-        <div className="col">
-          <div className="card" style={{ width: 400 }} id="menucard">
+        <div className="col-sm-4">
+          <div className="card" id="menucard">
             <div className="container">
               <img
                 className="card-img-top img-fluid mt-2"
