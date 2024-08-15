@@ -3,6 +3,8 @@ import "./HotelStyles/Hotelfile.css";
 import Wine from "../../assets/wine.svg";
 import parking from "../../assets/parking.svg";
 import tablebar from "../../assets/tablebar.svg";
+import veg from "../../assets/Veg.svg";
+import nonveg from "../../assets/Nonveg.svg";
 import { Link } from "react-router-dom";
 
 const HotelFiles = (props) => {
@@ -40,14 +42,18 @@ const HotelFiles = (props) => {
                       {hotel.HotelDescription}
                     </p>
                     <div>
-                      <span
-                        className={
-                          hotel.HotelCategory.toLowerCase() === "veg"
-                            ? "badge bg-success m-2"
-                            : "badge bg-secondary m-2"
-                        }
-                      >
-                        {hotel.HotelCategory}
+                      <span>
+                        {hotel.HotelCategory === "veg" ? (
+                          <img
+                            src={veg}
+                            style={{ margin: "5px", width: "20px" }}
+                          />
+                        ) : (
+                          <img
+                            src={nonveg}
+                            style={{ margin: "5px", width: "20px" }}
+                          />
+                        )}
                       </span>
                       {hotel.HotelBar && (
                         <img

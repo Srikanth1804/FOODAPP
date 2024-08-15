@@ -1,0 +1,331 @@
+-------------------------------{First Methode}--------------------------------------------
+
+// models/Booking.js
+const mongoose = require('mongoose');
+
+const BookingSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  date: { type: Date, required: true },
+  time: { type: String, required: true },
+  guests: { type: Number, required: true },
+  tableNumber: { type: Number, required: true },
+  specialRequests: { type: String },
+  status: { type: String, default: 'pending' }, // pending, confirmed, canceled
+});
+
+module.exports = mongoose.model('Booking', BookingSchema);
+
+
+
+
+// routes/bookings.js
+const express = require('express');
+const Booking = require('../models/Booking');
+const router = express.Router();
+const auth = require('../middleware/auth'); // Middleware for user authentication
+
+// Create a new booking
+router.post('/book', auth, async (req, res) => {
+  const { date, time, guests, tableNumber, specialRequests } = req.body;
+  try {
+    // Check if the table is available
+    const existingBooking = await Booking.findOne({ date, time, tableNumber });
+    if (existingBooking) {
+      return res.status(400).json({ msg: 'Table is already booked for the selected time' });
+    }
+    const booking = new Booking({
+      userId: req.user.id,
+      date,
+      time,
+      guests,
+      tableNumber,
+      specialRequests,
+    });
+    await booking.save();
+    res.json({ msg: 'Booking successful', booking });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// Get all bookings for an admin
+router.get('/all', auth, async (req, res) => {
+  try {
+    const bookings = await Booking.find().populate('userId', ['name', 'email']);
+    res.json(bookings);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// Update booking status (confirm, cancel)
+router.put('/:id', auth, async (req, res) => {
+  const { status } = req.body;
+  try {
+    let booking = await Booking.findById(req.params.id);
+    if (!booking) return res.status(404).json({ msg: 'Booking not found' });
+
+    booking.status = status;
+    await booking.save();
+    res.json({ msg: 'Booking updated', booking });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+module.exports = router;
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const BookingForm = () => {
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState(1);
+  const [tableNumber, setTableNumber] = useState('');
+  const [specialRequests, setSpecialRequests] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('/api/bookings/book', {
+        date,
+        time,
+        guests,
+        tableNumber,
+        specialRequests,
+      });
+      setMessage(res.data.msg);
+    } catch (err) {
+      setMessage('Error: ' + err.response.data.msg);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Date:</label>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+      </div>
+      <div>
+        <label>Time:</label>
+        <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+      </div>
+      <div>
+        <label>Guests:</label>
+        <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} min="1" max="10" required />
+      </div>
+      <div>
+        <label>Table Number:</label>
+        <input type="number" value={tableNumber} onChange={(e) => setTableNumber(e.target.value)} required />
+      </div>
+      <div>
+        <label>Special Requests:</label>
+        <textarea value={specialRequests} onChange={(e) => setSpecialRequests(e.target.value)} />
+      </div>
+      <button type="submit">Book Table</button>
+      {message && <p>{message}</p>}
+    </form>
+  );
+};
+
+export default BookingForm;
+
+
+--------------------------------{Second Mthode}-----------------------------------------------
+
+
+// models/Table.js
+const mongoose = require('mongoose');
+
+const TableSchema = new mongoose.Schema({
+  number: { type: Number, required: true },
+  capacity: { type: Number, required: true },
+  status: { type: String, default: 'available' }, // available, booked
+});
+
+module.exports = mongoose.model('Table', TableSchema);
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const TableSelection = ({ onTableSelect }) => {
+  const [tables, setTables] = useState([]);
+  const [selectedTable, setSelectedTable] = useState(null);
+
+  useEffect(() => {
+    // Fetch tables from the backend
+    axios.get('/api/tables').then((res) => {
+      setTables(res.data);
+    });
+  }, []);
+
+  const handleTableClick = (table) => {
+    if (table.status === 'available') {
+      setSelectedTable(table.number);
+      onTableSelect(table.number); // Pass the selected table to the parent component
+    }
+  };
+
+  return (
+    <div className="table-layout">
+      {tables.map((table) => (
+        <div
+          key={table.number}
+          className={`table ${table.status} ${
+            selectedTable === table.number ? 'selected' : ''
+          }`}
+          onClick={() => handleTableClick(table)}
+        >
+          Table {table.number} <br />
+          ({table.capacity} guests)
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default TableSelection;
+
+
+
+
+
+
+/* TableSelection.css */
+.table-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 20px;
+}
+
+.table {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.table.available {
+  background-color: #c8e6c9;
+}
+
+.table.booked {
+  background-color: #ffcdd2;
+  cursor: not-allowed;
+}
+
+.table.selected {
+  border-color: #3f51b5;
+  transform: scale(1.1);
+}
+
+.table:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import TableSelection from './TableSelection'; // Import the TableSelection component
+
+const BookingForm = () => {
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [guests, setGuests] = useState(1);
+  const [selectedTable, setSelectedTable] = useState(null);
+  const [specialRequests, setSpecialRequests] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!selectedTable) {
+      setMessage('Please select a table.');
+      return;
+    }
+    try {
+      const res = await axios.post('/api/bookings/book', {
+        date,
+        time,
+        guests,
+        tableNumber: selectedTable,
+        specialRequests,
+      });
+      setMessage(res.data.msg);
+    } catch (err) {
+      setMessage('Error: ' + err.response.data.msg);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Date:</label>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
+      </div>
+      <div>
+        <label>Time:</label>
+        <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+      </div>
+      <div>
+        <label>Guests:</label>
+        <input type="number" value={guests} onChange={(e) => setGuests(e.target.value)} min="1" max="10" required />
+      </div>
+      <TableSelection onTableSelect={setSelectedTable} /> {/* Table Selection Component */}
+      <div>
+        <label>Special Requests:</label>
+        <textarea value={specialRequests} onChange={(e) => setSpecialRequests(e.target.value)} />
+      </div>
+      <button type="submit">Book Table</button>
+      {message && <p>{message}</p>}
+    </form>
+  );
+};
+
+export default BookingForm;
+
+
+
+
+
+
+
+
+
+// routes/tables.js
+const express = require('express');
+const Table = require('../models/Table');
+const router = express.Router();
+
+// Get all tables
+router.get('/', async (req, res) => {
+  try {
+    const tables = await Table.find();
+    res.json(tables);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+module.exports = router;

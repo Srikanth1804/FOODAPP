@@ -20,7 +20,7 @@ let FoodSchema = new Mongoose.Schema({
     type: String,
   },
   FoodRating: {
-    type: String,
+    type: Number,
   },
   Notes: {
     type: String,

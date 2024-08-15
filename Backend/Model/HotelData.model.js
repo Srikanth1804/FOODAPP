@@ -20,7 +20,7 @@ let Hotelschema = new Mongoose.Schema({
     type: String,
   },
   HotelRating: {
-    type: String,
+    type: Number,
   },
   HotelDescription: {
     type: String,

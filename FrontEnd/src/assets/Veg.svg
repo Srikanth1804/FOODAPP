@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 5.2.4</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 540 540)" id="3e393f7e-ec63-492c-9006-a91965574d0b"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="7b8c6aa3-bb87-48d6-a300-8bc7a14f751c"  >
+</g>
+<g transform="matrix(54 0 0 54 540 540)" clip-path="url(#CLIPPATH_3)"  >
+<clipPath id="CLIPPATH_3" >
+	<rect transform="matrix(1 0 0 1 0 0)" id="clip0_835:69868" x="-10" y="-10" rx="0" ry="0" width="20" height="20" />
+</clipPath>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(58,183,87); fill-rule: nonzero; opacity: 1;"  transform=" translate(-10, -10)" d="M 15 10 C 15 12.74 12.76 15 10 15 C 7.24 15 5 12.74 5 10 C 5 7.26 7.26 5 10 5 C 12.74 5 15 7.24 15 10 Z M 20 4 L 20 16 C 20 18.26 18.26 20 16 20 L 4 20 C 1.76 20 0 18.26 0 16 L 0 4 C 0 1.74 1.76 0 4 0 L 16 0 C 18.26 0 20 1.74 20 4 L 20 4 Z M 18.34 4 C 18.34 2.74 17.26 1.66 16 1.66 L 4 1.66 C 2.76 1.66 1.66 2.74 1.66 4 L 1.66 16 C 1.66 17.26 2.76 18.34 4 18.34 L 16 18.34 C 17.26 18.34 18.34 17.26 18.34 16 L 18.34 4 L 18.34 4 Z" stroke-linecap="round" />
+</g>
+</svg>

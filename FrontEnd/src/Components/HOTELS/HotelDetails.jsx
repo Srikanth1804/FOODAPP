@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import imgG1 from "/src/assets/imagegallery-1.webp";
-import Dummyimg from "/src/assets/Dummyimg.avif";
 import "../HOTELS/HotelStyles/Hoteldetails.css";
 import Menucard from "./Menucard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
+import TableSelection from "../Table/Table";
+
 const HotelDetails = () => {
   let { name } = useParams();
-
   let [SingleHotel, setSingleHotel] = useState([]);
-  console.log(SingleHotel);
 
   useEffect(() => {
     axios
@@ -19,7 +18,7 @@ const HotelDetails = () => {
         setSingleHotel(res.data.info);
       })
       .catch((e) => {
-        console.log("Error To Get DAta");
+        console.log("Error To Get Data");
       });
   }, [name]);
 
@@ -29,7 +28,7 @@ const HotelDetails = () => {
         <div className="col-sm-12" id="image-container">
           <img src={imgG1} alt="" className="img-fluid img-gallery" />
           <div id="overlay">
-            <h1>{SingleHotel[0].HotelName}</h1>
+            <h1>{name}</h1>
           </div>
         </div>
       </div>
@@ -37,7 +36,7 @@ const HotelDetails = () => {
         <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
           <p>North Indian, Mughlai, Kebab, Desserts...</p>
           <p>
-            <b>Category:</b>Veg & Non-veg
+            <b>Category:</b> Veg & Non-veg
           </p>
           <p>Radisson Blu, Egmore, Chennai</p>
         </div>
@@ -46,7 +45,7 @@ const HotelDetails = () => {
       <div style={{ fontVariant: "small-caps" }}>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link " data-bs-toggle="tab" href="#review">
+            <a className="nav-link" data-bs-toggle="tab" href="#review">
               Review
             </a>
           </li>
@@ -79,9 +78,10 @@ const HotelDetails = () => {
           </div>
 
           <div className="tab-pane container active" id="menu">
-            {SingleHotel.map((SH) => {
-              return (
+            <div className="row">
+              {SingleHotel.map((SH, index) => (
                 <Menucard
+                  key={index}
                   FoodImg={SH.FoodImg}
                   FoodCategory={SH.FoodCategory}
                   FoodDesc={SH.FoodDesc}
@@ -90,12 +90,12 @@ const HotelDetails = () => {
                   FoodRating={SH.FoodRating}
                   FoodAvailable={SH.FoodAvailable}
                 />
-              );
-            })}
+              ))}
+            </div>
           </div>
 
           <div className="tab-pane container fade" id="book-table">
-            ...
+            <TableSelection />
           </div>
         </div>
       </div>
