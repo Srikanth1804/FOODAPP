@@ -29,11 +29,7 @@ const HotelDetails = () => {
         <div className="col-sm-12" id="image-container">
           <img src={imgG1} alt="" className="img-fluid img-gallery" />
           <div id="overlay">
-            <h1>
-              {SingleHotel &&
-                SingleHotel.length > 0 &&
-                SingleHotel[0].HotelName}
-            </h1>
+            <h1>{SingleHotel[0].HotelName}</h1>
           </div>
         </div>
       </div>

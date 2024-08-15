@@ -1,5 +1,4 @@
 import React from "react";
-import Dummyimg from "/src/assets/Dummyimg.avif";
 import "./HotelStyles/Hotelfile.css";
 import Wine from "../../assets/wine.svg";
 import parking from "../../assets/parking.svg";
@@ -26,7 +25,7 @@ const HotelFiles = (props) => {
                 <div className="container">
                   <img
                     className="card-img-top img-fluid mt-3"
-                    src={hotel.HotelImg || Dummyimg}
+                    src={hotel.HotelImg}
                     alt={`${hotel.HotelName} image`}
                     style={{
                       borderRadius: "8px",
