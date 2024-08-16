@@ -5,6 +5,9 @@ import logo from "/src/assets/Elogo.png";
 import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
 const FoodForm = () => {
+  let [Response, setResponse] = useState();
+  let [showModal, setShowModal] = useState(false);
+
   // state for Food Information
 
   let [foodname, setfoodname] = useState();
@@ -39,7 +42,7 @@ const FoodForm = () => {
     setfooddesc("");
     sethotelname("");
     setprice("");
-    setrating("1 star");
+    setrating(1);
     setnotes("");
     setisavailable(false);
 
@@ -47,6 +50,11 @@ const FoodForm = () => {
       .post(`${API_EndPoint}/food/addfood`, FoodData)
       .then((res) => {
         console.log(res.data);
+        if (res.data.status) {
+          setShowModal(true);
+        } else {
+          alert("Failed to Add Food!");
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -234,11 +242,11 @@ const FoodForm = () => {
                   }}
                   value={rating}
                 >
-                  <option value="1-star">1 Star</option>
-                  <option value="2-stars">2 Stars</option>
-                  <option value="3-stars">3 Stars</option>
-                  <option value="4-stars">4 Stars</option>
-                  <option value="5-stars">5 Stars</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
 
@@ -303,6 +311,40 @@ const FoodForm = () => {
           </form>
         </div>
       </div>
+      {/* Modal */}
+      {showModal && (
+        <div
+          className="modal fade show"
+          id="myModal"
+          style={{ display: "block" }}
+          aria-modal="true"
+          role="dialog"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Thank You!</h4>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  onClick={() => setShowModal(false)}
+                />
+              </div>
+              <div className="modal-body">Your Food has been Added!</div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

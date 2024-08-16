@@ -7,6 +7,7 @@ const HotelForm = () => {
   // Response State
 
   let [Response, setResponse] = useState();
+  let [showModal, setShowModal] = useState(false);
 
   // state for Hotel Information
 
@@ -42,27 +43,26 @@ const HotelForm = () => {
       .post(`${API_EndPoint}/hotel/addhotel`, formdata)
       .then((res) => {
         setResponse(res.data);
+        if (res.data.status) {
+          setShowModal(true);
+        } else {
+          alert("Failed to Add Hotel!");
+        }
       })
       .catch((e) => {
         console.log(e);
       });
     sethotelname("");
     sethotelimg("");
-    setHotelcategory("Veg");
+    setHotelcategory("veg");
     sethotellocation("");
     setopentime("");
     setclosetime("");
-    setrating("1 star");
+    setrating("1");
     sethoteldesc("");
     sethasbar(false);
     sethasparking(false);
     setcanbooktable(false);
-
-    if (Response.status) {
-      alert("Data Added Successfully!");
-    } else {
-      alert("Error TO Add Hotel");
-    }
   };
   return (
     <div className="mt-2">
@@ -233,11 +233,11 @@ const HotelForm = () => {
                   onChange={(e) => setrating(e.target.value)}
                   value={rating}
                 >
-                  <option value="1-star">1 Star</option>
-                  <option value="2-stars">2 Stars</option>
-                  <option value="3-stars">3 Stars</option>
-                  <option value="4-stars">4 Stars</option>
-                  <option value="5-stars">5 Stars</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
 
@@ -332,6 +332,41 @@ const HotelForm = () => {
           </form>
         </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div
+          className="modal fade show"
+          id="myModal"
+          style={{ display: "block" }}
+          aria-modal="true"
+          role="dialog"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Thank You!</h4>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  onClick={() => setShowModal(false)}
+                />
+              </div>
+              <div className="modal-body">Your Hotel has been Added!</div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
