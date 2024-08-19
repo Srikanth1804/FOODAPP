@@ -10,12 +10,12 @@ const ShowReview = ({ name }) => {
     axios
       .get(`${API_EndPoint}/review/getreview`, { params: { name } })
       .then((res) => {
-        setgreview(res.data.reviewlist);
+        setgreview(res.data.reviewlist.reverse());
       })
       .catch((e) => {
         alert("Failed to get review list");
       });
-  }, [name]); // Add name as a dependency
+  }, [name, greview]); // Add name as a dependency
 
   return (
     <div>
