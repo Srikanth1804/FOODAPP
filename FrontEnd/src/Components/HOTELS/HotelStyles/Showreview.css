@@ -1,0 +1,7 @@
+/* media Query for Show Username */
+
+@media All and (max-width: 992px) {
+  #show-username {
+    margin-left: 10px;
+  }
+}

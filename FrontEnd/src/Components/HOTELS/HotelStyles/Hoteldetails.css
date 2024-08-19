@@ -28,3 +28,21 @@
 #comment {
   box-shadow: none;
 }
+
+/* Media-Query for nav-tabs */
+
+@media All and (max-width: 576px) {
+  #nav-tabs {
+    font-size: small;
+  }
+}
+@media All and (max-width: 350px) {
+  #nav-tabs {
+    font-size: x-small;
+  }
+}
+@media All and (max-width: 305px) {
+  #nav-tabs {
+    font-size: xx-small;
+  }
+}

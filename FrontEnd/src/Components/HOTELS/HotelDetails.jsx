@@ -44,7 +44,7 @@ const HotelDetails = () => {
       </div>
 
       <div style={{ fontVariant: "small-caps" }}>
-        <ul className="nav nav-tabs ">
+        <ul className="nav nav-tabs " id="nav-tabs">
           <li className="nav-item">
             <a className="nav-link" data-bs-toggle="tab" href="#review">
               Review

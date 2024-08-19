@@ -18,6 +18,9 @@ const Review = ({ name }) => {
       hotelname: name,
     };
 
+    setUsername("");
+    setComment("");
+    setRating(0);
     axios
       .post(`${API_EndPoint}/review/shreview`, ReviewData)
       .then((res) => {
@@ -52,6 +55,7 @@ const Review = ({ name }) => {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Your Name"
           required
+          style={{ fontVariant: "small-caps", outline: "none" }}
         />
 
         <textarea
@@ -59,6 +63,7 @@ const Review = ({ name }) => {
           onChange={(e) => setComment(e.target.value)}
           placeholder="Write your review..."
           required
+          style={{ fontVariant: "small-caps", outline: "none" }}
         />
         <button type="submit">Submit Review</button>
       </form>

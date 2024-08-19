@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_EndPoint } from "../GeneralData";
 import axios from "axios";
 import usericon from "../../assets/usericon.svg";
+import "../HOTELS/HotelStyles/Showreview.css";
 
 const ShowReview = ({ name }) => {
   const [greview, setgreview] = useState([]);
@@ -40,7 +41,7 @@ const ShowReview = ({ name }) => {
                       }}
                     />
                   </div>
-                  <div className="col mt-1">
+                  <div className="col mt-1" id="show-username">
                     <h6>{gr.Username}</h6>
                   </div>
                 </div>
