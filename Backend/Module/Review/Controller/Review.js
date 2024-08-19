@@ -1,23 +1,23 @@
 let RDBS = require("../../../Model/Review.model");
-
 module.exports = (req, res) => {
-  let { review } = req.body;
+  let { username, rating, comment, hotelname } = req.body;
 
   RDBS.create({
-    Comment: review,
+    Username: username,
+    Rating: rating,
+    Comment: comment,
+    HotelName: hotelname,
   })
-    .then((data) => {
+    .then(() => {
       res.json({
         status: true,
-        info: data,
-        msg: "comment posted!",
+        msg: "ThankYou For Providing Review!",
       });
     })
     .catch((e) => {
       res.json({
         status: false,
-        info: e,
-        msg: "Failed to post comment",
+        msg: "Error",
       });
     });
 };

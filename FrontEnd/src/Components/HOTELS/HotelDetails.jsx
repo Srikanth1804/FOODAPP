@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
 import Review from "./Review";
+import ShowReview from "./Show";
 
 const HotelDetails = () => {
   let { name } = useParams();
@@ -43,7 +44,7 @@ const HotelDetails = () => {
       </div>
 
       <div style={{ fontVariant: "small-caps" }}>
-        <ul className="nav nav-tabs">
+        <ul className="nav nav-tabs ">
           <li className="nav-item">
             <a className="nav-link" data-bs-toggle="tab" href="#review">
               Review
@@ -67,7 +68,14 @@ const HotelDetails = () => {
         </ul>
         <div className="tab-content">
           <div className="tab-pane container fade mt-3" id="review">
-            <Review />
+            <div className="row">
+              <div className="col-sm-6">
+                <Review name={name} />
+              </div>
+              <div className="col">
+                <ShowReview name={name} />
+              </div>
+            </div>
           </div>
 
           <div className="tab-pane container active" id="menu">

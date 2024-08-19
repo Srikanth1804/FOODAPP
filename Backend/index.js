@@ -23,8 +23,8 @@ Mongoose.connect(process.env.MONGODBURL)
 // Middlewire For Handler Routes
 App.use("/hotel", HotelRoutes);
 App.use("/food", FoodRoutes);
-App.use("/comment", ReviewRoute);
-
+App.use("/review", ReviewRoute);
+App.use("/cart", FoodRoutes);
 App.listen(8000, () => {
   console.log(process.env.PORT);
 });

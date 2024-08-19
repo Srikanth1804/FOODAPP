@@ -1,94 +1,67 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./HotelStyles/Review.css"; // Import the CSS file for styling
 import { API_EndPoint } from "../GeneralData";
 
-const Review = () => {
-  let [review, setReview] = useState("");
-  let [response, setResponse] = useState(null);
-  let [showModal, setShowModal] = useState(false);
+const Review = ({ name }) => {
+  const [reviews, setReviews] = useState([]);
+  const [username, setUsername] = useState("");
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
-  let handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    let Comment = { review };
+    let ReviewData = {
+      username,
+      rating,
+      comment,
+      hotelname: name,
+    };
 
     axios
-      .post(`${API_EndPoint}/comment/addcomment`, Comment)
+      .post(`${API_EndPoint}/review/shreview`, ReviewData)
       .then((res) => {
-        setResponse(res.data);
-        setReview("");
-        if (res.data.status) {
-          setShowModal(true);
-        } else {
-          alert("Failed to post comment!");
-        }
+        setReviews(res.data);
+        alert(res.data.msg);
       })
       .catch((e) => {
-        console.log(e);
-        alert("Failed to post comment!");
+        alert("Error To Post Review");
       });
   };
 
   return (
-    <div>
-      <h5 style={{ fontWeight: "700" }}>
-        The Great Kabab Factory - Radisson Blu Reviews
-      </h5>
-      <div>
-        <form className="form-floating" onSubmit={handleSubmit}>
-          <textarea
-            className="form-control"
-            id="comment"
-            name="text"
-            placeholder="Comment goes here"
-            value={review}
-            required
-            onChange={(e) => {
-              setReview(e.target.value);
-            }}
-          />
-          <label htmlFor="comment">Comments</label>
-          <button type="submit" className="btn btn-primary mt-2">
-            Submit
-          </button>
-        </form>
-      </div>
-
-      {/* Modal */}
-      {showModal && (
-        <div
-          className="modal fade show"
-          id="myModal"
-          style={{ display: "block" }}
-          aria-modal="true"
-          role="dialog"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title">Thank You!</h4>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  onClick={() => setShowModal(false)}
-                />
-              </div>
-              <div className="modal-body">Your comment has been posted!</div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="review-container">
+      <h2>Reviews</h2>
+      <form className="review-form" onSubmit={handleSubmit}>
+        <div className="rating-container">
+          <span>Rating:</span>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`star ${rating >= star ? "filled" : ""}`}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </span>
+          ))}
         </div>
-      )}
+
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Your Name"
+          required
+        />
+
+        <textarea
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Write your review..."
+          required
+        />
+        <button type="submit">Submit Review</button>
+      </form>
     </div>
   );
 };
