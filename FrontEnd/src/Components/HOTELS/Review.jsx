@@ -65,7 +65,12 @@ const Review = ({ name }) => {
           required
           style={{ fontVariant: "small-caps", outline: "none" }}
         />
-        <button type="submit">Submit Review</button>
+        <button
+          type="submit"
+          style={{ fontVariant: "small-caps", border: "none" }}
+        >
+          Submit Review
+        </button>
       </form>
     </div>
   );

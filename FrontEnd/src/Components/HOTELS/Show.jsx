@@ -16,14 +16,17 @@ const ShowReview = ({ name }) => {
       .catch((e) => {
         alert("Failed to get review list");
       });
-  }, [name, greview]); // Add name as a dependency
+  }, [name, greview]);
 
   return (
     <div>
       <div>
         <div
           className="shadow p-3 bg-white rounded mt-4"
-          style={{ maxHeight: "330px", overflowY: "auto" }} // Set max height and enable vertical scrolling
+          style={{
+            maxHeight: "330px",
+            overflowY: "auto",
+          }}
         >
           {greview.map((gr, index) => {
             return (

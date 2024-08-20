@@ -9,7 +9,7 @@ import HotelFiles from "./HotelFiles";
 
 const HotelSearch = (props) => {
   let [dish, setDish] = useState("");
-  let [location, setLocation] = useState("");
+  let [location, setLocation] = useState("chennai");
 
   let { setHotel } = props;
 
@@ -51,6 +51,7 @@ const HotelSearch = (props) => {
             onChange={(e) => {
               setDish(e.target.value);
             }}
+            required
           />
           <datalist id="browsers">
             <option value="veg"></option>

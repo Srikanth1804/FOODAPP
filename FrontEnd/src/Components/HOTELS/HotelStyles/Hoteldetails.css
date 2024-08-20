@@ -15,10 +15,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px) saturate(150%);
+  /* backdrop-filter: blur(2px); */
   opacity: 1;
   border-radius: 20px;
+
+  border-image: fill 0 linear-gradient(#0001, #000);
 }
 #overlay h1 {
   color: white;
