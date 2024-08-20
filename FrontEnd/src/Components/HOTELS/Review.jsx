@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./HotelStyles/Review.css"; // Import the CSS file for styling
+import "./HotelStyles/Review.css";
 import { API_EndPoint } from "../GeneralData";
 
 const Review = ({ name }) => {

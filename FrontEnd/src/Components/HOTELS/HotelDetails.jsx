@@ -27,9 +27,14 @@ const HotelDetails = () => {
     <div className="container mt-2">
       <div className="row">
         <div className="col-sm-12" id="image-container">
-          <img src={imgG1} alt="" className="img-fluid img-gallery" />
+          <img
+            src={imgG1}
+            alt=""
+            className="img-fluid img-gallery"
+            style={{ borderRadius: "10px" }}
+          />
           <div id="overlay">
-            <h1>{name}</h1>
+            <h1 style={{ fontSize: "2.5rem", margin: 0 }}>{name}</h1>
           </div>
         </div>
       </div>
@@ -72,7 +77,7 @@ const HotelDetails = () => {
               <div className="col-sm-6">
                 <Review name={name} />
               </div>
-              <div className="col">
+              <div className="col-sm-6">
                 <ShowReview name={name} />
               </div>
             </div>
