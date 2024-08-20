@@ -1,0 +1,14 @@
+#footer-container {
+  background-color: #f5eded;
+}
+#footer-container a {
+  font-weight: 500;
+}
+#footer-container a:hover {
+  text-decoration: underline;
+}
+@media All and (max-width: 576px) {
+  #footer-container {
+    font-size: smaller;
+  }
+}

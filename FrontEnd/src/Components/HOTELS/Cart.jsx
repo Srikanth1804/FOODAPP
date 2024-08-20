@@ -17,7 +17,7 @@ const Cart = () => {
       });
   }, []);
 
-  return <div>card</div>;
+  return <div></div>;
 };
 
 export default Cart;
