@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "/src/assets/Elogo.png";
 import "./NavbarStyles/Navbar.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
@@ -34,10 +35,10 @@ const NavbarDesktop = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link txt-color" href="#">
+                <Link className="nav-link txt-color" to="/contact">
                   <FontAwesomeIcon icon={faAddressBook} />
                   <b> Contact</b>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link txt-color" href="#">

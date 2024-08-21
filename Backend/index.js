@@ -7,6 +7,7 @@ let Mongoose = require("mongoose");
 const HotelRoutes = require("./Module/Hotel/Hotel.routes");
 const FoodRoutes = require("./Module/Food/Food.routes");
 const ReviewRoute = require("./Module/Review/Review.routes");
+const ContactRoute = require("./Module/Contact/Contact.routes");
 
 require("dotenv").config();
 App.use(Express.json());
@@ -25,6 +26,7 @@ App.use("/hotel", HotelRoutes);
 App.use("/food", FoodRoutes);
 App.use("/review", ReviewRoute);
 App.use("/cart", FoodRoutes);
+App.use("/contact", ContactRoute);
 App.listen(8000, () => {
   console.log(process.env.PORT);
 });

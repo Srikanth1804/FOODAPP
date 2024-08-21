@@ -2,7 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_EndPoint } from "../GeneralData";
 import DeleteIcon from "../../assets/deleteicon.svg";
-
+import "../HOTELS/HotelStyles/Cart.css";
+import UPI from "../../assets/upi-icon.webp";
+import Cash from "../../assets/cash-on-delivery.png";
+import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
 const Cart = () => {
   let [Cart, setCart] = useState([]);
   console.log(Cart);
@@ -19,175 +23,137 @@ const Cart = () => {
   }, []);
 
   return (
-    <div>
-      <div className="row container">
-        <div className="col-sm-6">
-          {Cart.map((d) => {
-            return (
-              <div
-                style={{ height: "200px" }}
-                className="shadow p-3 bg-white rounded mt-4"
-                key={d.id}
-              >
-                <img
-                  src={d.foodimg}
-                  alt=""
-                  className="img-fluid img-thumbnail"
-                  style={{
-                    width: "150px", // Set a fixed width
-                    height: "150px", // Set a fixed height
-                    objectFit: "cover", // Ensure the image covers the area
-                    display: "inline-block",
-                    marginRight: "20px",
-                  }}
+    <>
+      <div style={{ position: "sticky", top: "0", zIndex: "3" }}>
+        <NavBar />
+      </div>
+
+      <div id="pay-form" className="mt-3">
+        <div className="container" style={{ fontVariant: "small-caps" }}>
+          <div className="row">
+            <div className="col-sm-6">
+              {Cart.map((d) => {
+                return (
+                  <div
+                    style={{ height: "200px" }}
+                    className="shadow p-3 bg-white rounded mt-4"
+                    key={d.id}
+                  >
+                    <img
+                      src={d.foodimg}
+                      alt=""
+                      className="img-fluid img-thumbnail"
+                      style={{
+                        width: "150px", // Set a fixed width
+                        height: "150px", // Set a fixed height
+                        objectFit: "cover", // Ensure the image covers the area
+                        display: "inline-block",
+                        marginRight: "20px",
+                      }}
+                    />
+                    <div
+                      style={{ display: "inline-block", verticalAlign: "top" }}
+                    >
+                      <h4>{d.foodname}</h4>
+                      <p>{d.foodcategory}</p>
+                      <p>{d.foodprice}</p>
+                      <img src={DeleteIcon} alt="" srcset="" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="col-sm-6 mt-3">
+              <div className="form-floating mt-2">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  placeholder="Enter Username"
+                  name="username"
+                  autoComplete="off"
+                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
                 />
-                <div style={{ display: "inline-block", verticalAlign: "top" }}>
-                  <h4>{d.foodname}</h4>
-                  <p>{d.foodcategory}</p>
-                  <p>{d.foodprice}</p>
-                  <img src={DeleteIcon} alt="" srcset="" />
-                </div>
+                <label htmlFor="username">Username</label>
               </div>
-            );
-          })}
-        </div>
-        <div className="col-sm-6">
-          <div className="form-floating mb-3 mt-3">
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              placeholder="Enter Username"
-              name="username"
-            />
-            <label htmlFor="username">Username</label>
-          </div>
-          <div className="form-floating mb-3 mt-3">
-            <input
-              type="text"
-              className="form-control"
-              id="email"
-              placeholder="Enter email"
-              name="email"
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-          <div className="form-floating">
-            <textarea
-              className="form-control"
-              id="address"
-              name="text"
-              placeholder="Comment goes here"
-              defaultValue={""}
-            />
-            <label htmlFor="address">Address</label>
-          </div>
-          <div className="mt-2">
-            <h3>Payment Method:</h3>
-            <div className="dropdown mt-3">
-              <input
-                type="text"
-                className="form-control dropdown-toggle p-3"
-                id="email"
-                placeholder="UPI"
-                data-bs-toggle="dropdown"
-                autoComplete="off"
-              />
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <div className="form-check mb-3">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="upi"
-                      />
-                      Google Pay
-                    </label>
+              <div className="form-floating  mt-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  name="email"
+                  autoComplete="off"
+                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
+                />
+                <label htmlFor="email">Email</label>
+              </div>
+              <div className="form-floating mt-3">
+                <textarea
+                  className="form-control"
+                  id="address"
+                  name="text"
+                  placeholder="Comment goes here"
+                  defaultValue={""}
+                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
+                />
+                <label htmlFor="address">Address</label>
+              </div>
+              <h4 className="mt-4" style={{ fontWeight: "700" }}>
+                Payment Method:
+              </h4>
+              <div id="accordion">
+                <div className="card">
+                  <div className="card-header">
+                    <a
+                      className="btn cart-accordion"
+                      data-bs-toggle="collapse"
+                      href="#collapseOne"
+                    >
+                      Upi
+                    </a>
                   </div>
-                </li>
-                <li className="dropdown-item">
-                  <div className="form-check mb-3">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="upi"
-                      />
-                      PhonePe
-                    </label>
+                  <div
+                    id="collapseOne"
+                    className="collapse"
+                    data-bs-parent="#accordion"
+                  >
+                    <div className="card-body"></div>
                   </div>
-                </li>
-                <li className="dropdown-item">
-                  <div className="form-check mb-3">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="upi"
-                      />
-                      Paytm
-                    </label>
+                </div>
+                <div className="card mt-2">
+                  <div className="card-header">
+                    <a
+                      className="collapsed btn cart-accordion"
+                      data-bs-toggle="collapse"
+                      href="#collapseTwo"
+                    >
+                      Cashondelivery
+                    </a>
                   </div>
-                </li>
-              </ul>
-            </div>
-
-            <div className="dropdown mt-3">
-              <input
-                type="text"
-                className="form-control dropdown-toggle p-3"
-                placeholder="NetBanking"
-                data-bs-toggle="dropdown"
-                autoComplete="off"
-              />
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <div className="form-check mb-3">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="NB"
-                      />
-                      HDFC
-                    </label>
+                  <div
+                    id="collapseTwo"
+                    className="collapse"
+                    data-bs-parent="#accordion"
+                  >
+                    <div className="card-body">
+                      <a
+                        href=""
+                        className="btn btn-warning"
+                        style={{ fontWeight: "500", border: "none" }}
+                      >
+                        Place Order
+                      </a>
+                    </div>
                   </div>
-                </li>
-                <li className="dropdown-item">
-                  <div className="form-check mb-3">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="NB"
-                      />
-                      ICICI
-                    </label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              {/* <button data-bs-toggle="collapse" data-bs-target="#demo">
-                Collapsible
-              </button> */}
-              <input
-                type="text"
-                className="form-control dr p-3"
-                placeholder="NetBanking"
-                data-bs-toggle="dropdown"
-                autoComplete="off"
-              />
-              <div id="demo" class="collapse">
-                Lorem ipsum dolor text....
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

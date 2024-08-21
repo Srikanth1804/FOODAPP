@@ -5,6 +5,7 @@ import instagram from "../../assets/instagram.svg";
 import linkedin from "../../assets/linkedin.svg";
 import twitter from "../../assets/twitter.svg";
 import logo from "../../assets/Elogo.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div
@@ -19,9 +20,10 @@ const Footer = () => {
           <div className="col">
             <h4 style={{ fontWeight: "700" }}>Customer Service</h4>
             <div>
-              <a href="" className="nav-link">
+              <Link className="nav-link" to="/contact">
                 Contact Us
-              </a>
+              </Link>
+
               <a href="" className="nav-link">
                 FAQs
               </a>
