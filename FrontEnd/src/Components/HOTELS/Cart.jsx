@@ -7,6 +7,7 @@ import UPI from "../../assets/upi-icon.webp";
 import Cash from "../../assets/cash-on-delivery.png";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import GooglePayButton from "@google-pay/button-react";
 const Cart = () => {
   let [Cart, setCart] = useState([]);
   console.log(Cart);
@@ -29,7 +30,10 @@ const Cart = () => {
       </div>
 
       <div id="pay-form" className="mt-3">
-        <div className="container" style={{ fontVariant: "small-caps" }}>
+        <div
+          className="container"
+          style={{ fontVariant: "small-caps", fontWeight: "500" }}
+        >
           <div className="row">
             <div className="col-sm-6">
               {Cart.map((d) => {
@@ -109,6 +113,7 @@ const Cart = () => {
                       className="btn cart-accordion"
                       data-bs-toggle="collapse"
                       href="#collapseOne"
+                      style={{ fontWeight: "500" }}
                     >
                       Upi
                     </a>
@@ -118,7 +123,64 @@ const Cart = () => {
                     className="collapse"
                     data-bs-parent="#accordion"
                   >
-                    <div className="card-body"></div>
+                    <div className="card-body">
+                      <GooglePayButton
+                        environment="TEST"
+                        paymentRequest={{
+                          apiVersion: 2,
+                          apiVersionMinor: 0,
+                          allowedPaymentMethods: [
+                            {
+                              type: "CARD",
+                              parameters: {
+                                allowedAuthMethods: [
+                                  "PAN_ONLY",
+                                  "CRYPTOGRAM_3DS",
+                                ],
+                                allowedCardNetworks: ["MASTERCARD", "VISA"],
+                              },
+                              tokenizationSpecification: {
+                                type: "PAYMENT_GATEWAY",
+                                parameters: {
+                                  gateway: "example",
+                                  gatewayMerchantId: "exampleGatewayMerchantId",
+                                },
+                              },
+                            },
+                          ],
+                          merchantInfo: {
+                            merchantId: "12345678901234567890",
+                            merchantName: "Demo Merchant",
+                          },
+                          transactionInfo: {
+                            totalPriceStatus: "FINAL",
+                            totalPriceLabel: "Total",
+                            totalPrice: "1",
+                            currencyCode: "INR",
+                            countryCode: "IND",
+                          },
+                          shippingAddressRequired: false,
+                          callbackIntents: ["PAYMENT_AUTHORIZATION"],
+                        }}
+                        onLoadPaymentData={(paymentRequest) => {
+                          console.log("Success", paymentRequest);
+                        }}
+                        onPaymentAuthorized={(paymentData) => {
+                          console.log(
+                            "Payment Authorised Success",
+                            paymentData
+                          );
+                          return { transactionState: "SUCCESS" };
+                        }}
+                        // onPaymentDataChanged={(paymentData) => {
+                        //   console.log("On Payment Data Changed", paymentData);
+                        //   return {};
+                        // }}
+                        existingPaymentMethodRequired="false"
+                        buttonColor="default"
+                        buttonType="short"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="card mt-2">
@@ -127,6 +189,7 @@ const Cart = () => {
                       className="collapsed btn cart-accordion"
                       data-bs-toggle="collapse"
                       href="#collapseTwo"
+                      style={{ fontWeight: "500" }}
                     >
                       Cashondelivery
                     </a>

@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "/src/assets/Elogo.png";
 import "./NavbarStyles/Navbar.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
@@ -28,10 +29,11 @@ const NavbarMobile = () => {
                 <b> Cart</b>
               </a>
               <br />
-              <a className="nav-link font icon" href="#">
+              <Link className="nav-link font icon" to="/contact">
                 <FontAwesomeIcon icon={faAddressBook} />
                 <b> Contact</b>
-              </a>
+              </Link>
+
               <br />
               <a className="nav-link font icon" href="#">
                 <FontAwesomeIcon icon={faRightToBracket} />

@@ -54,16 +54,20 @@ const Footer = () => {
             <h4 style={{ fontWeight: "700" }}>Contact With Us</h4>
             <div>
               <a href="" className="nav-link">
-                <img src={facebook} style={{ width: "20px" }} alt="" /> Facebook
+                <img src={facebook} style={{ width: "20px" }} alt="" />{" "}
+                <span className="ms-1">Facebook</span>
               </a>
               <a href="" className="nav-link">
-                <img src={instagram} style={{ width: "20px" }} /> Instagram
+                <img src={instagram} style={{ width: "20px" }} />{" "}
+                <span className="ms-1">Instagram</span>
               </a>
               <a href="" className="nav-link">
-                <img src={twitter} style={{ width: "20px" }} /> Twitter
+                <img src={twitter} style={{ width: "20px" }} />{" "}
+                <span className="ms-1">Twitter</span>
               </a>
               <a href="" className="nav-link">
-                <img src={linkedin} style={{ width: "20px" }} /> Linked In
+                <img src={linkedin} style={{ width: "20px" }} />{" "}
+                <span className="ms-1">Linked In</span>
               </a>
             </div>
           </div>
