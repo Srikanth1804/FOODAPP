@@ -3,25 +3,30 @@ import React, { useEffect, useState } from "react";
 import { API_EndPoint } from "../GeneralData";
 import DeleteIcon from "../../assets/deleteicon.svg";
 import "../HOTELS/HotelStyles/Cart.css";
-import UPI from "../../assets/upi-icon.webp";
-import Cash from "../../assets/cash-on-delivery.png";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import GooglePayButton from "@google-pay/button-react";
-const Cart = () => {
+
+const Cart = ({ setCl }) => {
   let [Cart, setCart] = useState([]);
-  console.log(Cart);
 
   useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getcart`)
       .then((res) => {
-        setCart(res.data.info);
+        setCart(res.data.info || []);
       })
       .catch((e) => {
         console.log("Failed To Add Card!");
       });
   }, []);
+
+  // Update setCl whenever Cart changes
+  useEffect(() => {
+    if (setCl) {
+      setCl(Cart.length);
+    }
+  }, [Cart, setCl]);
 
   return (
     <>
@@ -48,9 +53,9 @@ const Cart = () => {
                       alt=""
                       className="img-fluid img-thumbnail"
                       style={{
-                        width: "150px", // Set a fixed width
-                        height: "150px", // Set a fixed height
-                        objectFit: "cover", // Ensure the image covers the area
+                        width: "150px",
+                        height: "150px",
+                        objectFit: "cover",
                         display: "inline-block",
                         marginRight: "20px",
                       }}
@@ -61,7 +66,7 @@ const Cart = () => {
                       <h4>{d.foodname}</h4>
                       <p>{d.foodcategory}</p>
                       <p>{d.foodprice}</p>
-                      <img src={DeleteIcon} alt="" srcset="" />
+                      <img src={DeleteIcon} alt="" />
                     </div>
                   </div>
                 );
@@ -80,7 +85,7 @@ const Cart = () => {
                 />
                 <label htmlFor="username">Username</label>
               </div>
-              <div className="form-floating  mt-3">
+              <div className="form-floating mt-3">
                 <input
                   type="text"
                   className="form-control"
@@ -172,10 +177,6 @@ const Cart = () => {
                           );
                           return { transactionState: "SUCCESS" };
                         }}
-                        // onPaymentDataChanged={(paymentData) => {
-                        //   console.log("On Payment Data Changed", paymentData);
-                        //   return {};
-                        // }}
                         existingPaymentMethodRequired="false"
                         buttonColor="default"
                         buttonType="short"

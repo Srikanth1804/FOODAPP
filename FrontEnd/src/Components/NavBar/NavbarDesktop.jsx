@@ -3,10 +3,14 @@ import logo from "/src/assets/Elogo.png";
 import "./NavbarStyles/Navbar.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-const NavbarDesktop = () => {
+import {
+  faCartPlus,
+  faAddressBook,
+  faRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
+
+const NavbarDesktop = ({ Cl = [] }) => {
+  // Default to an empty array
   return (
     <div id="navBg-desk">
       <nav className="navbar navbar-expand-sm font">
@@ -29,10 +33,15 @@ const NavbarDesktop = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link txt-color" href="#">
-                  <FontAwesomeIcon icon={faCartPlus} />
-                  <b> Cart</b>
-                </a>
+                <Link to="/cart" className="nav-link txt-color">
+                  <FontAwesomeIcon icon={faCartPlus} />{" "}
+                  <b>
+                    Cart{" "}
+                    <span className="badge bg-danger">
+                      {Cl.length > 0 ? Cl.length : ""}
+                    </span>
+                  </b>
+                </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link txt-color" to="/contact">

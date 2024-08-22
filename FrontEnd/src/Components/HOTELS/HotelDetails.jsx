@@ -88,6 +88,7 @@ const HotelDetails = () => {
               {SingleHotel.map((SH, index) => (
                 <Menucard
                   key={index}
+                  FoodId={SH._id}
                   FoodImg={SH.FoodImg}
                   FoodCategory={SH.FoodCategory}
                   FoodDesc={SH.FoodDesc}

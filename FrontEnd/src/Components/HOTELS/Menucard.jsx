@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../HOTELS/HotelStyles/Menucard.css";
 import veg from "../../assets/Veg.svg";
 import nonveg from "../../assets/Nonveg.svg";
 import star from "../../assets/Star.svg";
 import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
+
 const Menucard = (props) => {
   let {
     FoodImg,
@@ -13,10 +14,18 @@ const Menucard = (props) => {
     FoodName,
     FoodPrice,
     FoodRating,
-    FoodAvailable,
-  } = props;
+    FoodId,
+  } = props; // Assuming FoodId is passed as a prop
 
   let [showModal, setShowModal] = useState(false);
+  let [inCart, setInCart] = useState(false); // New state to track if item is in cart
+
+  // Check local storage to see if the item is already in the cart
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const isInCart = cartItems.some((item) => item.FoodName === FoodName);
+    setInCart(isInCart);
+  }, [FoodName]);
 
   let HandleCart = (e) => {
     e.preventDefault();
@@ -27,17 +36,42 @@ const Menucard = (props) => {
       FoodDesc,
       FoodName,
       FoodPrice,
+      FoodId, // Include FoodId in the CartData
     };
 
-    axios
-      .post(`${API_EndPoint}/cart/addcart`, CartData)
-      .then((res) => {
-        setShowModal(res.data.info);
-        console.log(res.data.info);
-      })
-      .catch((e) => {
-        console.log("Error TO Added Cart");
-      });
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    if (!inCart) {
+      // Add item to cart
+      cartItems.push(CartData);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+      setInCart(true);
+      axios
+        .post(`${API_EndPoint}/cart/addcart`, CartData)
+        .then(() => {
+          setShowModal("Item Added To Cart!");
+        })
+        .catch((e) => {
+          alert("Error adding item to cart");
+        });
+    } else {
+      // Remove item from cart
+      cartItems = cartItems.filter((item) => item.FoodName !== FoodName);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      setShowModal("Item removed from cart!");
+      setInCart(false);
+
+      // Make sure to send the FoodId in the delete request
+      axios
+        .delete(`${API_EndPoint}/cart/remove/${FoodId}`) // Assuming your API expects the ID in the URL
+        .then(() => {
+          setShowModal("Item removed from Cart!");
+        })
+        .catch((e) => {
+          alert("Error removing item from cart");
+        });
+    }
   };
 
   return (
@@ -74,7 +108,7 @@ const Menucard = (props) => {
               <b>Price:</b> ₹{FoodPrice}
             </p>
             <p>
-              <span class="badge bg-primary">
+              <span className="badge bg-primary">
                 {FoodRating}
                 <img
                   src={star}
@@ -83,7 +117,8 @@ const Menucard = (props) => {
               </span>
             </p>
             <button className="btn" id="menucard-btn" onClick={HandleCart}>
-              Add to cart
+              {inCart ? "Remove from Cart" : "Add to Cart"}{" "}
+              {/* Toggle button text */}
             </button>
           </div>
         </div>
@@ -109,7 +144,8 @@ const Menucard = (props) => {
                   onClick={() => setShowModal(false)}
                 />
               </div>
-              <div className="modal-body">Cart Successfully Added!</div>
+              <div className="modal-body">{showModal}</div>{" "}
+              {/* Show dynamic message */}
               <div className="modal-footer">
                 <button
                   type="button"

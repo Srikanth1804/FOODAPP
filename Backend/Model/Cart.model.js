@@ -16,6 +16,10 @@ let CartSchema = new Mongoose.Schema({
   foodprice: {
     type: String,
   },
+  incart: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 let CDBS = Mongoose.model("FoodCart", CartSchema);

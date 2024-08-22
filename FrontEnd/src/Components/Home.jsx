@@ -3,10 +3,10 @@ import NavBar from "./NavBar/NavBar";
 import HotelList from "./HOTELS/HotelList";
 import Footer from "./Footer/Footer";
 
-const Home = () => {
+const Home = ({ Cl }) => {
   return (
     <div>
-      <NavBar />
+      <NavBar Cl={Cl} />
       <HotelList />
       <Footer />
     </div>

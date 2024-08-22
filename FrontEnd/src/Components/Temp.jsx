@@ -7,6 +7,8 @@ import FoodForm from "./HOTELS/FoodForm";
 import HotelInfo from "./HOTELS/HotelInfo";
 import Contact from "./Contact/Contact";
 import Cart from "./HOTELS/Cart";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Temp = () => {
   return (
