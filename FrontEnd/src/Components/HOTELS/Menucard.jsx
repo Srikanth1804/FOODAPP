@@ -36,7 +36,6 @@ const Menucard = (props) => {
       FoodDesc,
       FoodName,
       FoodPrice,
-      FoodId, // Include FoodId in the CartData
     };
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -64,7 +63,7 @@ const Menucard = (props) => {
 
       // Make sure to send the FoodId in the delete request
       axios
-        .delete(`${API_EndPoint}/cart/remove/${FoodId}`) // Assuming your API expects the ID in the URL
+        .delete(`${API_EndPoint}/cart/remove/${FoodName}`) // Assuming your API expects the ID in the URL
         .then(() => {
           setShowModal("Item removed from Cart!");
         })

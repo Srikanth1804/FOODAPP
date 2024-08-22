@@ -1,20 +1,17 @@
 let CDBS = require("../../../Model/Cart.model");
-
 module.exports = (req, res) => {
-  let { name } = req.params;
-  console.log("Delete", name);
-
-  CDBS.deleteOne({ foodname: name })
+  let { id } = req.params;
+  CDBS.findByIdAndDelete({ _id: id })
     .then((data) => {
       res.json({
         status: true,
-        msg: "Item Removed!",
+        msg: "Data Deleted!",
       });
     })
     .catch((e) => {
       res.json({
         status: false,
-        msg: "Error",
+        msg: "Failled to delete",
       });
     });
 };

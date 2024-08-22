@@ -19,7 +19,7 @@ const Cart = ({ setCl }) => {
       .catch((e) => {
         console.log("Failed To Add Card!");
       });
-  }, []);
+  }, [Cart]);
 
   // Update setCl whenever Cart changes
   useEffect(() => {
@@ -27,6 +27,17 @@ const Cart = ({ setCl }) => {
       setCl(Cart.length);
     }
   }, [Cart, setCl]);
+
+  let DeleteHandler = (id) => {
+    axios
+      .delete(`${API_EndPoint}/cart/cartdelete/${id}`)
+      .then(() => {
+        alert("Data Deleted!");
+      })
+      .catch((e) => {
+        alert("Error to Delete Data!");
+      });
+  };
 
   return (
     <>
@@ -66,7 +77,13 @@ const Cart = ({ setCl }) => {
                       <h4>{d.foodname}</h4>
                       <p>{d.foodcategory}</p>
                       <p>{d.foodprice}</p>
-                      <img src={DeleteIcon} alt="" />
+                      <img
+                        src={DeleteIcon}
+                        alt=""
+                        onClick={() => {
+                          DeleteHandler(d._id);
+                        }}
+                      />
                     </div>
                   </div>
                 );
