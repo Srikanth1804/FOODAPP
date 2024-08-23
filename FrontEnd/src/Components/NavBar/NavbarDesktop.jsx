@@ -36,7 +36,7 @@ const NavbarDesktop = ({ Cl = [] }) => {
                 <Link to="/cart" className="nav-link txt-color">
                   <FontAwesomeIcon icon={faCartPlus} />{" "}
                   <b>
-                    Cart{" "}
+                    Cart
                     <span className="badge bg-danger">
                       {Cl.length > 0 ? Cl.length : ""}
                     </span>

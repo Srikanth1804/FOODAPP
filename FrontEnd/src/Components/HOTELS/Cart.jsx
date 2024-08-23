@@ -6,6 +6,8 @@ import "../HOTELS/HotelStyles/Cart.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import GooglePayButton from "@google-pay/button-react";
+import Duckicon from "../../assets/Duckicon.png";
+import Emptyicon from "../../assets/Emptyicon.png";
 
 const Cart = ({ setCl }) => {
   let [Cart, setCart] = useState([]);
@@ -52,42 +54,53 @@ const Cart = ({ setCl }) => {
         >
           <div className="row">
             <div className="col-sm-6">
-              {Cart.map((d) => {
-                return (
-                  <div
-                    style={{ height: "200px" }}
-                    className="shadow p-3 bg-white rounded mt-4"
-                    key={d.id}
-                  >
-                    <img
-                      src={d.foodimg}
-                      alt=""
-                      className="img-fluid img-thumbnail"
-                      style={{
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "cover",
-                        display: "inline-block",
-                        marginRight: "20px",
-                      }}
-                    />
+              {Cart.length > 0 ? (
+                Cart.map((d) => {
+                  return (
                     <div
-                      style={{ display: "inline-block", verticalAlign: "top" }}
+                      style={{ height: "200px" }}
+                      className="shadow p-3 bg-white rounded mt-4"
+                      key={d.id}
                     >
-                      <h4>{d.foodname}</h4>
-                      <p>{d.foodcategory}</p>
-                      <p>{d.foodprice}</p>
                       <img
-                        src={DeleteIcon}
+                        src={d.foodimg}
                         alt=""
-                        onClick={() => {
-                          DeleteHandler(d._id);
+                        className="img-fluid img-thumbnail"
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                          objectFit: "cover",
+                          display: "inline-block",
+                          marginRight: "20px",
                         }}
                       />
+                      <div
+                        style={{
+                          display: "inline-block",
+                          verticalAlign: "top",
+                        }}
+                      >
+                        <h4>{d.foodname}</h4>
+                        <p>{d.foodcategory}</p>
+                        <p>{d.foodprice}</p>
+                        <img
+                          src={DeleteIcon}
+                          alt=""
+                          onClick={() => {
+                            DeleteHandler(d._id);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <img
+                  src={Emptyicon}
+                  className="img-fluid animated-image "
+                  style={{ width: "400px" }}
+                />
+              )}
             </div>
             <div className="col-sm-6 mt-3">
               <div className="form-floating mt-2">
