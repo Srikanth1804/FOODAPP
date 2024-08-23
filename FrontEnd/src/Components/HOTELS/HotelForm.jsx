@@ -13,12 +13,13 @@ const HotelForm = () => {
 
   let [hotelname, sethotelname] = useState();
   let [hotelimg, sethotelimg] = useState();
-  let [hotelcategory, setHotelcategory] = useState();
+  let [hotelcategory, setHotelcategory] = useState("veg");
   let [hotellocation, sethotellocation] = useState();
   let [opentime, setopentime] = useState();
   let [closetime, setclosetime] = useState();
-  let [rating, setrating] = useState();
+  let [rating, setrating] = useState(1);
   let [hoteldesc, sethoteldesc] = useState();
+  let [locationURL, setlocationURL] = useState();
   let [hasbar, sethasbar] = useState();
   let [hasparking, sethasparking] = useState();
   let [canbooktable, setcanbooktable] = useState();
@@ -34,10 +35,12 @@ const HotelForm = () => {
       closetime,
       rating,
       hoteldesc,
+      locationURL,
       hasbar,
       hasparking,
       canbooktable,
     };
+    console.log(formdata);
 
     axios
       .post(`${API_EndPoint}/hotel/addhotel`, formdata)
@@ -60,6 +63,7 @@ const HotelForm = () => {
     setclosetime("");
     setrating("1");
     sethoteldesc("");
+    setlocationURL("");
     sethasbar(false);
     sethasparking(false);
     setcanbooktable(false);
@@ -258,6 +262,27 @@ const HotelForm = () => {
                   value={hoteldesc}
                   required
                 ></textarea>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-sm-6 mt-3">
+                <label
+                  htmlFor="hotel-location-Url"
+                  style={{ fontVariant: "small-caps", fontWeight: "500" }}
+                >
+                  Hotel Location URL
+                </label>
+                <input
+                  type="text"
+                  className="form-control form-control-lg hotel-input"
+                  id="hotel-location-Url"
+                  autoComplete="off"
+                  name="text"
+                  onChange={(e) => setlocationURL(e.target.value)}
+                  value={locationURL}
+                  required
+                />
               </div>
             </div>
 

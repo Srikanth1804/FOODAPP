@@ -12,6 +12,7 @@ module.exports = (req, res) => {
     hoteldesc,
     opentime,
     rating,
+    locationURL,
   } = req.body;
 
   HotelData.create({
@@ -26,6 +27,7 @@ module.exports = (req, res) => {
     HotelOpen: opentime,
     HotelDescription: hoteldesc,
     HotelRating: rating,
+    HotelLocationURL: locationURL,
   })
     .then((data) => {
       res.json({

@@ -107,7 +107,7 @@ const Menucard = (props) => {
               <b>Price:</b> ₹{FoodPrice}
             </p>
             <p>
-              <span className="badge bg-primary">
+              <span className="badge bg-success">
                 {FoodRating}
                 <img
                   src={star}

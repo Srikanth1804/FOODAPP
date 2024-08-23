@@ -12,11 +12,11 @@ const FoodForm = () => {
 
   let [foodname, setfoodname] = useState();
   let [foodimg, setfoodimg] = useState();
-  let [foodcategory, setfoodcategory] = useState();
+  let [foodcategory, setfoodcategory] = useState("veg");
   let [fooddesc, setfooddesc] = useState();
   let [hotelname, sethotelname] = useState();
   let [price, setprice] = useState();
-  let [rating, setrating] = useState();
+  let [rating, setrating] = useState(1);
   let [notes, setnotes] = useState();
   let [isavailable, setisavailable] = useState();
 
@@ -152,7 +152,7 @@ const FoodForm = () => {
                   }}
                   value={foodcategory}
                 >
-                  <option value="veg">Veg</option>
+                  <option value="veg">veg</option>
                   <option value="Non-Veg">Non-Veg</option>
                   <option value="Veg&Non-Veg">Veg&Non-Veg</option>
                 </select>

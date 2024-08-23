@@ -24,10 +24,10 @@ const NavbarMobile = () => {
               ></button>
             </div>
             <div class="offcanvas-body">
-              <a className="nav-link font icon" href="#">
+              <Link className="nav-link font icon" to="/cart">
                 <FontAwesomeIcon icon={faCartPlus} />
                 <b> Cart</b>
-              </a>
+              </Link>
               <br />
               <Link className="nav-link font icon" to="/contact">
                 <FontAwesomeIcon icon={faAddressBook} />
