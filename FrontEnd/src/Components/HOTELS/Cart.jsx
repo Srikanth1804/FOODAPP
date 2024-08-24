@@ -6,38 +6,93 @@ import "../HOTELS/HotelStyles/Cart.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import GooglePayButton from "@google-pay/button-react";
-import Duckicon from "../../assets/Duckicon.png";
 import Emptyicon from "../../assets/Emptyicon.png";
+import Qtybtn from "./Qtybtn";
 
 const Cart = ({ setCl }) => {
-  let [Cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [itemCounts, setItemCounts] = useState({});
+
+  console.log(cart);
 
   useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getcart`)
       .then((res) => {
         setCart(res.data.info || []);
+        const initialCounts = {};
+        res.data.info.forEach((item) => {
+          initialCounts[item._id] = 1; // Initialize count for each item
+        });
+        setItemCounts(initialCounts);
       })
       .catch((e) => {
-        console.log("Failed To Add Card!");
+        console.error("Failed to fetch cart data!", e);
       });
-  }, [Cart]);
+  }, []);
 
-  // Update setCl whenever Cart changes
   useEffect(() => {
     if (setCl) {
-      setCl(Cart.length);
+      setCl(cart.length);
     }
-  }, [Cart, setCl]);
+  }, [cart, setCl]);
 
-  let DeleteHandler = (id) => {
+  const deleteHandler = (id) => {
     axios
       .delete(`${API_EndPoint}/cart/cartdelete/${id}`)
       .then(() => {
-        alert("Data Deleted!");
+        setCart(cart.filter((item) => item._id !== id)); // Update cart state
       })
       .catch((e) => {
-        alert("Error to Delete Data!");
+        alert("Error deleting item!");
+        console.error(e);
+      });
+  };
+
+  const handleCountChange = (id, change) => {
+    setItemCounts((prevCounts) => ({
+      ...prevCounts,
+      [id]: Math.max(0, prevCounts[id] + change), // Prevent negative counts
+    }));
+  };
+
+  // Calculate total sum
+  const totalSum = cart.reduce((total, item) => {
+    const itemCount = itemCounts[item._id] || 0; // Get the count for the item
+    return total + item.foodprice * itemCount; // Sum up the total price
+  }, 0);
+
+  let HandleOrder = () => {
+    // Create an array to hold the order data
+    const orderData = cart.map((item) => ({
+      _id: item._id,
+      name: item.foodname,
+      price: item.foodprice,
+      itemCount: itemCounts[item._id] || 0, // Get the count for the item
+    }));
+
+    // Log the order data to verify
+    console.log(orderData);
+
+    // Send the order data to your server
+    axios
+      .post(`${API_EndPoint}/order/placeorder`, { orderData })
+      .then((response) => {
+        console.log("Order placed successfully!", response.data);
+
+        // Now delete the cart after placing the order
+        return axios.delete(`${API_EndPoint}/cart/clearcart`); // Adjust the endpoint as needed
+      })
+      .then(() => {
+        // Clear the local cart state
+        setCart([]);
+        setItemCounts({});
+        console.log("Cart cleared successfully!");
+        // Optionally, show a success message to the user
+      })
+      .catch((error) => {
+        console.error("Error placing order or clearing cart!", error);
+        // Optionally, show an error message to the user
       });
   };
 
@@ -54,51 +109,65 @@ const Cart = ({ setCl }) => {
         >
           <div className="row">
             <div className="col-sm-6">
-              {Cart.length > 0 ? (
-                Cart.map((d) => {
-                  return (
+              {cart.length > 0 ? (
+                cart.map((item) => (
+                  <div
+                    className="shadow p-3 bg-white rounded mt-4 d-flex justify-content-between align-items-center"
+                    key={item._id}
+                    style={{ height: "200px" }}
+                  >
                     <div
-                      style={{ height: "200px" }}
-                      className="shadow p-3 bg-white rounded mt-4"
-                      key={d.id}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexGrow: 1,
+                      }}
                     >
                       <img
-                        src={d.foodimg}
-                        alt=""
+                        src={item.foodimg}
+                        alt={item.foodname}
                         className="img-fluid img-thumbnail"
                         style={{
                           width: "150px",
                           height: "150px",
                           objectFit: "cover",
-                          display: "inline-block",
                           marginRight: "20px",
                         }}
                       />
-                      <div
-                        style={{
-                          display: "inline-block",
-                          verticalAlign: "top",
-                        }}
-                      >
-                        <h4>{d.foodname}</h4>
-                        <p>{d.foodcategory}</p>
-                        <p>{d.foodprice}</p>
-                        <img
-                          src={DeleteIcon}
-                          alt=""
-                          onClick={() => {
-                            DeleteHandler(d._id);
-                          }}
-                        />
+                      <div>
+                        <h4>{item.foodname}</h4>
+                        <p>{item.foodcategory}</p>
+                        <p>{item.foodprice}</p>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Qtybtn Track={() => handleCountChange(item._id, 1)}>
+                            +
+                          </Qtybtn>
+                          <p style={{ margin: "0 10px" }}>
+                            {itemCounts[item._id]}
+                          </p>
+                          <Qtybtn
+                            Track={() => handleCountChange(item._id, -1)}
+                            disable={itemCounts[item._id] <= 1}
+                          >
+                            -
+                          </Qtybtn>
+                        </div>
                       </div>
                     </div>
-                  );
-                })
+                    <img
+                      src={DeleteIcon}
+                      alt="Delete"
+                      onClick={() => deleteHandler(item._id)}
+                      style={{ cursor: "pointer", marginLeft: "20px" }}
+                    />
+                  </div>
+                ))
               ) : (
                 <img
                   src={Emptyicon}
-                  className="img-fluid animated-image "
+                  className="img-fluid animated-image"
                   style={{ width: "400px" }}
+                  alt="Empty Cart"
                 />
               )}
             </div>
@@ -137,6 +206,10 @@ const Cart = ({ setCl }) => {
                   style={{ boxShadow: "none", fontVariant: "small-caps" }}
                 />
                 <label htmlFor="address">Address</label>
+                <h6 className="mt-3 mark">
+                  Total: ₹{totalSum.toFixed(2)}
+                </h6>{" "}
+                {/* Display total sum */}
               </div>
               <h4 className="mt-4" style={{ fontWeight: "700" }}>
                 Payment Method:
@@ -231,13 +304,13 @@ const Cart = ({ setCl }) => {
                     data-bs-parent="#accordion"
                   >
                     <div className="card-body">
-                      <a
-                        href=""
+                      <button
+                        onClick={HandleOrder}
                         className="btn btn-warning"
                         style={{ fontWeight: "500", border: "none" }}
                       >
                         Place Order
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -246,6 +319,7 @@ const Cart = ({ setCl }) => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

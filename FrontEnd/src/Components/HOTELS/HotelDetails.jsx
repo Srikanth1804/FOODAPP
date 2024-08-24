@@ -34,6 +34,7 @@ const HotelDetails = () => {
               className="img-fluid img-gallery"
               style={{ borderRadius: "10px" }}
             />
+
             <div id="overlay">
               <h1 style={{ fontSize: "2.5rem", margin: 0 }}>{name}</h1>
             </div>

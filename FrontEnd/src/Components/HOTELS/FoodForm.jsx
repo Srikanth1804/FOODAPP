@@ -154,7 +154,6 @@ const FoodForm = () => {
                 >
                   <option value="veg">veg</option>
                   <option value="Non-Veg">Non-Veg</option>
-                  <option value="Veg&Non-Veg">Veg&Non-Veg</option>
                 </select>
               </div>
 

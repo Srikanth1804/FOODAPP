@@ -1,0 +1,15 @@
+let Order = require("../../../Model/Order.model");
+module.exports = async (req, res) => {
+  const { orderData } = req.body; // Get the order data from the request body
+
+  try {
+    // Insert the order data into the database
+    const result = await Order.insertMany(orderData);
+    res
+      .status(201)
+      .json({ message: "Order placed successfully!", data: result });
+  } catch (error) {
+    console.error("Error placing order:", error);
+    res.status(500).json({ message: "Error placing order", error });
+  }
+};

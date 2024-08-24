@@ -16,7 +16,7 @@ const NavBar = () => {
       .catch((e) => {
         console.log("Failed To Add Card!");
       });
-  }, []);
+  }, [Cl]);
 
   return (
     <div>
