@@ -81,7 +81,9 @@ const Cart = ({ setCl }) => {
         console.log("Order placed successfully!", response.data);
 
         // Now delete the cart after placing the order
-        return axios.delete(`${API_EndPoint}/cart/clearcart`); // Adjust the endpoint as needed
+        return axios.delete(`${API_EndPoint}/cart/clearcart`, {
+          params: { orderData: JSON.stringify(orderData) }, // Send orderData as a query parameter
+        });
       })
       .then(() => {
         // Clear the local cart state
