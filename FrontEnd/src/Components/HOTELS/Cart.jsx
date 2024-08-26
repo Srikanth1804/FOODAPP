@@ -12,7 +12,9 @@ import Qtybtn from "./Qtybtn";
 const Cart = ({ setCl }) => {
   const [cart, setCart] = useState([]);
   const [itemCounts, setItemCounts] = useState({});
-
+  const [username, setusername] = useState();
+  const [email, setemail] = useState();
+  const [address, setaddress] = useState();
   console.log(cart);
 
   useEffect(() => {
@@ -62,28 +64,33 @@ const Cart = ({ setCl }) => {
     return total + item.foodprice * itemCount; // Sum up the total price
   }, 0);
 
-  let HandleOrder = () => {
+  let HandleOrder = (e) => {
     // Create an array to hold the order data
+    e.preventDefault();
     const orderData = cart.map((item) => ({
       _id: item._id,
       name: item.foodname,
       price: item.foodprice,
-      itemCount: itemCounts[item._id] || 0, // Get the count for the item
+      itemCount: itemCounts[item._id] || 0,
+      username: username,
+      email: email,
+      address: address,
     }));
 
     // Log the order data to verify
     console.log(orderData);
 
+    setusername("");
+    setemail("");
+    setaddress("");
+
     // Send the order data to your server
     axios
-      .post(`${API_EndPoint}/order/placeorder`, { orderData })
+      .post(`${API_EndPoint}/order/placeorder`, {
+        orderData,
+      })
       .then((response) => {
         console.log("Order placed successfully!", response.data);
-
-        // Now delete the cart after placing the order
-        return axios.delete(`${API_EndPoint}/cart/clearcart`, {
-          params: { orderData: JSON.stringify(orderData) }, // Send orderData as a query parameter
-        });
       })
       .then(() => {
         // Clear the local cart state
@@ -96,6 +103,7 @@ const Cart = ({ setCl }) => {
         console.error("Error placing order or clearing cart!", error);
         // Optionally, show an error message to the user
       });
+    axios.delete(`${API_EndPoint}/cart/clearcart`);
   };
 
   return (
@@ -140,7 +148,13 @@ const Cart = ({ setCl }) => {
                         <h4>{item.foodname}</h4>
                         <p>{item.foodcategory}</p>
                         <p>{item.foodprice}</p>
-                        <div style={{ display: "flex", alignItems: "center" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontWeight: "500",
+                          }}
+                        >
                           <Qtybtn Track={() => handleCountChange(item._id, 1)}>
                             +
                           </Qtybtn>
@@ -174,149 +188,167 @@ const Cart = ({ setCl }) => {
               )}
             </div>
             <div className="col-sm-6 mt-3">
-              <div className="form-floating mt-2">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="username"
-                  placeholder="Enter Username"
-                  name="username"
-                  autoComplete="off"
-                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
-                />
-                <label htmlFor="username">Username</label>
-              </div>
-              <div className="form-floating mt-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  placeholder="Enter email"
-                  name="email"
-                  autoComplete="off"
-                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-              <div className="form-floating mt-3">
-                <textarea
-                  className="form-control"
-                  id="address"
-                  name="text"
-                  placeholder="Comment goes here"
-                  defaultValue={""}
-                  style={{ boxShadow: "none", fontVariant: "small-caps" }}
-                />
-                <label htmlFor="address">Address</label>
-                <h6 className="mt-3 mark">
-                  Total: ₹{totalSum.toFixed(2)}
-                </h6>{" "}
-                {/* Display total sum */}
-              </div>
-              <h4 className="mt-4" style={{ fontWeight: "700" }}>
-                Payment Method:
-              </h4>
-              <div id="accordion">
-                <div className="card">
-                  <div className="card-header">
-                    <a
-                      className="btn cart-accordion"
-                      data-bs-toggle="collapse"
-                      href="#collapseOne"
-                      style={{ fontWeight: "500" }}
+              <form onSubmit={HandleOrder}>
+                <div className="form-floating mt-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    placeholder="Enter Username"
+                    name="username"
+                    autoComplete="off"
+                    required
+                    value={username}
+                    onChange={(e) => {
+                      setusername(e.target.value);
+                    }}
+                    style={{ boxShadow: "none", fontVariant: "small-caps" }}
+                  />
+                  <label htmlFor="username">Username</label>
+                </div>
+                <div className="form-floating mt-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="email"
+                    placeholder="Enter email"
+                    name="email"
+                    autoComplete="off"
+                    required
+                    value={email}
+                    onChange={(e) => {
+                      setemail(e.target.value);
+                    }}
+                    style={{ boxShadow: "none", fontVariant: "small-caps" }}
+                  />
+                  <label htmlFor="email">Email</label>
+                </div>
+                <div className="form-floating mt-3">
+                  <textarea
+                    className="form-control"
+                    id="address"
+                    name="text"
+                    placeholder="Comment goes here"
+                    defaultValue={""}
+                    required
+                    value={address}
+                    onChange={(e) => {
+                      setaddress(e.target.value);
+                    }}
+                    style={{ boxShadow: "none", fontVariant: "small-caps" }}
+                  />
+                  <label htmlFor="address">Address</label>
+                  <h6 className="mt-3 mark">
+                    Total: ₹{totalSum.toFixed(2)}
+                  </h6>{" "}
+                  {/* Display total sum */}
+                </div>
+                <h4 className="mt-4" style={{ fontWeight: "700" }}>
+                  Payment Method:
+                </h4>
+                <div id="accordion">
+                  <div className="card">
+                    <div className="card-header">
+                      <a
+                        className="btn cart-accordion"
+                        data-bs-toggle="collapse"
+                        href="#collapseOne"
+                        style={{ fontWeight: "500" }}
+                      >
+                        Upi
+                      </a>
+                    </div>
+                    <div
+                      id="collapseOne"
+                      className="collapse"
+                      data-bs-parent="#accordion"
                     >
-                      Upi
-                    </a>
-                  </div>
-                  <div
-                    id="collapseOne"
-                    className="collapse"
-                    data-bs-parent="#accordion"
-                  >
-                    <div className="card-body">
-                      <GooglePayButton
-                        environment="TEST"
-                        paymentRequest={{
-                          apiVersion: 2,
-                          apiVersionMinor: 0,
-                          allowedPaymentMethods: [
-                            {
-                              type: "CARD",
-                              parameters: {
-                                allowedAuthMethods: [
-                                  "PAN_ONLY",
-                                  "CRYPTOGRAM_3DS",
-                                ],
-                                allowedCardNetworks: ["MASTERCARD", "VISA"],
-                              },
-                              tokenizationSpecification: {
-                                type: "PAYMENT_GATEWAY",
+                      <div className="card-body">
+                        <GooglePayButton
+                          environment="TEST"
+                          paymentRequest={{
+                            apiVersion: 2,
+                            apiVersionMinor: 0,
+                            allowedPaymentMethods: [
+                              {
+                                type: "CARD",
                                 parameters: {
-                                  gateway: "example",
-                                  gatewayMerchantId: "exampleGatewayMerchantId",
+                                  allowedAuthMethods: [
+                                    "PAN_ONLY",
+                                    "CRYPTOGRAM_3DS",
+                                  ],
+                                  allowedCardNetworks: ["MASTERCARD", "VISA"],
+                                },
+                                tokenizationSpecification: {
+                                  type: "PAYMENT_GATEWAY",
+                                  parameters: {
+                                    gateway: "example",
+                                    gatewayMerchantId:
+                                      "exampleGatewayMerchantId",
+                                  },
                                 },
                               },
+                            ],
+                            merchantInfo: {
+                              merchantId: "12345678901234567890",
+                              merchantName: "Demo Merchant",
                             },
-                          ],
-                          merchantInfo: {
-                            merchantId: "12345678901234567890",
-                            merchantName: "Demo Merchant",
-                          },
-                          transactionInfo: {
-                            totalPriceStatus: "FINAL",
-                            totalPriceLabel: "Total",
-                            totalPrice: "1",
-                            currencyCode: "INR",
-                            countryCode: "IND",
-                          },
-                          shippingAddressRequired: false,
-                          callbackIntents: ["PAYMENT_AUTHORIZATION"],
-                        }}
-                        onLoadPaymentData={(paymentRequest) => {
-                          console.log("Success", paymentRequest);
-                        }}
-                        onPaymentAuthorized={(paymentData) => {
-                          console.log(
-                            "Payment Authorised Success",
-                            paymentData
-                          );
-                          return { transactionState: "SUCCESS" };
-                        }}
-                        existingPaymentMethodRequired="false"
-                        buttonColor="default"
-                        buttonType="short"
-                      />
+                            transactionInfo: {
+                              totalPriceStatus: "FINAL",
+                              totalPriceLabel: "Total",
+                              totalPrice: "1",
+                              currencyCode: "INR",
+                              countryCode: "IND",
+                            },
+                            shippingAddressRequired: false,
+                            callbackIntents: ["PAYMENT_AUTHORIZATION"],
+                          }}
+                          onLoadPaymentData={(paymentRequest) => {
+                            console.log("Success", paymentRequest);
+                          }}
+                          onPaymentAuthorized={(paymentData) => {
+                            console.log(
+                              "Payment Authorised Success",
+                              paymentData
+                            );
+                            return { transactionState: "SUCCESS" };
+                          }}
+                          existingPaymentMethodRequired="false"
+                          buttonColor="default"
+                          buttonType="short"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="card mt-2">
-                  <div className="card-header">
-                    <a
-                      className="collapsed btn cart-accordion"
-                      data-bs-toggle="collapse"
-                      href="#collapseTwo"
-                      style={{ fontWeight: "500" }}
-                    >
-                      Cashondelivery
-                    </a>
-                  </div>
-                  <div
-                    id="collapseTwo"
-                    className="collapse"
-                    data-bs-parent="#accordion"
-                  >
-                    <div className="card-body">
-                      <button
-                        onClick={HandleOrder}
-                        className="btn btn-warning"
-                        style={{ fontWeight: "500", border: "none" }}
+                  <div className="card mt-2">
+                    <div className="card-header">
+                      <a
+                        className="collapsed btn cart-accordion"
+                        data-bs-toggle="collapse"
+                        href="#collapseTwo"
+                        style={{ fontWeight: "500" }}
                       >
-                        Place Order
-                      </button>
+                        Cashondelivery
+                      </a>
+                    </div>
+                    <div
+                      id="collapseTwo"
+                      className="collapse"
+                      data-bs-parent="#accordion"
+                    >
+                      <div className="card-body">
+                        <button
+                          type="submit"
+                          className="btn btn-warning"
+                          style={{ fontWeight: "500", border: "none" }}
+                        >
+                          Place Order
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

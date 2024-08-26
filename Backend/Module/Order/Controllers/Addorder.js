@@ -1,6 +1,11 @@
 let Order = require("../../../Model/Order.model");
+let nodemailer = require("nodemailer");
+const util = require("util");
+
+require("dotenv").config();
+
 module.exports = async (req, res) => {
-  const { orderData } = req.body; // Get the order data from the request body
+  const { orderData } = req.body;
 
   try {
     // Insert the order data into the database
