@@ -15,7 +15,6 @@ const Cart = ({ setCl }) => {
   const [username, setusername] = useState();
   const [email, setemail] = useState();
   const [address, setaddress] = useState();
-  console.log(cart);
 
   useEffect(() => {
     axios
@@ -31,7 +30,7 @@ const Cart = ({ setCl }) => {
       .catch((e) => {
         console.error("Failed to fetch cart data!", e);
       });
-  }, []);
+  }, [setCl]);
 
   useEffect(() => {
     if (setCl) {
