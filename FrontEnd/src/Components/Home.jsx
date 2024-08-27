@@ -2,14 +2,16 @@ import React from "react";
 import NavBar from "./NavBar/NavBar";
 import HotelList from "./HOTELS/HotelList";
 import Footer from "./Footer/Footer";
-import Carousel from "./HOTELS/Carousel";
+import Carousels from "./HOTELS/Carousel";
 
 const Home = ({ Cl }) => {
   return (
     <div>
-      <NavBar Cl={Cl} />
+      <div style={{ position: "sticky", top: "0", zIndex: "3" }}>
+        <NavBar Cl={Cl} />
+      </div>
       <HotelList />
-      <Carousel />
+      <Carousels />
       <Footer />
     </div>
   );

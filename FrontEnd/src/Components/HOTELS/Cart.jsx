@@ -75,6 +75,7 @@ const Cart = ({ setCl }) => {
       username: username,
       email: email,
       address: address,
+      total: totalSum,
     }));
 
     // Log the order data to verify

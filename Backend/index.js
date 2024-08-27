@@ -9,6 +9,7 @@ const FoodRoutes = require("./Module/Food/Food.routes");
 const ReviewRoute = require("./Module/Review/Review.routes");
 const ContactRoute = require("./Module/Contact/Contact.routes");
 const OrderRoutes = require("./Module/Order/OrderRoutes.routes");
+const TableRoutes = require("./Module/Table/Table.routes");
 
 require("dotenv").config();
 App.use(Express.json());
@@ -29,6 +30,7 @@ App.use("/review", ReviewRoute);
 App.use("/cart", FoodRoutes);
 App.use("/contact", ContactRoute);
 App.use("/order", OrderRoutes);
+App.use("/table", TableRoutes);
 App.listen(8000, () => {
   console.log(process.env.PORT);
 });

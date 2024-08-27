@@ -58,14 +58,14 @@ const Menucard = (props) => {
       // Remove item from cart
       cartItems = cartItems.filter((item) => item.FoodName !== FoodName);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      setShowModal("Item removed from cart!");
+      console.log("Item removed from cart!");
       setInCart(false);
 
       // Make sure to send the FoodId in the delete request
       axios
         .delete(`${API_EndPoint}/cart/remove/${FoodName}`) // Assuming your API expects the ID in the URL
         .then(() => {
-          setShowModal("Item removed from Cart!");
+          console.log("Item removed from Cart!");
         })
         .catch((e) => {
           alert("Error removing item from cart");

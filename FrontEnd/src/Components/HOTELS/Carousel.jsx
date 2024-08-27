@@ -1,69 +1,48 @@
 import React from "react";
-import HotelInImage from "../../assets/hotelinimage.jpg";
-import HotelOutImage from "../../assets/hoteloutimage.jpg";
-import DeliveryImage from "../../assets/deliveryimage.png";
-const Carousel = () => {
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import Hotelimg from "../../assets/hotelimage.png";
+import Hotelreception from "../../assets/hotel-reception1.png";
+import Delivery from "../../assets/delivery.png";
+import Servicetym from "../../assets/24-7.png";
+const Carousels = () => {
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
   return (
     <div className="container">
-      <div id="demo" className="carousel slide w-100" data-bs-ride="carousel">
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#demo"
-            data-bs-slide-to={0}
-            className="active"
-          />
-          <button type="button" data-bs-target="#demo" data-bs-slide-to={1} />
-          <button type="button" data-bs-target="#demo" data-bs-slide-to={2} />
+      <Carousel responsive={responsive}>
+        <div>
+          <img src={Hotelimg} alt="" className="img-fluid" />
         </div>
-
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src={HotelOutImage}
-              alt="Los Angeles"
-              className="d-block w-100"
-            />
-            <div className="carousel-caption">
-              <h3>Hotel Outside!</h3>
-              <p>Such a beautiful outside view!</p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img
-              src={HotelInImage}
-              alt="Los Angeles"
-              className="d-block w-100"
-            />
-            <div className="carousel-caption">
-              <h3>Hotel Inside!</h3>
-              <p>Such a beautiful outside view!</p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img src={DeliveryImage} alt="New York" className="d-block w-100" />
-          </div>
+        <div>
+          <img src={Hotelreception} alt="" className="img-fluid" />
         </div>
-
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#demo"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" />
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#demo"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" />
-        </button>
-      </div>
+        <div>
+          <img src={Delivery} alt="" className="img-fluid" />
+        </div>
+        <div>
+          <img src={Servicetym} alt="" className="img-fluid" />
+        </div>
+      </Carousel>
     </div>
   );
 };
 
-export default Carousel;
+export default Carousels;

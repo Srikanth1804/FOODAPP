@@ -1,0 +1,54 @@
+.table-selection {
+  text-align: center;
+}
+
+.table-matrix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.table-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.table-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  width: 120px; /* Adjust the width if needed */
+  text-align: center;
+  cursor: pointer;
+  position: relative; /* Ensure the button can be positioned absolutely */
+}
+
+.table-info {
+  margin-bottom: 10px; /* Space between info and button */
+}
+
+.book-table-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Make the button fill the width of the table item */
+}
+
+.btn-book {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-unbook {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Optional: Add hover effects */
+.book-table-btn:hover {
+  opacity: 0.9;
+}

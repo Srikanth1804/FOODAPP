@@ -20,6 +20,9 @@ let CartSchema = new Mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  total: {
+    type: Number,
+  },
 });
 
 let CDBS = Mongoose.model("FoodCart", CartSchema);

@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
 import Review from "./Review";
 import ShowReview from "./Show";
+import TableSelection from "../Table/Table";
 
 const HotelDetails = () => {
   let { name } = useParams();
@@ -103,7 +104,9 @@ const HotelDetails = () => {
               </div>
             </div>
 
-            <div className="tab-pane container fade" id="book-table"></div>
+            <div className="tab-pane container fade" id="book-table">
+              <TableSelection />
+            </div>
             <div className="tab-pane container fade" id="location">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497512.15964081715!2d79.61796152360365!3d13.047524494280966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1723740476701!5m2!1sen!2sin"
