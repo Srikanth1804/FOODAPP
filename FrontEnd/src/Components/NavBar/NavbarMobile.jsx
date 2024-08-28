@@ -16,7 +16,7 @@ const NavbarMobile = () => {
           </a>
           <div className="offcanvas offcanvas-start" id="demo">
             <div className="offcanvas-header">
-              <h1 className="offcanvas-title">FoodHub!</h1>
+              <h1 className="offcanvas-title">FoodyHub!</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -43,7 +43,7 @@ const NavbarMobile = () => {
           </div>
           <div>
             <h1 id="Brand_Mobile">
-              <b>FOODHUB</b>
+              <b>FOODYHUB</b>
             </h1>
           </div>
           <button

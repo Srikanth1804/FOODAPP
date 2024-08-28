@@ -25,7 +25,7 @@ const NavbarDesktop = ({ Cl = [] }) => {
             />
           </a>
           <h3 id="Brand_Desktop" className="header-font">
-            FOODHUB
+            FOODYHUB
           </h3>
           <div
             className="collapse navbar-collapse justify-content-end"

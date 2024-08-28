@@ -7,7 +7,7 @@ import Carousels from "./HOTELS/Carousel";
 const Home = ({ Cl }) => {
   return (
     <div>
-      <div style={{ position: "sticky", top: "0", zIndex: "3" }}>
+      <div style={{ position: "sticky", top: "0", zIndex: "10" }}>
         <NavBar Cl={Cl} />
       </div>
       <HotelList />
