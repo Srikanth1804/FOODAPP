@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./TableSelection.css"; // Import the CSS for styling
+import { API_EndPoint } from "../GeneralData";
 
-const TableSelection = () => {
+const TableSelection = ({ name }) => {
   const [tables, setTables] = useState([]);
 
   useEffect(() => {
-    // Use temporary data directly
-    const mockTables = [
-      { id: 1, name: "Table 1", isBooked: false },
-      { id: 2, name: "Table 2", isBooked: false },
-      { id: 3, name: "Table 3", isBooked: true },
-      { id: 4, name: "Table 4", isBooked: false },
-      { id: 5, name: "Table 5", isBooked: false },
-      { id: 6, name: "Table 6", isBooked: true },
-      { id: 7, name: "Table 7", isBooked: false },
-      { id: 8, name: "Table 8", isBooked: false },
-    ];
-    setTables(mockTables);
-  }, []);
+    axios
+      .get(`${API_EndPoint}/table/showtable`, { params: { name } })
+      .then((res) => {
+        setTables(res.data.info);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [name]);
 
   const handleBookTable = async (tableId, isBooked) => {
-    // Toggle the booking status
-    setTables(
-      tables.map((table) =>
-        table.id === tableId ? { ...table, isBooked: !isBooked } : table
-      )
-    );
+    try {
+      // Send a request to the backend to update the table booking status
+      await axios.put(`${API_EndPoint}/table/update`, {
+        id: tableId,
+        isBooked: !isBooked,
+      });
+
+      // Update the state locally
+      setTables(
+        tables.map((table) =>
+          table._id === tableId ? { ...table, IsBooked: !isBooked } : table
+        )
+      );
+    } catch (error) {
+      console.error("Error updating table booking:", error);
+    }
   };
 
   // Function to create rows for the matrix format
@@ -47,22 +55,22 @@ const TableSelection = () => {
           <div key={rowIndex} className="table-row">
             {row.map((table) => (
               <div
-                key={table.id}
+                key={table._id}
                 className={`table-item ${
-                  table.isBooked ? "booked" : "available"
+                  table.IsBooked ? "booked" : "available"
                 }`}
               >
                 <div className="table-info">
-                  <h4>{table.name}</h4>
-                  <p>{table.isBooked ? "Booked" : "Available"}</p>
+                  <h4>{table.Tablename}</h4>
+                  <p>{table.IsBooked ? "Booked" : "Available"}</p>
                 </div>
                 <button
-                  onClick={() => handleBookTable(table.id, table.isBooked)}
+                  onClick={() => handleBookTable(table._id, table.IsBooked)}
                   className={`book-table-btn ${
-                    table.isBooked ? "btn-unbook" : "btn-book"
+                    table.IsBooked ? "btn-unbook" : "btn-book"
                   }`}
                 >
-                  {table.isBooked ? "Cancel Booking" : "Book Table"}
+                  {table.IsBooked ? "Cancel Booking" : "Book Table"}
                 </button>
               </div>
             ))}

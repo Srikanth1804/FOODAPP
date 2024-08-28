@@ -9,6 +9,7 @@ import Contact from "./Contact/Contact";
 import Cart from "./HOTELS/Cart";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AddTableForm from "./Table/AddTable";
 
 const Temp = () => {
   return (
@@ -20,6 +21,7 @@ const Temp = () => {
         <Route path="/hotelinfo" element={<HotelInfo />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/cart" element={<Cart />} />
+        <Route path="/addtable" element={<AddTableForm />} />
       </Routes>
     </BrowserRouter>
   );

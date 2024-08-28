@@ -105,7 +105,7 @@ const HotelDetails = () => {
             </div>
 
             <div className="tab-pane container fade" id="book-table">
-              <TableSelection />
+              <TableSelection name={name} />
             </div>
             <div className="tab-pane container fade" id="location">
               <iframe
