@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
                <p><strong>Order ID:</strong> ${item._id}</p>
                <p><strong>Item:</strong> ${item.name}</p>
                <p><strong>Quantity:</strong> ${item.itemCount}</p>
-               <p><strong>Price:</strong> ₹${item.price}</p>
+               <p><strong>Price:</strong> ₹${item.price * item.itemCount}</p>
                <hr style="border: 1px dashed #ccc;">
               `
             )

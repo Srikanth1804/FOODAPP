@@ -5,7 +5,62 @@ import Hotelimg from "../../assets/hotelimage.png";
 import Hotelreception from "../../assets/hotel-reception1.png";
 import Delivery from "../../assets/delivery.png";
 import Servicetym from "../../assets/24-7.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 const Carousels = () => {
+  const CustomLeftArrow = ({ onClick }) => {
+    return (
+      <button
+        onClick={onClick}
+        className="custom-left-arrow"
+        style={{
+          position: "absolute",
+          left: "10px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 1,
+          backgroundColor: "#00000080",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      >
+        <FontAwesomeIcon icon={faChevronLeft} />
+      </button>
+    );
+  };
+
+  const CustomRightArrow = ({ onClick }) => {
+    return (
+      <button
+        onClick={onClick}
+        className="custom-right-arrow"
+        style={{
+          position: "absolute",
+          right: "10px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 1,
+          backgroundColor: "#00000080",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          padding: "10px",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      >
+        <FontAwesomeIcon icon={faChevronRight} />
+      </button>
+    );
+  };
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -27,7 +82,11 @@ const Carousels = () => {
   };
   return (
     <div className="container">
-      <Carousel responsive={responsive}>
+      <Carousel
+        responsive={responsive}
+        customLeftArrow={<CustomLeftArrow />}
+        customRightArrow={<CustomRightArrow />}
+      >
         <div>
           <img src={Hotelimg} alt="" className="img-fluid" />
         </div>

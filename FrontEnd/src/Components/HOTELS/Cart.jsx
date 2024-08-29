@@ -16,6 +16,9 @@ const Cart = ({ setCl }) => {
   const [email, setemail] = useState();
   const [address, setaddress] = useState();
 
+  let [showModal, setShowModal] = useState(false);
+  const [modalusername, setmodalusername] = useState("");
+
   useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getcart`)
@@ -91,6 +94,9 @@ const Cart = ({ setCl }) => {
       })
       .then((response) => {
         console.log("Order placed successfully!", response.data);
+        setShowModal(true);
+        setmodalusername(username);
+        console.log(modalusername);
       })
       .then(() => {
         // Clear the local cart state
@@ -112,11 +118,12 @@ const Cart = ({ setCl }) => {
         <NavBar />
       </div>
 
-      <div id="pay-form" className="mt-3">
-        <div
-          className="container"
-          style={{ fontVariant: "small-caps", fontWeight: "500" }}
-        >
+      <div
+        id="pay-form"
+        className="mt-3"
+        style={{ fontVariant: "small-caps", fontWeight: "500" }}
+      >
+        <div className="container">
           <div className="row">
             <div className="col-sm-6">
               {cart.length > 0 ? (
@@ -147,7 +154,8 @@ const Cart = ({ setCl }) => {
                       <div>
                         <h4>{item.foodname}</h4>
                         <p>{item.foodcategory}</p>
-                        <p>{item.foodprice}</p>
+                        <p>{item.foodprice * (itemCounts[item._id] || 0)}</p>
+
                         <div
                           style={{
                             display: "flex",
@@ -352,6 +360,42 @@ const Cart = ({ setCl }) => {
             </div>
           </div>
         </div>
+        {/* Modal */}
+        {showModal && (
+          <div
+            className="modal fade show"
+            id="myModal"
+            style={{ display: "block" }}
+            aria-modal="true"
+            role="dialog"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h4 className="modal-title">Thank You For Purchasing!</h4>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    onClick={() => setShowModal(false)}
+                  />
+                </div>
+                <div className="modal-body">
+                  Heyy {modalusername}, Check Your Mail!
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <Footer />
