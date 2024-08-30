@@ -24,7 +24,7 @@ const NavBar = () => {
         <NavbarDesktop Cl={Cl} />
       </div>
       <div id="NavMobile">
-        <NavbarMobile />
+        <NavbarMobile Cl={Cl} />
       </div>
     </div>
   );

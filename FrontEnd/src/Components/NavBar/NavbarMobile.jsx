@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-const NavbarMobile = () => {
+const NavbarMobile = ({ Cl = [] }) => {
   return (
     <div id="navBg-mobile">
       <nav className="navbar navbar-expand-sm ">
@@ -27,6 +27,9 @@ const NavbarMobile = () => {
               <Link className="nav-link font icon" to="/cart">
                 <FontAwesomeIcon icon={faCartPlus} />
                 <b> Cart</b>
+                <span className="badge bg-danger">
+                  {Cl.length > 0 ? Cl.length : ""}
+                </span>
               </Link>
               <br />
               <Link className="nav-link font icon" to="/contact">
@@ -54,6 +57,9 @@ const NavbarMobile = () => {
             data-bs-target="#demo"
           >
             <span className="navbar-toggler-icon" />
+            <span className="badge bg-danger">
+              {Cl.length > 0 ? Cl.length : ""}
+            </span>
           </button>
         </div>
       </nav>

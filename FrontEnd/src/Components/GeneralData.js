@@ -1,2 +1,2 @@
-export let API_EndPoint = "http://localhost:8000";
+export let API_EndPoint = "https://foodapp-okhz.onrender.com";
 //https://foodapp-okhz.onrender.com
