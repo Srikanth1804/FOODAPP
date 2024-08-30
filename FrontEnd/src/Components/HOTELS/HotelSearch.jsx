@@ -9,7 +9,7 @@ import HotelFiles from "./HotelFiles";
 
 const HotelSearch = (props) => {
   let [dish, setDish] = useState("");
-  let [location, setLocation] = useState("chennai");
+  let [location, setLocation] = useState("Chennai"); // Ensure default location matches option value
 
   let { setHotel } = props;
 
@@ -28,11 +28,17 @@ const HotelSearch = (props) => {
         params: SearchData,
       })
       .then((res) => {
-        console.log("Search Data posted!");
-        setHotel(res.data.info);
+        console.log("Search Data retrieved!");
+        console.log(res.data);
+        if (res.data.info) {
+          setHotel(res.data.info);
+        } else {
+          console.error("No 'info' field found in response data");
+        }
       })
       .catch((e) => {
-        console.log("Error TO Past Data!");
+        console.log("Error fetching data!");
+        console.error(e);
       });
   };
 
@@ -54,11 +60,8 @@ const HotelSearch = (props) => {
             required
           />
           <datalist id="browsers">
-            <option value="veg"></option>
+            <option value="Veg"></option>
             <option value="Non-Veg"></option>
-            <option value="Burger"></option>
-            <option value="Pizza"></option>
-            <option value="Cakes"></option>
           </datalist>
 
           <select
@@ -68,12 +71,13 @@ const HotelSearch = (props) => {
             onChange={(e) => {
               setLocation(e.target.value);
             }}
+            defaultValue="Chennai"
           >
             <FontAwesomeIcon icon={faLocationDot} />
-            <option value="chennai" className="p-2">
+            <option value="Chennai" className="p-2">
               Chennai
             </option>
-            <option value="madurai" className="p-2">
+            <option value="Madurai" className="p-2">
               Madurai
             </option>
           </select>

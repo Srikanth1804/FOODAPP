@@ -13,7 +13,7 @@ const HotelForm = () => {
 
   let [hotelname, sethotelname] = useState();
   let [hotelimg, sethotelimg] = useState();
-  let [hotelcategory, setHotelcategory] = useState("veg");
+  let [hotelcategory, setHotelcategory] = useState("Veg");
   let [hotellocation, sethotellocation] = useState();
   let [opentime, setopentime] = useState();
   let [closetime, setclosetime] = useState();
@@ -57,7 +57,7 @@ const HotelForm = () => {
       });
     sethotelname("");
     sethotelimg("");
-    setHotelcategory("veg");
+    setHotelcategory("Veg");
     sethotellocation("");
     setopentime("");
     setclosetime("");
@@ -153,9 +153,8 @@ const HotelForm = () => {
                   onChange={(e) => setHotelcategory(e.target.value)}
                   value={hotelcategory}
                 >
-                  <option value="veg">Veg</option>
+                  <option value="Veg">Veg</option>
                   <option value="Non-Veg">Non-Veg</option>
-                  <option value="Veg&Non-Veg">Veg&Non-Veg</option>
                 </select>
               </div>
 

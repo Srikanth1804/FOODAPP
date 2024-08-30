@@ -43,7 +43,7 @@ const HotelFiles = (props) => {
                     </p>
                     <div>
                       <span>
-                        {hotel.HotelCategory === "veg" ? (
+                        {hotel.HotelCategory === "Veg" ? (
                           <img
                             src={veg}
                             style={{ margin: "5px", width: "20px" }}
