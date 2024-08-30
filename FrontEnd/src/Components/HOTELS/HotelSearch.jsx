@@ -39,14 +39,14 @@ const HotelSearch = (props) => {
   return (
     <div className="container">
       <form onSubmit={HandleSubmit}>
-        <div className="input-group mt-3  p-3 mb-4 bg-white" id="hotel-search">
+        <div className="input-group mt-3 p-3 mb-4 bg-white" id="hotel-search">
           <FontAwesomeIcon className="mt-3" icon={faMagnifyingGlass} />
           <input
-            type="text"
+            type="search"
             list="browsers"
             name="browser"
             className="form-control"
-            placeholder=" Dish..."
+            placeholder="Dish..."
             id="search-bar"
             onChange={(e) => {
               setDish(e.target.value);
@@ -78,7 +78,7 @@ const HotelSearch = (props) => {
             </option>
           </select>
 
-          <button className="btn " type="submit" id="submit-btn">
+          <button className="btn" type="submit" id="submit-btn">
             Search
           </button>
         </div>
