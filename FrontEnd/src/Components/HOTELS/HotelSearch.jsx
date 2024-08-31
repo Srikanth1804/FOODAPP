@@ -77,6 +77,15 @@ const HotelSearch = (props) => {
             <option value="Chennai" className="p-2">
               Chennai
             </option>
+            <option value="Coimbatore" className="p-2">
+              Coimbatore
+            </option>
+            <option value="Trichy" className="p-2">
+              Trichy
+            </option>
+            <option value="Thanjavur" className="p-2">
+              Thanjavur
+            </option>
             <option value="Madurai" className="p-2">
               Madurai
             </option>
