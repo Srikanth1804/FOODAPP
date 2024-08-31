@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import imgG1 from "/src/assets/imagegallery-1.webp";
+import imgG1 from "../../assets/hotel-top.jpg";
 import "../HOTELS/HotelStyles/Hoteldetails.css";
 import Menucard from "./Menucard";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import { API_EndPoint } from "../GeneralData";
 import Review from "./Review";
 import ShowReview from "./Show";
 import TableSelection from "../Table/Table";
-import Location from "./Location";
 
 const HotelDetails = () => {
   let { name } = useParams();
@@ -29,16 +28,22 @@ const HotelDetails = () => {
     <div>
       <div className="container mt-2">
         <div className="row">
-          <div className="col-sm-12" id="image-container">
+          <div className="col-sm-12 unique-animation" id="image-container">
             <img
               src={imgG1}
-              alt=""
+              alt="Hotel"
               className="img-fluid img-gallery"
               style={{ borderRadius: "10px" }}
             />
 
             <div id="overlay">
-              <h1 style={{ fontSize: "2.5rem", margin: 0 }}>{name}</h1>
+              <div className="wrapper">
+                <svg>
+                  <text x="50%" y="50%" dy=".35em" textAnchor="middle">
+                    {name}
+                  </text>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -109,7 +114,15 @@ const HotelDetails = () => {
               <TableSelection name={name} />
             </div>
             <div className="tab-pane container fade" id="location">
-              <Location />
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4017552.2817456108!2d75.38858150600761!3d10.469818835124608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x559475cc463361f0!2sTamil%20Nadu!5e0!3m2!1sen!2sin!4v1725100347137!5m2!1sen!2sin"
+                width={800}
+                height={600}
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

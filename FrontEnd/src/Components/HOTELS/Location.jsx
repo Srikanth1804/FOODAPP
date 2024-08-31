@@ -21,11 +21,18 @@ const Location = ({ name }) => {
 
   return (
     <div>
-      {Data ? (
+      {Data.length > 0 ? (
         Data.map((hotel, index) => (
           <div key={index}>
-            <h2>{hotel.HotelName}</h2>
-            <p>{hotel.HotelLocation}</p>
+            <iframe
+              src={hotel.HotelLocationURL}
+              width="800"
+              height="600"
+              style={{ border: "0" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         ))
       ) : (

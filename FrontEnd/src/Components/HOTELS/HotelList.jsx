@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HotelSearch from "./HotelSearch";
 import HotelFiles from "./HotelFiles";
+import Carousels from "./Carousel";
 
 const HotelList = () => {
   let [Hotel, setHotel] = useState([]);
@@ -8,7 +9,7 @@ const HotelList = () => {
   return (
     <div>
       <HotelSearch setHotel={setHotel} />
-      <HotelFiles Hotel={Hotel} />
+      {Hotel.length > 0 ? <HotelFiles Hotel={Hotel} /> : <Carousels />}
     </div>
   );
 };

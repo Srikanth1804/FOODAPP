@@ -1,12 +1,15 @@
-#image-container {
+/* Unique animation class */
+.unique-animation {
   position: relative;
   overflow: hidden;
   border-radius: 20px;
 }
-.img-gallery {
+
+.unique-animation .img-gallery {
   width: 100%;
 }
-#overlay {
+
+.unique-animation #overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -15,36 +18,98 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* backdrop-filter: blur(2px); */
-  opacity: 1;
+  opacity: 0.7;
   border-radius: 20px;
-
-  border-image: fill 0 linear-gradient(#0001, #000);
-}
-#overlay h1 {
-  color: white;
-  font-size: xx-large;
-  text-align: center;
-  font-variant: small-caps;
-  font-weight: bolder;
-}
-#comment {
-  box-shadow: none;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
 
-/* Media-Query for nav-tabs */
+.unique-animation .wrapper {
+  width: 100%;
+  height: 100%;
+}
 
-@media All and (max-width: 576px) {
+.unique-animation svg {
+  width: 100%;
+  height: 100%;
+}
+
+.unique-animation svg text {
+  font-family: "Russo One", sans-serif;
+  font-size: 5vw; /* Adjust size according to your layout */
+  fill: rgba(255, 130, 37, 0); /* Initial fill color */
+  stroke: rgb(255, 130, 37); /* Initial stroke color */
+  stroke-width: 2px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  animation: stroke-animation 5s infinite alternate;
+}
+
+/* Define keyframes for stroke-animation */
+@keyframes stroke-animation {
+  0% {
+    fill: rgba(255, 130, 37, 0); /* Updated fill color */
+    stroke: rgb(255, 130, 37); /* Updated stroke color */
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2px;
+  }
+  70% {
+    fill: rgba(255, 130, 37, 0); /* Updated fill color */
+    stroke: rgb(255, 130, 37); /* Updated stroke color */
+  }
+  80% {
+    fill: rgba(255, 130, 37, 0); /* Updated fill color */
+    stroke: rgb(255, 130, 37); /* Updated stroke color */
+    stroke-width: 3px;
+  }
+  100% {
+    fill: rgb(255, 130, 37); /* Updated fill color */
+    stroke: rgba(54, 95, 160, 0); /* Keeping stroke color as in original */
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .unique-animation svg text {
+    font-size: 120px; /* Adjust size for larger tablets and desktops */
+  }
+}
+
+@media (max-width: 992px) {
+  .unique-animation svg text {
+    font-size: 60px; /* Adjust size for tablets and smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .unique-animation svg text {
+    font-size: 40px; /* Adjust size for mobile phones */
+  }
+}
+
+@media (max-width: 576px) {
+  .unique-animation svg text {
+    font-size: 30px; /* Adjust size for very small mobile screens */
+  }
+}
+
+/* Media queries for nav-tabs */
+@media (max-width: 576px) {
   #nav-tabs {
     font-size: small;
   }
 }
-@media All and (max-width: 350px) {
+
+@media (max-width: 350px) {
   #nav-tabs {
     font-size: x-small;
   }
 }
-@media All and (max-width: 305px) {
+
+@media (max-width: 305px) {
   #nav-tabs {
     font-size: xx-small;
   }

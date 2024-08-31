@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "./NavBar/NavBar";
 import HotelList from "./HOTELS/HotelList";
 import Footer from "./Footer/Footer";
-import Carousels from "./HOTELS/Carousel";
 
 const Home = ({ Cl }) => {
   return (
@@ -11,7 +10,7 @@ const Home = ({ Cl }) => {
         <NavBar Cl={Cl} />
       </div>
       <HotelList />
-      <Carousels />
+
       <Footer />
     </div>
   );

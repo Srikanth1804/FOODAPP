@@ -72,6 +72,14 @@ const TableSelection = ({ name }) => {
     return <div>Loading...</div>;
   }
 
+  if (tables.length === 0) {
+    return (
+      <div className="no-tables-message">
+        <h2>This hotel does not have table options available.</h2>
+      </div>
+    );
+  }
+
   const matrix = createTableMatrix(tables, 4); // Adjust the number of columns as needed
 
   return (
