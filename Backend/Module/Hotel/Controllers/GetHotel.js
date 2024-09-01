@@ -1,9 +1,9 @@
 let HotelData = require("../../../Model/HotelData.model");
 
 module.exports = (req, res) => {
-  let { dish, location } = req.query;
+  let { name } = req.query;
 
-  HotelData.find({ HotelCategory: dish, HotelLocation: location })
+  HotelData.find({ HotelName: name })
     .then((data) => {
       res.json({
         status: true,

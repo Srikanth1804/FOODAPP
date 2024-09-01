@@ -74,14 +74,14 @@ const Menucard = (props) => {
   };
 
   return (
-    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div className="col-md-4 mt-4">
       <div className="card" id="menucard" style={{ width: "100%" }}>
         <div className="container">
           <img
             className="card-img-top img-fluid mt-2"
             src={FoodImg}
             alt="Card image"
-            style={{ borderRadius: "8px" }}
+            style={{ borderRadius: "8px", width: "324px", height: "228px" }}
           />
           <div className="card-body">
             <h4 className="card-title">{FoodName}</h4>

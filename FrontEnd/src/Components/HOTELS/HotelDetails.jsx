@@ -12,7 +12,7 @@ import TableSelection from "../Table/Table";
 const HotelDetails = () => {
   let { name } = useParams();
   let [SingleHotel, setSingleHotel] = useState([]);
-
+  let [HotelDetail, SetHotelDetail] = useState([]);
   useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getfood`, { params: { name } })
@@ -21,6 +21,18 @@ const HotelDetails = () => {
       })
       .catch((e) => {
         console.log("Error To Get Data");
+      });
+  }, [name]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_EndPoint}/hotel/gethotel`, { params: { name } })
+      .then((res) => {
+        SetHotelDetail(res.data.info);
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
       });
   }, [name]);
 
@@ -48,13 +60,33 @@ const HotelDetails = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
-            <p>North Indian, Mughlai, Kebab, Desserts...</p>
-            <p>
-              <b>Category:</b> Veg & Non-veg
-            </p>
-            <p>Radisson Blu, Egmore, Chennai</p>
-          </div>
+          {HotelDetail.map((HD) => {
+            return (
+              <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
+                <p>{HD.HotelDescription}</p>
+                <p>
+                  <b>Category:</b>
+                  {HD.HotelCategory}
+                </p>
+                <p>
+                  <b>OpenTime:</b>
+                  {HD.HotelOpen}
+                </p>
+                <p>
+                  <b>CloseTime:</b>
+                  {HD.HotelClose}
+                </p>
+                <p>
+                  <b>HotelRating:</b>
+                  {HD.HotelRating}
+                </p>
+                <p>
+                  <b>Location:</b>
+                  {HD.HotelLocation}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
         <div style={{ fontVariant: "small-caps" }}>
