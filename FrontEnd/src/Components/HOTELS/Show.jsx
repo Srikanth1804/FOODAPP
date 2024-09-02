@@ -14,7 +14,7 @@ const ShowReview = ({ name }) => {
         setgreview(res.data.reviewlist.reverse());
       })
       .catch((e) => {
-        alert("Failed to get review list");
+        console.log("Failed to get review list");
       });
   }, [name, greview]);
 

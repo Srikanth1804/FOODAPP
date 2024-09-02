@@ -9,7 +9,7 @@ import HotelFiles from "./HotelFiles";
 
 const HotelSearch = (props) => {
   let [dish, setDish] = useState("");
-  let [location, setLocation] = useState("Chennai"); // Ensure default location matches option value
+  let [location, setLocation] = useState("Chennai");
 
   let { setHotel } = props;
 
@@ -52,7 +52,7 @@ const HotelSearch = (props) => {
             list="browsers"
             name="browser"
             className="form-control"
-            placeholder="Dish..."
+            placeholder="Category..."
             id="search-bar"
             onChange={(e) => {
               setDish(e.target.value);

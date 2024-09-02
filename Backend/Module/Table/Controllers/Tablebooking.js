@@ -1,11 +1,10 @@
 let Table = require("../../../Model/Table.model");
 
 module.exports = async (req, res) => {
-  const { tableName, isBooked, hotelName } = req.body;
+  const { tableName, hotelName } = req.body;
 
   Table.create({
     Tablename: tableName,
-    IsBooked: isBooked,
     HotelName: hotelName,
   })
     .then((data) => {

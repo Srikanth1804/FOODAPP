@@ -6,21 +6,18 @@ import { API_EndPoint } from "../GeneralData";
 const AddTableForm = () => {
   const [tableName, setTableName] = useState("");
   const [hotelName, setHotelName] = useState("");
-  const [isBooked, setIsBooked] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newTable = {
       tableName,
-      isBooked,
       hotelName,
     };
 
     console.log(newTable);
     setTableName("");
     setHotelName("");
-    setIsBooked(false);
 
     axios
       .post(`${API_EndPoint}/table/booktable`, newTable)
@@ -53,17 +50,6 @@ const AddTableForm = () => {
           required
           className={styles.inputText}
         />
-      </div>
-      <div className={styles.formGroup}>
-        <label className={styles.label}>
-          <input
-            type="checkbox"
-            checked={isBooked}
-            onChange={(e) => setIsBooked(e.target.checked)}
-            className={styles.checkbox}
-          />
-          Is Booked
-        </label>
       </div>
       <button type="submit" className={styles.button}>
         Add Table

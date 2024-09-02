@@ -56,6 +56,24 @@ const TableSelection = ({ name }) => {
     }
   };
 
+  let confirmbooking = (e) => {
+    e.preventDefault();
+    let ConfirmData = {
+      bookerName,
+      email,
+      numOfSeats,
+    };
+
+    axios
+      .post(`${API_EndPoint}/table/confirmbooking`, ConfirmData)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const createTableMatrix = (tables, columns) => {
     if (!tables || tables.length === 0) {
       return [];
@@ -83,8 +101,8 @@ const TableSelection = ({ name }) => {
   const matrix = createTableMatrix(tables, 4); // Adjust the number of columns as needed
 
   return (
-    <div className="table-selection">
-      <div className="table-matrix">
+    <div className="table-selection row">
+      <div className="table-matrix col-sm-6 mt-2">
         <h2>Select Your Table</h2>
         {matrix.map((row, rowIndex) => (
           <div key={rowIndex} className="table-row">
@@ -114,7 +132,7 @@ const TableSelection = ({ name }) => {
       </div>
 
       {selectedTable && (
-        <div className="booking-form">
+        <div className="booking-form col-sm-6 mt-2">
           <h3>Book Table: {selectedTable.Tablename}</h3>
           <form
             onSubmit={(e) => {
@@ -149,7 +167,11 @@ const TableSelection = ({ name }) => {
                 required
               />
             </div>
-            <button type="submit" className="submit-booking-btn">
+            <button
+              type="submit"
+              onClick={confirmbooking}
+              className="submit-booking-btn"
+            >
               Confirm Booking
             </button>
             <button
