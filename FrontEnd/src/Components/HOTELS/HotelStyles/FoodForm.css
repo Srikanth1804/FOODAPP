@@ -1,5 +1,4 @@
 #food-form-bg {
-  /* background-color: #F5EDED;    */
   background-color: #fff;
 
   border-radius: 8px;
@@ -29,24 +28,34 @@
 }
 .food-input:focus {
   box-shadow: none;
+  border: 1px solid #88d66c;
 }
 .food-input-switch:focus {
   box-shadow: none;
+  outline: none;
 }
 .food-input-select:focus {
   box-shadow: none;
-}
-#food-logo {
-  display: none;
+  border: 1px solid #88d66c;
 }
 
-/* media-query */
+.food-input-switch {
+  background-color: white;
+  border: 1px solid #88d66c;
+  box-shadow: none;
+}
 
-/* @media All and (max-width:576px){
-#food-head{
-    display: none;
+.food-input-switch:checked {
+  background-color: #88d66c;
+  border-color: #88d66c;
+  box-shadow: none;
 }
-#food-logo{
-    display: block;
+
+.food-input-switch:active {
+  outline: none;
+  box-shadow: none;
 }
-} */
+
+.food-input-switch:hover {
+  border-color: #88d66c;
+}

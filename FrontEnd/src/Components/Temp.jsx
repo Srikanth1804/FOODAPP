@@ -8,6 +8,7 @@ import Cart from "./HOTELS/Cart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddTableForm from "./Table/AddTable";
+import UpdateForm from "./HOTELS/UpdateForm";
 
 const Temp = () => {
   return (
@@ -18,8 +19,9 @@ const Temp = () => {
         <Route path="/hoteldetail/:name" element={<HotelDetails />}></Route>
         <Route path="/hotelinfo" element={<HotelInfo />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/addtable" element={<AddTableForm />} />
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/addtable" element={<AddTableForm />}></Route>
+        <Route path="/updateform" element={<UpdateForm />}></Route>
       </Routes>
     </BrowserRouter>
   );

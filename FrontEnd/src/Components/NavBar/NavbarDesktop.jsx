@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartPlus,
   faAddressBook,
-  faRightToBracket,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarDesktop = ({ Cl = [] }) => {
@@ -51,7 +51,7 @@ const NavbarDesktop = ({ Cl = [] }) => {
               </li>
               <li className="nav-item">
                 <Link to="/hotelinfo" className="nav-link txt-color" href="#">
-                  <FontAwesomeIcon icon={faRightToBracket} />
+                  <FontAwesomeIcon icon={faPlus} />
                   <b> Add Restaurant</b>
                 </Link>
               </li>

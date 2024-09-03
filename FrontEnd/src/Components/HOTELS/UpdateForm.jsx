@@ -1,32 +1,23 @@
 import React, { useState } from "react";
-import "../HOTELS/HotelStyles/HotelForm.css";
-import logo from "/src/assets/Elogo.png";
-import axios from "axios";
-import { API_EndPoint } from "../GeneralData";
-import AddTableForm from "../Table/AddTable";
+import "../HOTELS/HotelStyles/UpdateForm.css";
+import NavBar from "../NavBar/NavBar";
+const UpdateForm = () => {
+  const [hotelname, setHotelname] = useState("");
+  const [hotelimg, setHotelimg] = useState("");
+  const [hotelcategory, setHotelcategory] = useState("Veg");
+  const [hotellocation, setHotellocation] = useState("");
+  const [opentime, setOpentime] = useState("");
+  const [closetime, setClosetime] = useState("");
+  const [rating, setRating] = useState("1");
+  const [hoteldesc, setHoteldesc] = useState("");
 
-const HotelForm = () => {
-  // Response State
-  let [Response, setResponse] = useState();
-  let [showModal, setShowModal] = useState(false);
+  const [hasbar, setHasbar] = useState(false);
+  const [hasparking, setHasparking] = useState(false);
+  const [canbooktable, setCanbooktable] = useState(false);
 
-  // state for Hotel Information
-  let [hotelname, sethotelname] = useState("");
-  let [hotelimg, sethotelimg] = useState("");
-  let [hotelcategory, setHotelcategory] = useState("Veg");
-  let [hotellocation, sethotellocation] = useState("");
-  let [opentime, setopentime] = useState("");
-  let [closetime, setclosetime] = useState("");
-  let [rating, setrating] = useState("1");
-  let [hoteldesc, sethoteldesc] = useState("");
-
-  let [hasbar, sethasbar] = useState(false);
-  let [hasparking, sethasparking] = useState(false);
-  let [canbooktable, setcanbooktable] = useState(false);
-
-  let handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    let formdata = {
+    const formData = {
       hotelname,
       hotelimg,
       hotelcategory,
@@ -39,80 +30,65 @@ const HotelForm = () => {
       hasparking,
       canbooktable,
     };
-    console.log(formdata);
-
-    axios
-      .post(`${API_EndPoint}/hotel/addhotel`, formdata)
-      .then((res) => {
-        setResponse(res.data);
-        if (res.data.status) {
-          setShowModal(true);
-        } else {
-          alert("Failed to Add Hotel!");
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    console.log(formData);
 
     // Reset form fields
-    sethotelname("");
-    sethotelimg("");
+    setHotelname("");
+    setHotelimg("");
     setHotelcategory("Veg");
-    sethotellocation("");
-    setopentime("");
-    setclosetime("");
-    setrating("1");
-    sethoteldesc("");
-
-    sethasbar(false);
-    sethasparking(false);
-    setcanbooktable(false);
+    setHotellocation("");
+    setOpentime("");
+    setClosetime("");
+    setRating("1");
+    setHoteldesc("");
+    setHasbar(false);
+    setHasparking(false);
+    setCanbooktable(false);
   };
 
   return (
-    <div className="mt-2">
-      <div className="container">
-        <div id="container-fluid-bg">
-          <h1
-            className="text-center p-2"
-            id="hotel-head"
-            style={{ fontWeight: "900" }}
-          >
-            HOTELFORM
-          </h1>
-        </div>
-        <p
-          className="text-center"
-          style={{ fontVariant: "small-caps", fontWeight: "500" }}
+    <div>
+      <div style={{ position: "sticky", top: "0", zIndex: "10" }}>
+        <NavBar />
+      </div>
+      <div className="container mt-5">
+        <h1
+          style={{
+            textAlign: "center",
+            fontVariant: "small-caps",
+            fontWeight: "700",
+          }}
+          id="heading-bg"
         >
-          Add your Hotel details properly in the below form!
-        </p>
-
-        <div className="p-4" id="form-bg">
+          UpdateForm
+        </h1>
+        <div id="Update-bg">
           <h3
-            className="text-center info-color"
-            style={{ fontVariant: "all-small-caps", fontWeight: "700" }}
+            style={{
+              textAlign: "center",
+              fontVariant: "small-caps",
+              fontWeight: "700",
+            }}
+            id="update-color"
           >
-            HOTEL INFORMATION
+            UpdateForm
           </h3>
-
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-sm-6 mt-3">
                 <label
-                  htmlFor="text"
+                  htmlFor="hotel-name"
                   style={{ fontVariant: "small-caps", fontWeight: "500" }}
                 >
                   Enter Hotel Name
                 </label>
                 <input
                   type="text"
-                  className="form-control form-control-lg hotel-input"
-                  id="text"
+                  className="form-control form-control-lg update-input"
+                  id="hotel-name"
                   autoComplete="off"
-                  name="text"
-                  onChange={(e) => sethotelname(e.target.value)}
+                  name="hotel-name"
+                  onChange={(e) => setHotelname(e.target.value)}
                   value={hotelname}
                   required
                 />
@@ -120,18 +96,18 @@ const HotelForm = () => {
 
               <div className="col-sm-6 mt-3">
                 <label
-                  htmlFor="image URL"
+                  htmlFor="image-url"
                   style={{ fontVariant: "small-caps", fontWeight: "500" }}
                 >
                   Enter Image URL
                 </label>
                 <input
                   type="text"
-                  className="form-control form-control-lg hotel-input"
-                  id="image URL"
+                  className="form-control form-control-lg update-input"
+                  id="image-url"
                   autoComplete="off"
-                  name="text"
-                  onChange={(e) => sethotelimg(e.target.value)}
+                  name="image-url"
+                  onChange={(e) => setHotelimg(e.target.value)}
                   value={hotelimg}
                   required
                 />
@@ -147,9 +123,7 @@ const HotelForm = () => {
                   Hotel Category
                 </label>
                 <select
-                  name=""
-                  style={{ fontVariant: "small-caps" }}
-                  className="form-control hotel-input-select"
+                  className="form-control update-input-select"
                   id="hotel-category"
                   onChange={(e) => setHotelcategory(e.target.value)}
                   value={hotelcategory}
@@ -168,11 +142,11 @@ const HotelForm = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control form-control-lg hotel-input"
+                  className="form-control form-control-lg update-input"
                   id="hotel-location"
                   autoComplete="off"
-                  name="text"
-                  onChange={(e) => sethotellocation(e.target.value)}
+                  name="hotel-location"
+                  onChange={(e) => setHotellocation(e.target.value)}
                   value={hotellocation}
                   required
                 />
@@ -189,12 +163,11 @@ const HotelForm = () => {
                 </label>
                 <input
                   type="time"
-                  className="form-control form-control-lg hotel-input"
+                  className="form-control form-control-lg update-input"
                   id="hotel-open"
-                  placeholder="Enter text"
                   autoComplete="off"
-                  name="text"
-                  onChange={(e) => setopentime(e.target.value)}
+                  name="hotel-open"
+                  onChange={(e) => setOpentime(e.target.value)}
                   value={opentime}
                   required
                 />
@@ -205,16 +178,15 @@ const HotelForm = () => {
                   htmlFor="hotel-close"
                   style={{ fontVariant: "small-caps", fontWeight: "500" }}
                 >
-                  Hotel close Time
+                  Hotel Close Time
                 </label>
                 <input
                   type="time"
-                  className="form-control form-control-lg hotel-input"
+                  className="form-control form-control-lg update-input"
                   id="hotel-close"
-                  placeholder="Enter text"
                   autoComplete="off"
-                  name="text"
-                  onChange={(e) => setclosetime(e.target.value)}
+                  name="hotel-close"
+                  onChange={(e) => setClosetime(e.target.value)}
                   value={closetime}
                   required
                 />
@@ -230,11 +202,9 @@ const HotelForm = () => {
                   Rating
                 </label>
                 <select
-                  name=""
-                  style={{ fontVariant: "small-caps" }}
-                  className="form-control hotel-input-select"
+                  className="form-control update-input-select"
                   id="rating"
-                  onChange={(e) => setrating(e.target.value)}
+                  onChange={(e) => setRating(e.target.value)}
                   value={rating}
                 >
                   <option value="1">1</option>
@@ -247,18 +217,18 @@ const HotelForm = () => {
 
               <div className="col-sm-6 mt-3">
                 <label
-                  htmlFor="hotl-desc"
+                  htmlFor="hotel-desc"
                   style={{ fontVariant: "small-caps", fontWeight: "500" }}
                 >
                   Hotel Description
                 </label>
                 <textarea
-                  className="form-control form-control-lg hotel-input"
+                  className="form-control form-control-lg update-input"
                   rows="1"
-                  id="hotl-desc"
-                  name="text"
+                  id="hotel-desc"
+                  name="hotel-desc"
                   autoComplete="off"
-                  onChange={(e) => sethoteldesc(e.target.value)}
+                  onChange={(e) => setHoteldesc(e.target.value)}
                   value={hoteldesc}
                   required
                 ></textarea>
@@ -269,11 +239,11 @@ const HotelForm = () => {
               <div className="col-sm-4">
                 <div className="form-check form-switch">
                   <input
-                    className="form-check-input hotel-input-switch"
+                    className="form-check-input update-input-switch"
                     type="checkbox"
                     id="hasbar"
                     checked={hasbar}
-                    onChange={() => sethasbar(!hasbar)}
+                    onChange={() => setHasbar(!hasbar)}
                   />
                   <label
                     className="form-check-label"
@@ -287,11 +257,11 @@ const HotelForm = () => {
               <div className="col-sm-4">
                 <div className="form-check form-switch mt-3">
                   <input
-                    className="form-check-input hotel-input-switch"
+                    className="form-check-input update-input-switch"
                     type="checkbox"
                     id="hasparking"
                     checked={hasparking}
-                    onChange={() => sethasparking(!hasparking)}
+                    onChange={() => setHasparking(!hasparking)}
                   />
                   <label
                     className="form-check-label"
@@ -305,11 +275,11 @@ const HotelForm = () => {
               <div className="col-sm-4">
                 <div className="form-check form-switch mt-3">
                   <input
-                    className="form-check-input hotel-input-switch"
+                    className="form-check-input update-input-switch"
                     type="checkbox"
                     id="canbooktable"
                     checked={canbooktable}
-                    onChange={() => setcanbooktable(!canbooktable)}
+                    onChange={() => setCanbooktable(!canbooktable)}
                   />
                   <label
                     className="form-check-label"
@@ -322,13 +292,14 @@ const HotelForm = () => {
               </div>
             </div>
 
-            {/* Conditionally render AddTableForm based on canbooktable state */}
-            {canbooktable && <AddTableForm />}
-
             <div className="row mt-3">
               <div className="col">
                 <div className="d-grid">
-                  <button type="submit" className="btn btn-block" id="btn-bg">
+                  <button
+                    type="submit"
+                    className="btn btn-block"
+                    id="update-btn-bg"
+                  >
                     <b>Submit</b>
                   </button>
                 </div>
@@ -341,4 +312,4 @@ const HotelForm = () => {
   );
 };
 
-export default HotelForm;
+export default UpdateForm;

@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 const NavbarMobile = ({ Cl = [] }) => {
   return (
     <div id="navBg-mobile">
@@ -44,13 +45,13 @@ const NavbarMobile = ({ Cl = [] }) => {
 
               <br />
               <Link className="nav-link font icon" href="#" to="/hotelinfo">
-                <FontAwesomeIcon icon={faRightToBracket} />
-                <b>Add Restaurant</b>
+                <FontAwesomeIcon icon={faPlus} />
+                <b> Add Restaurant</b>
               </Link>
               <br />
               <Link className="nav-link font icon" href="#" to="/">
-                <FontAwesomeIcon icon={faRightToBracket} />
-                <b>Home</b>
+                <FontAwesomeIcon icon={faHouse} />
+                <b> Home</b>
               </Link>
             </div>
           </div>

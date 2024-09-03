@@ -65,7 +65,6 @@ const FoodForm = () => {
     <div>
       <div className="container">
         <div id="container-fluid-food-bg">
-          <img src={logo} className="img-fluid" alt="" id="food-logo" />
           <h1
             className="text-center p-2"
             id="food-head"
@@ -214,6 +213,7 @@ const FoodForm = () => {
                   id="price"
                   autoComplete="off"
                   name="text"
+                  min={1}
                   onChange={(e) => {
                     setprice(e.target.value);
                   }}

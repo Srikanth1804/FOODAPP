@@ -1,7 +1,5 @@
 #form-bg {
-  /* background-color: #F5EDED;    */
   background-color: #fff;
-
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -13,10 +11,11 @@
   color: white;
 }
 #btn-bg {
-  background-color: #7fa1c3;
+  background-color: #4c7196;
   font-variant: small-caps;
   font-weight: 500;
   border: none;
+  color: white;
 }
 .hotel-input {
   font-variant: small-caps;
@@ -35,7 +34,4 @@
 }
 .hotel-input-select:focus {
   box-shadow: none;
-}
-#hotel-logo {
-  display: none;
 }
