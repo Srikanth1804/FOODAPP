@@ -2,22 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { API_EndPoint } from "../GeneralData";
 import DeleteIcon from "../../assets/deleteicon.svg";
-import "../HOTELS/HotelStyles/Cart.css";
+import Emptyicon from "../../assets/Emptyicon.png";
+import Qtybtn from "./Qtybtn";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import GooglePayButton from "@google-pay/button-react";
-import Emptyicon from "../../assets/Emptyicon.png";
-import Qtybtn from "./Qtybtn";
+import "../HOTELS/HotelStyles/Cart.css";
 
 const Cart = ({ setCl }) => {
   const [cart, setCart] = useState([]);
   const [itemCounts, setItemCounts] = useState({});
-  const [username, setusername] = useState();
-  const [email, setemail] = useState();
-  const [address, setaddress] = useState();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
 
-  let [showModal, setShowModal] = useState(false);
-  const [modalusername, setmodalusername] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalUsername, setModalUsername] = useState("");
 
   useEffect(() => {
     axios
@@ -60,14 +60,12 @@ const Cart = ({ setCl }) => {
     }));
   };
 
-  // Calculate total sum
   const totalSum = cart.reduce((total, item) => {
-    const itemCount = itemCounts[item._id] || 0; // Get the count for the item
-    return total + item.foodprice * itemCount; // Sum up the total price
+    const itemCount = itemCounts[item._id] || 0;
+    return total + item.foodprice * itemCount;
   }, 0);
 
-  let HandleOrder = (e) => {
-    // Create an array to hold the order data
+  const handleOrder = (e) => {
     e.preventDefault();
     const orderData = cart.map((item) => ({
       _id: item._id,
@@ -80,35 +78,28 @@ const Cart = ({ setCl }) => {
       total: totalSum,
     }));
 
-    // Log the order data to verify
     console.log(orderData);
 
-    setusername("");
-    setemail("");
-    setaddress("");
+    setUsername("");
+    setEmail("");
+    setAddress("");
 
-    // Send the order data to your server
     axios
-      .post(`${API_EndPoint}/order/placeorder`, {
-        orderData,
-      })
+      .post(`${API_EndPoint}/order/placeorder`, { orderData })
       .then((response) => {
         console.log("Order placed successfully!", response.data);
         setShowModal(true);
-        setmodalusername(username);
-        console.log(modalusername);
+        setModalUsername(username);
       })
       .then(() => {
-        // Clear the local cart state
         setCart([]);
         setItemCounts({});
         console.log("Cart cleared successfully!");
-        // Optionally, show a success message to the user
       })
       .catch((error) => {
         console.error("Error placing order or clearing cart!", error);
-        // Optionally, show an error message to the user
       });
+
     axios.delete(`${API_EndPoint}/cart/clearcart`);
   };
 
@@ -196,7 +187,7 @@ const Cart = ({ setCl }) => {
               )}
             </div>
             <div className="col-sm-6 mt-3">
-              <form onSubmit={HandleOrder}>
+              <form onSubmit={handleOrder}>
                 <div className="form-floating mt-2">
                   <input
                     type="text"
@@ -207,9 +198,7 @@ const Cart = ({ setCl }) => {
                     autoComplete="off"
                     required
                     value={username}
-                    onChange={(e) => {
-                      setusername(e.target.value);
-                    }}
+                    onChange={(e) => setUsername(e.target.value)}
                     style={{ boxShadow: "none", fontVariant: "small-caps" }}
                   />
                   <label htmlFor="username">Username</label>
@@ -224,9 +213,7 @@ const Cart = ({ setCl }) => {
                     autoComplete="off"
                     required
                     value={email}
-                    onChange={(e) => {
-                      setemail(e.target.value);
-                    }}
+                    onChange={(e) => setEmail(e.target.value)}
                     style={{ boxShadow: "none", fontVariant: "small-caps" }}
                   />
                   <label htmlFor="email">Email</label>
@@ -240,16 +227,11 @@ const Cart = ({ setCl }) => {
                     defaultValue={""}
                     required
                     value={address}
-                    onChange={(e) => {
-                      setaddress(e.target.value);
-                    }}
+                    onChange={(e) => setAddress(e.target.value)}
                     style={{ boxShadow: "none", fontVariant: "small-caps" }}
                   />
                   <label htmlFor="address">Address</label>
-                  <h6 className="mt-3 mark">
-                    Total: ₹{totalSum.toFixed(2)}
-                  </h6>{" "}
-                  {/* Display total sum */}
+                  <h6 className="mt-3 mark">Total: ₹{totalSum.toFixed(2)}</h6>
                 </div>
                 <h4 className="mt-4" style={{ fontWeight: "700" }}>
                   Payment Method:
@@ -308,51 +290,47 @@ const Cart = ({ setCl }) => {
                               currencyCode: "INR",
                               countryCode: "IND",
                             },
-                            shippingAddressRequired: false,
-                            callbackIntents: ["PAYMENT_AUTHORIZATION"],
                           }}
-                          onLoadPaymentData={(paymentRequest) => {
-                            console.log("Success", paymentRequest);
+                          onLoadPaymentData={(paymentData) => {
+                            console.log("Payment data loaded", paymentData);
                           }}
                           onPaymentAuthorized={(paymentData) => {
-                            console.log(
-                              "Payment Authorised Success",
-                              paymentData
-                            );
+                            console.log("Payment authorized", paymentData);
                             return { transactionState: "SUCCESS" };
                           }}
-                          existingPaymentMethodRequired="false"
-                          buttonColor="default"
-                          buttonType="short"
+                          onPaymentDataChanged={(paymentData) => {
+                            console.log("Payment data changed", paymentData);
+                            return {};
+                          }}
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="card mt-2">
-                    <div className="card-header">
-                      <a
-                        className="collapsed btn cart-accordion"
-                        data-bs-toggle="collapse"
-                        href="#collapseTwo"
-                        style={{ fontWeight: "500" }}
-                      >
-                        Cashondelivery
-                      </a>
-                    </div>
-                    <div
-                      id="collapseTwo"
-                      className="collapse"
-                      data-bs-parent="#accordion"
+                </div>
+                <div className="card mt-2">
+                  <div className="card-header">
+                    <a
+                      className="collapsed btn cart-accordion"
+                      data-bs-toggle="collapse"
+                      href="#collapseTwo"
+                      style={{ fontWeight: "500" }}
                     >
-                      <div className="card-body">
-                        <button
-                          type="submit"
-                          className="btn btn-warning"
-                          style={{ fontWeight: "500", border: "none" }}
-                        >
-                          Place Order
-                        </button>
-                      </div>
+                      Cashondelivery
+                    </a>
+                  </div>
+                  <div
+                    id="collapseTwo"
+                    className="collapse"
+                    data-bs-parent="#accordion"
+                  >
+                    <div className="card-body">
+                      <button
+                        type="submit"
+                        className="btn btn-warning"
+                        style={{ fontWeight: "500", border: "none" }}
+                      >
+                        Place Order
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -360,44 +338,44 @@ const Cart = ({ setCl }) => {
             </div>
           </div>
         </div>
-        {/* Modal */}
-        {showModal && (
-          <div
-            className="modal fade show"
-            id="myModal"
-            style={{ display: "block" }}
-            aria-modal="true"
-            role="dialog"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h4 className="modal-title">Thank You For Purchasing!</h4>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    onClick={() => setShowModal(false)}
-                  />
-                </div>
-                <div className="modal-body">
-                  Heyy {modalusername}, Check Your Mail!
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                </div>
+      </div>
+      {showModal && (
+        <div
+          className="modal fade show d-block"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Order Confirmation</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={() => setShowModal(false)}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Thank you, {modalUsername}! Your order has been placed
+                  successfully.
+                </p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  data-bs-dismiss="modal"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        )}
-      </div>
-
+        </div>
+      )}
       <Footer />
     </>
   );

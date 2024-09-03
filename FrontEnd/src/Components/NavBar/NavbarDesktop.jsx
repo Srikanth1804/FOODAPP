@@ -50,10 +50,10 @@ const NavbarDesktop = ({ Cl = [] }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link txt-color" href="#">
+                <Link to="/hotelinfo" className="nav-link txt-color" href="#">
                   <FontAwesomeIcon icon={faRightToBracket} />
-                  <b> SignUp</b>
-                </a>
+                  <b> Add Restaurant</b>
+                </Link>
               </li>
             </ul>
           </div>

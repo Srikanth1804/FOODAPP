@@ -20,7 +20,9 @@
   align-items: center;
   opacity: 0.7;
   border-radius: 20px;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background: rgba(0, 0, 0, 0.5);
+  font-variant: small-caps;
+  font-weight: bold;
 }
 
 .unique-animation .wrapper {
@@ -35,9 +37,9 @@
 
 .unique-animation svg text {
   font-family: "Russo One", sans-serif;
-  font-size: 5vw; /* Adjust size according to your layout */
-  fill: rgba(255, 130, 37, 0); /* Initial fill color */
-  stroke: rgb(255, 130, 37); /* Initial stroke color */
+  font-size: 5vw;
+  fill: rgba(255, 130, 37, 0);
+  stroke: rgb(228, 223, 219);
   stroke-width: 2px;
   text-anchor: middle;
   dominant-baseline: middle;
@@ -47,24 +49,24 @@
 /* Define keyframes for stroke-animation */
 @keyframes stroke-animation {
   0% {
-    fill: rgba(255, 130, 37, 0); /* Updated fill color */
-    stroke: rgb(255, 130, 37); /* Updated stroke color */
+    fill: rgba(255, 130, 37, 0);
+    stroke: rgb(255, 130, 37);
     stroke-dashoffset: 25%;
     stroke-dasharray: 0 50%;
     stroke-width: 2px;
   }
   70% {
-    fill: rgba(255, 130, 37, 0); /* Updated fill color */
-    stroke: rgb(255, 130, 37); /* Updated stroke color */
+    fill: rgba(255, 130, 37, 0);
+    stroke: rgb(255, 130, 37);
   }
   80% {
-    fill: rgba(255, 130, 37, 0); /* Updated fill color */
-    stroke: rgb(255, 130, 37); /* Updated stroke color */
+    fill: rgba(255, 130, 37, 0);
+    stroke: rgb(255, 130, 37);
     stroke-width: 3px;
   }
   100% {
-    fill: rgb(255, 130, 37); /* Updated fill color */
-    stroke: rgba(54, 95, 160, 0); /* Keeping stroke color as in original */
+    fill: rgb(255, 130, 37);
+    stroke: rgba(54, 95, 160, 0);
     stroke-dashoffset: -25%;
     stroke-dasharray: 50% 0;
     stroke-width: 0;
@@ -72,27 +74,29 @@
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .unique-animation svg text {
-    font-size: 120px; /* Adjust size for larger tablets and desktops */
+    font-size: 120px;
+    letter-spacing: 2px;
   }
 }
 
 @media (max-width: 992px) {
   .unique-animation svg text {
-    font-size: 60px; /* Adjust size for tablets and smaller screens */
+    font-size: 60px;
   }
 }
 
 @media (max-width: 768px) {
   .unique-animation svg text {
-    font-size: 40px; /* Adjust size for mobile phones */
+    font-size: 40px;
   }
 }
 
 @media (max-width: 576px) {
   .unique-animation svg text {
-    font-size: 30px; /* Adjust size for very small mobile screens */
+    font-size: 40px;
+    letter-spacing: 5px;
   }
 }
 

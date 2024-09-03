@@ -3,26 +3,26 @@ import "../HOTELS/HotelStyles/HotelForm.css";
 import logo from "/src/assets/Elogo.png";
 import axios from "axios";
 import { API_EndPoint } from "../GeneralData";
+import AddTableForm from "../Table/AddTable";
+
 const HotelForm = () => {
   // Response State
-
   let [Response, setResponse] = useState();
   let [showModal, setShowModal] = useState(false);
 
   // state for Hotel Information
-
-  let [hotelname, sethotelname] = useState();
-  let [hotelimg, sethotelimg] = useState();
+  let [hotelname, sethotelname] = useState("");
+  let [hotelimg, sethotelimg] = useState("");
   let [hotelcategory, setHotelcategory] = useState("Veg");
-  let [hotellocation, sethotellocation] = useState();
-  let [opentime, setopentime] = useState();
-  let [closetime, setclosetime] = useState();
-  let [rating, setrating] = useState(1);
-  let [hoteldesc, sethoteldesc] = useState();
-  let [locationURL, setlocationURL] = useState();
-  let [hasbar, sethasbar] = useState();
-  let [hasparking, sethasparking] = useState();
-  let [canbooktable, setcanbooktable] = useState();
+  let [hotellocation, sethotellocation] = useState("");
+  let [opentime, setopentime] = useState("");
+  let [closetime, setclosetime] = useState("");
+  let [rating, setrating] = useState("1");
+  let [hoteldesc, sethoteldesc] = useState("");
+
+  let [hasbar, sethasbar] = useState(false);
+  let [hasparking, sethasparking] = useState(false);
+  let [canbooktable, setcanbooktable] = useState(false); // Default to false
 
   let handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const HotelForm = () => {
       closetime,
       rating,
       hoteldesc,
-      locationURL,
+
       hasbar,
       hasparking,
       canbooktable,
@@ -55,6 +55,8 @@ const HotelForm = () => {
       .catch((e) => {
         console.log(e);
       });
+
+    // Reset form fields
     sethotelname("");
     sethotelimg("");
     setHotelcategory("Veg");
@@ -63,11 +65,12 @@ const HotelForm = () => {
     setclosetime("");
     setrating("1");
     sethoteldesc("");
-    setlocationURL("");
+
     sethasbar(false);
     sethasparking(false);
     setcanbooktable(false);
   };
+
   return (
     <div className="mt-2">
       <div className="container">
@@ -208,7 +211,7 @@ const HotelForm = () => {
                 </label>
                 <input
                   type="time"
-                  className="form-control  form-control-lg hotel-input"
+                  className="form-control form-control-lg hotel-input"
                   id="hotel-close"
                   placeholder="Enter text"
                   autoComplete="off"
@@ -264,78 +267,55 @@ const HotelForm = () => {
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-sm-6 mt-3">
-                <label
-                  htmlFor="hotel-location-Url"
-                  style={{ fontVariant: "small-caps", fontWeight: "500" }}
-                >
-                  Hotel Location URL
-                </label>
-                <input
-                  type="text"
-                  className="form-control form-control-lg hotel-input"
-                  id="hotel-location-Url"
-                  autoComplete="off"
-                  name="text"
-                  onChange={(e) => setlocationURL(e.target.value)}
-                  value={locationURL}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-sm-4 mt-3">
-                <div className="form-group form-check form-switch">
+            <div className="row mt-4">
+              <div className="col-sm-4">
+                <div className="form-check form-switch">
                   <input
+                    className="form-check-input"
                     type="checkbox"
-                    className="form-check-input hotel-input-switch"
-                    id="bar"
-                    onChange={(e) => sethasbar(e.target.checked)}
+                    id="hasbar"
                     checked={hasbar}
+                    onChange={() => sethasbar(!hasbar)}
                   />
                   <label
-                    htmlFor="bar"
                     className="form-check-label"
+                    htmlFor="hasbar"
                     style={{ fontVariant: "small-caps", fontWeight: "500" }}
                   >
                     Has Bar
                   </label>
                 </div>
               </div>
-
-              <div className="col-sm-4 mt-3">
-                <div className="form-group form-check form-switch">
+              <div className="col-sm-4">
+                <div className="form-check form-switch mt-3">
                   <input
+                    className="form-check-input"
                     type="checkbox"
-                    className="form-check-input hotel-input-switch"
-                    id="parking"
-                    onChange={(e) => sethasparking(e.target.checked)}
+                    id="hasparking"
                     checked={hasparking}
+                    onChange={() => sethasparking(!hasparking)}
                   />
                   <label
-                    htmlFor="parking"
                     className="form-check-label"
+                    htmlFor="hasparking"
                     style={{ fontVariant: "small-caps", fontWeight: "500" }}
                   >
                     Has Parking
                   </label>
                 </div>
               </div>
-
-              <div className="col-sm-4 mt-3">
-                <div className="form-group form-check form-switch">
+              <div className="col-sm-4">
+                <div className="form-check form-switch mt-3">
                   <input
+                    className="form-check-input"
                     type="checkbox"
-                    className="form-check-input hotel-input-switch"
-                    id="book-table"
-                    onChange={(e) => setcanbooktable(e.target.checked)}
+                    id="canbooktable"
                     checked={canbooktable}
+                    onChange={() => setcanbooktable(!canbooktable)}
                   />
                   <label
-                    htmlFor="book-table"
                     className="form-check-label"
+                    htmlFor="canbooktable"
                     style={{ fontVariant: "small-caps", fontWeight: "500" }}
                   >
                     Possible to Book a Table
@@ -344,9 +324,12 @@ const HotelForm = () => {
               </div>
             </div>
 
+            {/* Conditionally render AddTableForm based on canbooktable state */}
+            {canbooktable && <AddTableForm />}
+
             <div className="row mt-3">
               <div className="col">
-                <div class="d-grid">
+                <div className="d-grid">
                   <button type="submit" className="btn btn-block" id="btn-bg">
                     <b>Submit</b>
                   </button>
@@ -356,41 +339,6 @@ const HotelForm = () => {
           </form>
         </div>
       </div>
-
-      {/* Modal */}
-      {showModal && (
-        <div
-          className="modal fade show"
-          id="myModal"
-          style={{ display: "block" }}
-          aria-modal="true"
-          role="dialog"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title">Thank You!</h4>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  onClick={() => setShowModal(false)}
-                />
-              </div>
-              <div className="modal-body">Your Hotel has been Added!</div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

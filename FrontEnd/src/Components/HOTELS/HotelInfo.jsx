@@ -6,7 +6,7 @@ import "../HOTELS/HotelStyles/Hotelstyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHotel } from "@fortawesome/free-solid-svg-icons";
 import { faBowlFood } from "@fortawesome/free-solid-svg-icons";
-const HotelInfo = () => {
+export const HotelInfo = () => {
   return (
     <div>
       <NavBar />
@@ -57,5 +57,3 @@ const HotelInfo = () => {
     </div>
   );
 };
-
-export default HotelInfo;

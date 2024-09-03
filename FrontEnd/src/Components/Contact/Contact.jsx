@@ -68,7 +68,7 @@ const Contact = () => {
               </div>
               <div className="d-flex align-items-center mb-3">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3" />
-                <p className="mb-0">info@foodyhub.com</p>
+                <p className="mb-0">foodyhub5@gmail.com</p>
               </div>
               <div className="d-flex align-items-center">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3" />

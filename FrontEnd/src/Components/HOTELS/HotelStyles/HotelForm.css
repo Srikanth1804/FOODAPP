@@ -16,6 +16,7 @@
   background-color: #7fa1c3;
   font-variant: small-caps;
   font-weight: 500;
+  border: none;
 }
 .hotel-input {
   font-variant: small-caps;
@@ -38,14 +39,3 @@
 #hotel-logo {
   display: none;
 }
-
-/* media-query */
-
-/* @media All and (max-width:576px){
-#hotel-head{
-    display: none;
-}
-#hotel-logo{
-    display: block;
-}
-} */

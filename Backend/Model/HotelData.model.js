@@ -25,9 +25,6 @@ let Hotelschema = new Mongoose.Schema({
   HotelDescription: {
     type: String,
   },
-  HotelLocationURL: {
-    type: String,
-  },
   HotelBar: {
     type: Boolean,
     default: false,

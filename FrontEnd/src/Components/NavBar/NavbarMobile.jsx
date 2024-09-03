@@ -12,7 +12,12 @@ const NavbarMobile = ({ Cl = [] }) => {
       <nav className="navbar navbar-expand-sm ">
         <div className="container-fluid">
           <a className="navbar-brand" href="javascript:void(0)">
-            <img className="img-fluid" src={logo} alt="" />
+            <img
+              className="img-fluid"
+              src={logo}
+              alt=""
+              style={{ width: "100px" }}
+            />
           </a>
           <div className="offcanvas offcanvas-start" id="demo">
             <div className="offcanvas-header">
@@ -38,10 +43,15 @@ const NavbarMobile = ({ Cl = [] }) => {
               </Link>
 
               <br />
-              <a className="nav-link font icon" href="#">
+              <Link className="nav-link font icon" href="#" to="/hotelinfo">
                 <FontAwesomeIcon icon={faRightToBracket} />
-                <b> SignUp</b>
-              </a>
+                <b>Add Restaurant</b>
+              </Link>
+              <br />
+              <Link className="nav-link font icon" href="#" to="/">
+                <FontAwesomeIcon icon={faRightToBracket} />
+                <b>Home</b>
+              </Link>
             </div>
           </div>
           <div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import imgG1 from "../../assets/hotel-top.jpg";
+import imgG1 from "../../assets/hotelimg-bg.png";
 import "../HOTELS/HotelStyles/Hoteldetails.css";
 import Menucard from "./Menucard";
 import { useParams } from "react-router-dom";
