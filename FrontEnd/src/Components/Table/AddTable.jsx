@@ -30,7 +30,11 @@ const AddTableForm = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit}
+      style={{ fontVariant: "small-caps" }}
+    >
       <div className={styles.formGroup}>
         <label className={styles.label}>Table Name:</label>
         <input
@@ -39,6 +43,7 @@ const AddTableForm = () => {
           onChange={(e) => setTableName(e.target.value)}
           required
           className={styles.inputText}
+          style={{ fontVariant: "small-caps" }}
         />
       </div>
       <div className={styles.formGroup}>
@@ -49,9 +54,14 @@ const AddTableForm = () => {
           onChange={(e) => setHotelName(e.target.value)}
           required
           className={styles.inputText}
+          style={{ fontVariant: "small-caps" }}
         />
       </div>
-      <button type="submit" className={styles.button}>
+      <button
+        type="submit"
+        className={styles.button}
+        style={{ fontVariant: "small-caps" }}
+      >
         Add Table
       </button>
     </form>

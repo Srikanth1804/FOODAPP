@@ -146,15 +146,17 @@ const HotelDetails = () => {
               <TableSelection name={name} />
             </div>
             <div className="tab-pane container fade" id="location">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4017552.2817456108!2d75.38858150600761!3d10.469818835124608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x559475cc463361f0!2sTamil%20Nadu!5e0!3m2!1sen!2sin!4v1725100347137!5m2!1sen!2sin"
-                width={800}
-                height={600}
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <div>
+                <iframe
+                  className="shadow-lg p-2 bg-white mt-3"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4017552.2817456108!2d75.38858150600761!3d10.469818835124608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x559475cc463361f0!2sTamil%20Nadu!5e0!3m2!1sen!2sin!4v1725100347137!5m2!1sen!2sin"
+                  width={800}
+                  height={600}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </div>
         </div>

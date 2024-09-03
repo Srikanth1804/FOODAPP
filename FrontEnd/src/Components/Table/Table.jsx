@@ -57,6 +57,10 @@ const TableSelection = ({ name }) => {
   };
 
   let confirmbooking = (e) => {
+    setBookerName("");
+    setEmail("");
+    setNumOfSeats("");
+
     e.preventDefault();
     let ConfirmData = {
       bookerName,
@@ -98,7 +102,7 @@ const TableSelection = ({ name }) => {
     );
   }
 
-  const matrix = createTableMatrix(tables, 4); // Adjust the number of columns as needed
+  const matrix = createTableMatrix(tables, 4);
 
   return (
     <div className="table-selection row">
@@ -147,6 +151,7 @@ const TableSelection = ({ name }) => {
                 value={bookerName}
                 onChange={(e) => setBookerName(e.target.value)}
                 required
+                style={{ fontVariant: "small-caps" }}
               />
             </div>
             <div className="form-group">
@@ -156,6 +161,7 @@ const TableSelection = ({ name }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                style={{ fontVariant: "small-caps" }}
               />
             </div>
             <div className="form-group">
@@ -165,12 +171,16 @@ const TableSelection = ({ name }) => {
                 value={numOfSeats}
                 onChange={(e) => setNumOfSeats(e.target.value)}
                 required
+                min={1}
+                max={10}
+                style={{ fontVariant: "small-caps" }}
               />
             </div>
             <button
               type="submit"
               onClick={confirmbooking}
               className="submit-booking-btn"
+              style={{ fontVariant: "small-caps" }}
             >
               Confirm Booking
             </button>
@@ -178,6 +188,7 @@ const TableSelection = ({ name }) => {
               type="button"
               onClick={() => setSelectedTable(null)}
               className="cancel-booking-btn"
+              style={{ fontVariant: "small-caps" }}
             >
               Cancel
             </button>
