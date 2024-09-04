@@ -322,9 +322,6 @@ const HotelForm = () => {
               </div>
             </div>
 
-            {/* Conditionally render AddTableForm based on canbooktable state */}
-            {canbooktable && <AddTableForm />}
-
             <div className="row mt-3">
               <div className="col">
                 <div className="d-grid">

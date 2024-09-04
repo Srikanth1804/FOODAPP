@@ -14,12 +14,13 @@ const Temp = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/cart" element={<Cart />}></Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="/hotelfile" element={<HotelFiles />}></Route>
         <Route path="/hoteldetail/:name" element={<HotelDetails />}></Route>
         <Route path="/hotelinfo" element={<HotelInfo />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
+
         <Route path="/addtable" element={<AddTableForm />}></Route>
         <Route path="/updateform" element={<UpdateForm />}></Route>
       </Routes>

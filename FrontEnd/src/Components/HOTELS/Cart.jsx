@@ -20,14 +20,6 @@ const Cart = ({ setCl }) => {
   const [modalUsername, setModalUsername] = useState("");
 
   useEffect(() => {
-    const hasReloaded = localStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
-      localStorage.setItem("hasReloaded", "true");
-      window.location.reload();
-    }
-  }, []);
-
-  useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getcart`)
       .then((res) => {

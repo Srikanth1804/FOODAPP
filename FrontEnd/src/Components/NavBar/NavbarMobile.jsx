@@ -3,20 +3,23 @@ import logo from "/src/assets/Elogo.png";
 import "./NavbarStyles/Navbar.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartPlus,
+  faAddressBook,
+  faHouse,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+
 const NavbarMobile = ({ Cl = [] }) => {
   return (
     <div id="navBg-mobile">
-      <nav className="navbar navbar-expand-sm ">
+      <nav className="navbar navbar-expand-sm">
         <div className="container-fluid">
           <a className="navbar-brand" href="javascript:void(0)">
             <img
               className="img-fluid"
               src={logo}
-              alt=""
+              alt="Logo"
               style={{ width: "100px" }}
             />
           </a>
@@ -25,11 +28,12 @@ const NavbarMobile = ({ Cl = [] }) => {
               <h1 className="offcanvas-title">FoodyHub!</h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="offcanvas"
+                aria-label="Close"
               ></button>
             </div>
-            <div class="offcanvas-body">
+            <div className="offcanvas-body">
               <Link className="nav-link font icon" to="/cart">
                 <FontAwesomeIcon icon={faCartPlus} />
                 <b> Cart</b>
@@ -42,14 +46,13 @@ const NavbarMobile = ({ Cl = [] }) => {
                 <FontAwesomeIcon icon={faAddressBook} />
                 <b> Contact</b>
               </Link>
-
               <br />
-              <Link className="nav-link font icon" href="#" to="/hotelinfo">
+              <Link className="nav-link font icon" to="/hotelinfo">
                 <FontAwesomeIcon icon={faPlus} />
                 <b> Add Restaurant</b>
               </Link>
               <br />
-              <Link className="nav-link font icon" href="#" to="/">
+              <Link className="nav-link font icon" to="/">
                 <FontAwesomeIcon icon={faHouse} />
                 <b> Home</b>
               </Link>
