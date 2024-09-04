@@ -13,7 +13,7 @@ async function sendTestEmail() {
 
     var mailOptions = {
       from: process.env.EMAIL_USER,
-      to: "paramasivan645@gmail.com", // Replace with your email to test
+      to: "paramasivan645@gmail.com",
       subject: "Test Email",
       text: "This is a test email from your Node.js app.",
     };

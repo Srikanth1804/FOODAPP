@@ -20,6 +20,14 @@ const Cart = ({ setCl }) => {
   const [modalUsername, setModalUsername] = useState("");
 
   useEffect(() => {
+    const hasReloaded = localStorage.getItem("hasReloaded");
+    if (!hasReloaded) {
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, []);
+
+  useEffect(() => {
     axios
       .get(`${API_EndPoint}/food/getcart`)
       .then((res) => {
@@ -104,7 +112,7 @@ const Cart = ({ setCl }) => {
   };
 
   return (
-    <>
+    <div style={{ fontVariant: "small-caps" }}>
       <div style={{ position: "sticky", top: "0", zIndex: "3" }}>
         <NavBar />
       </div>
@@ -327,7 +335,11 @@ const Cart = ({ setCl }) => {
                       <button
                         type="submit"
                         className="btn btn-warning"
-                        style={{ fontWeight: "500", border: "none" }}
+                        style={{
+                          fontWeight: "500",
+                          border: "none",
+                          fontVariant: "small-caps",
+                        }}
                       >
                         Place Order
                       </button>
@@ -368,6 +380,7 @@ const Cart = ({ setCl }) => {
                   className="btn btn-success"
                   data-bs-dismiss="modal"
                   onClick={() => setShowModal(false)}
+                  style={{ fontVariant: "small-caps" }}
                 >
                   Close
                 </button>
@@ -377,7 +390,7 @@ const Cart = ({ setCl }) => {
         </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 };
 
