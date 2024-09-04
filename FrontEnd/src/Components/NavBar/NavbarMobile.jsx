@@ -15,66 +15,64 @@ const NavbarMobile = ({ Cl = [] }) => {
     <div id="navBg-mobile">
       <nav className="navbar navbar-expand-sm">
         <div className="container-fluid">
-          <a className="navbar-brand" href="javascript:void(0)">
-            <img
-              className="img-fluid"
-              src={logo}
-              alt="Logo"
-              style={{ width: "100px" }}
-            />
+          <a className="navbar-brand">
+            <img src={logo} alt="" style={{ width: "80px" }} />
           </a>
-          <div className="offcanvas offcanvas-start" id="demo">
-            <div className="offcanvas-header">
-              <h1 className="offcanvas-title">FoodyHub!</h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="offcanvas-body">
-              <Link className="nav-link font icon" to="/cart">
-                <FontAwesomeIcon icon={faCartPlus} />
-                <b> Cart</b>
-                <span className="badge bg-danger">
-                  {Cl.length > 0 ? Cl.length : ""}
-                </span>
-              </Link>
-              <br />
-              <Link className="nav-link font icon" to="/contact">
-                <FontAwesomeIcon icon={faAddressBook} />
-                <b> Contact</b>
-              </Link>
-              <br />
-              <Link className="nav-link font icon" to="/hotelinfo">
-                <FontAwesomeIcon icon={faPlus} />
-                <b> Add Restaurant</b>
-              </Link>
-              <br />
-              <Link className="nav-link font icon" to="/">
-                <FontAwesomeIcon icon={faHouse} />
-                <b> Home</b>
-              </Link>
-            </div>
-          </div>
-          <div>
-            <h1 id="Brand_Mobile">
-              <b>FOODYHUB</b>
-            </h1>
-          </div>
+          <h2
+            id="mobile-header"
+            style={{
+              fontVariant: "all-small-caps",
+              fontWeight: "900",
+              color: "white",
+            }}
+          >
+            FOODYHUB
+          </h2>
           <button
-            className="btn"
-            id="toggle-btn"
+            className="navbar-toggler"
             type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#demo"
+            data-bs-toggle="collapse"
+            data-bs-target="#mynavbar"
+            style={{ backgroundColor: "white", color: "white" }}
           >
             <span className="navbar-toggler-icon" />
             <span className="badge bg-danger">
               {Cl.length > 0 ? Cl.length : ""}
             </span>
           </button>
+          <div className="collapse navbar-collapse" id="mynavbar">
+            <ul className="navbar-nav" style={{ marginLeft: "10px" }}>
+              <li className="nav-item">
+                <Link to="/cart" className="nav-link txt-color">
+                  <FontAwesomeIcon icon={faCartPlus} />
+                  <b>
+                    Cart
+                    <span className="badge bg-danger">
+                      {Cl.length > 0 ? Cl.length : ""}
+                    </span>
+                  </b>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link txt-color" to="/contact">
+                  <FontAwesomeIcon icon={faAddressBook} />
+                  <b> Contact</b>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link txt-color" href="#">
+                  <FontAwesomeIcon icon={faHouse} />
+                  <b> Home</b>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/hotelinfo" className="nav-link txt-color" href="#">
+                  <FontAwesomeIcon icon={faPlus} />
+                  <b> Add Restaurant</b>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </div>

@@ -38,19 +38,12 @@
   background-color: #ff8225;
   font-variant: small-caps;
 }
-#Brand_Mobile {
-  color: white;
-  font-variant: all-small-caps;
-}
 #toggle-btn {
   background-color: white;
   border: none;
 }
 .txt-color {
   color: white;
-}
-.icon:hover {
-  background-color: cornsilk;
 }
 
 /* media-query for Desktop and tablet! */
@@ -81,29 +74,20 @@
 }
 
 /* media-query for Mobiles! */
-
-@media All and (max-width: 576px) {
-  #Brand_Mobile {
-    margin-left: -50px;
+@media All and (max-width: 428px) {
+  #mobile-header {
+    margin-left: -40px;
+    font-size: 30px;
   }
 }
 @media All and (max-width: 360px) {
-  #Brand_Mobile {
+  #mobile-header {
     margin-left: -40px;
   }
 }
 @media All and (max-width: 320px) {
-  #Brand_Mobile {
+  #mobile-header {
     margin-left: -30px;
+    font-size: 25px;
   }
-}
-
-/* Ensure the offcanvas container handles scrolling */
-.offcanvas {
-  overflow-y: auto; /* Allow vertical scrolling if content overflows */
-}
-
-/* Make sure the offcanvas body scrolls correctly */
-.offcanvas-body {
-  overflow-y: auto; /* Allow vertical scrolling if content overflows */
 }
