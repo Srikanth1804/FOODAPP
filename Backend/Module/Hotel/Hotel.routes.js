@@ -10,4 +10,4 @@ let HotelRoutes = Express.Router();
 HotelRoutes.post("/addhotel", AddHotel);
 HotelRoutes.get("/findhotel", FindHotel);
 HotelRoutes.get("/gethotel", GetHotel);
-module.exports = HotelRoutes; // Export the Router correctly
+module.exports = HotelRoutes;
