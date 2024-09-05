@@ -255,7 +255,7 @@ const Cart = ({ setCl }) => {
                     >
                       <div className="card-body">
                         <GooglePayButton
-                          environment="TEST"
+                          environment="TEST" // Change to "PRODUCTION" in a live environment
                           paymentRequest={{
                             apiVersion: 2,
                             apiVersionMinor: 0,
@@ -272,36 +272,42 @@ const Cart = ({ setCl }) => {
                                 tokenizationSpecification: {
                                   type: "PAYMENT_GATEWAY",
                                   parameters: {
-                                    gateway: "example",
-                                    gatewayMerchantId:
-                                      "exampleGatewayMerchantId",
+                                    gateway: "example", // Replace with your actual gateway name in lowercase
+                                    gatewayMerchantId: "yourGatewayMerchantId", // Replace with actual merchant ID
                                   },
                                 },
                               },
                             ],
                             merchantInfo: {
-                              merchantId: "12345678901234567890",
-                              merchantName: "Demo Merchant",
+                              merchantId: "yourActualMerchantId", // Replace with your actual merchant ID
+                              merchantName: "Your Merchant Name", // Replace with your merchant name
                             },
                             transactionInfo: {
                               totalPriceStatus: "FINAL",
                               totalPriceLabel: "Total",
-                              totalPrice: "1",
+                              totalPrice: totalSum.toFixed(2).toString(), // Ensure this is a valid string representation of the total amount
                               currencyCode: "INR",
-                              countryCode: "IND",
+                              countryCode: "IN", // Ensure this is correct
                             },
+                            shippingAddressRequired: false,
+                            callbackIntents: ["PAYMENT_AUTHORIZATION"],
                           }}
-                          onLoadPaymentData={(paymentData) => {
-                            console.log("Payment data loaded", paymentData);
+                          onLoadPaymentData={(paymentRequest) => {
+                            console.log(
+                              "Payment data loaded successfully",
+                              paymentRequest
+                            );
                           }}
                           onPaymentAuthorized={(paymentData) => {
-                            console.log("Payment authorized", paymentData);
+                            console.log(
+                              "Payment authorized successfully",
+                              paymentData
+                            );
                             return { transactionState: "SUCCESS" };
                           }}
-                          onPaymentDataChanged={(paymentData) => {
-                            console.log("Payment data changed", paymentData);
-                            return {};
-                          }}
+                          existingPaymentMethodRequired="false"
+                          buttonColor="black" // "default" or other colors like "black"
+                          buttonType="long" // "short" or "long" depending on your preferred button size
                         />
                       </div>
                     </div>
