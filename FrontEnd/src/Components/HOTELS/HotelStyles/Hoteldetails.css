@@ -118,3 +118,20 @@
     font-size: xx-small;
   }
 }
+
+.map-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  iframe {
+    width: 800px;
+    height: 600px;
+  }
+}
