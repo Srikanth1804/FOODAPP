@@ -8,6 +8,13 @@ import { API_EndPoint } from "../GeneralData";
 import Review from "./Review";
 import ShowReview from "./Show";
 import TableSelection from "../Table/Table";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLayerGroup,
+  faBusinessTime,
+  faStar,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 
 const HotelDetails = () => {
   let { name } = useParams();
@@ -64,32 +71,34 @@ const HotelDetails = () => {
             return (
               <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
                 <p>{HD.HotelDescription}</p>
-                <p>
-                  <b>Category:</b>
-                  {HD.HotelCategory}
-                </p>
-                <p>
-                  <b>OpenTime:</b>
-                  {HD.HotelOpen}
-                </p>
-                <p>
-                  <b>CloseTime:</b>
-                  {HD.HotelClose}
-                </p>
-                <p>
-                  <b>HotelRating:</b>
-                  {HD.HotelRating}
-                </p>
-                <p>
-                  <b>Location:</b>
-                  {HD.HotelLocation}
-                </p>
+                <div className="row">
+                  <div className="col-sm-2 mt-2">
+                    <FontAwesomeIcon icon={faLayerGroup} />
+                    <b> Category:</b> {HD.HotelCategory}
+                  </div>
+                  <div className="col-sm-2 mt-2">
+                    <FontAwesomeIcon icon={faBusinessTime} />
+                    <b> OpenTime:</b> {HD.HotelOpen}
+                  </div>
+                  <div className="col-sm-2 mt-2">
+                    <FontAwesomeIcon icon={faBusinessTime} />
+                    <b> CloseTime:</b> {HD.HotelClose}
+                  </div>
+                  <div className="col-sm-2 mt-2">
+                    <FontAwesomeIcon icon={faStar} />
+                    <b> HotelRating:</b> {HD.HotelRating}
+                  </div>
+                  <div className="col-sm-2 mt-2">
+                    <FontAwesomeIcon icon={faLocationDot} />
+                    <b> Location:</b> {HD.HotelLocation}
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
 
-        <div style={{ fontVariant: "small-caps" }}>
+        <div className="mt-3" style={{ fontVariant: "small-caps" }}>
           <ul className="nav nav-tabs " id="nav-tabs">
             <li className="nav-item">
               <a className="nav-link" data-bs-toggle="tab" href="#review">
