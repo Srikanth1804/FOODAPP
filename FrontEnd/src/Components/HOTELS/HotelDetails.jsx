@@ -72,23 +72,23 @@ const HotelDetails = () => {
               <div className="col-sm-12" style={{ fontVariant: "small-caps" }}>
                 <p>{HD.HotelDescription}</p>
                 <div className="row">
-                  <div className="col-sm-2 mt-2">
+                  <div className="col-sm-4 mt-2">
                     <FontAwesomeIcon icon={faLayerGroup} />
                     <b> Category:</b> {HD.HotelCategory}
                   </div>
-                  <div className="col-sm-2 mt-2">
+                  <div className="col-sm-4 mt-2">
                     <FontAwesomeIcon icon={faBusinessTime} />
                     <b> OpenTime:</b> {HD.HotelOpen}
                   </div>
-                  <div className="col-sm-2 mt-2">
+                  <div className="col-sm-4 mt-2">
                     <FontAwesomeIcon icon={faBusinessTime} />
                     <b> CloseTime:</b> {HD.HotelClose}
                   </div>
-                  <div className="col-sm-2 mt-2">
+                  <div className="col-sm-4 mt-2">
                     <FontAwesomeIcon icon={faStar} />
                     <b> HotelRating:</b> {HD.HotelRating}
                   </div>
-                  <div className="col-sm-2 mt-2">
+                  <div className="col-sm-4 mt-2">
                     <FontAwesomeIcon icon={faLocationDot} />
                     <b> Location:</b> {HD.HotelLocation}
                   </div>

@@ -333,6 +333,9 @@ const HotelForm = () => {
             </div>
           </form>
         </div>
+        <div>
+          <AddTableForm />
+        </div>
       </div>
     </div>
   );

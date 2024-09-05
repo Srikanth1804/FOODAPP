@@ -81,10 +81,13 @@ const Menucard = (props) => {
             className="card-img-top img-fluid mt-2"
             src={FoodImg}
             alt="Card image"
-            style={{ borderRadius: "8px", width: "324px", height: "228px" }}
+            id="food-img"
+            style={{ borderRadius: "8px", height: "228px" }}
           />
           <div className="card-body">
-            <h4 className="card-title">{FoodName}</h4>
+            <h4 className="card-title" id="food-name">
+              {FoodName}
+            </h4>
             <p className="card-text">{FoodDesc}</p>
             <p>
               <b>Category:</b>

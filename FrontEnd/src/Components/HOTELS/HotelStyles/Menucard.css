@@ -19,3 +19,15 @@
 #menucard-btn:hover {
   transform: scale(0.9);
 }
+
+@media All and (max-width: 992px) {
+  #food-name {
+    font-size: 20px;
+  }
+}
+@media All and (max-width: 576px) {
+  #food-name {
+    font-size: 25px;
+  }
+}
+/* width: "324px", height: "228px" */

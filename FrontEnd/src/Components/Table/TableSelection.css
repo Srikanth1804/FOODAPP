@@ -1,4 +1,5 @@
 .table-selection {
+  padding: 20px;
   text-align: center;
 }
 
@@ -11,6 +12,7 @@
 .table-row {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
@@ -19,14 +21,14 @@
   border-radius: 5px;
   padding: 10px;
   margin: 5px;
-  width: 120px; /* Adjust the width if needed */
+  width: 120px;
   text-align: center;
   cursor: pointer;
-  position: relative; /* Ensure the button can be positioned absolutely */
+  position: relative;
 }
 
 .table-info {
-  margin-bottom: 10px; /* Space between info and button */
+  margin-bottom: 10px;
 }
 
 .book-table-btn {
@@ -35,7 +37,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%; /* Make the button fill the width of the table item */
+  width: 100%;
 }
 
 .btn-book {
@@ -48,7 +50,6 @@
   color: white;
 }
 
-/* Optional: Add hover effects */
 .book-table-btn:hover {
   opacity: 0.9;
 }
@@ -104,8 +105,49 @@
   width: 100%;
   cursor: pointer;
 }
+
 .table-item.disabled {
-  opacity: 0.5; /* Make the booked table appear disabled */
-  pointer-events: none; /* Prevent any interaction */
-  cursor: not-allowed; /* Show not-allowed cursor on hover */
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .table-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .table-item {
+    width: calc(50% - 10px);
+    max-width: none;
+    margin: 5px;
+  }
+
+  .booking-form {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .submit-booking-btn,
+  .cancel-booking-btn {
+    padding: 8px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .table-item {
+    width: calc(50% - 10px);
+    margin: 5px;
+  }
+
+  .booking-form {
+    width: 100%;
+  }
 }

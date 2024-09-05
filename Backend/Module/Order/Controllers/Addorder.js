@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
             to: email,
             subject: "Order Confirmation - Receipt",
             html: `
-              <div style="border: 1px solid #ccc; padding: 20px; font-family: Arial, sans-serif;">
+              <div style="border: 1px solid #ccc; padding: 20px;  font-variant: small-caps;">
                 <h2 style="color: #f15b2a;">Order Confirmation</h2>
                 <p>Thank you for your order! Here are the details of your purchase:</p>
                 <hr style="border: 1px dashed #ccc;">

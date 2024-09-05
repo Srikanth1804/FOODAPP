@@ -74,7 +74,7 @@
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 1280px) {
+@media (max-width: 1400px) {
   .unique-animation svg text {
     font-size: 120px;
     letter-spacing: 2px;
@@ -95,7 +95,7 @@
 
 @media (max-width: 576px) {
   .unique-animation svg text {
-    font-size: 40px;
+    font-size: 30px;
     letter-spacing: 5px;
   }
 }
