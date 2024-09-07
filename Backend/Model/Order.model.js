@@ -8,6 +8,7 @@ const orderSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String, required: true },
+  HotelName: { type: String, required: true },
 });
 
 const Order = mongoose.model("Order", orderSchema);

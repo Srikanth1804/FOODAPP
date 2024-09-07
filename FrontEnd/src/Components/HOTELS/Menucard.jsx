@@ -15,6 +15,7 @@ const Menucard = (props) => {
     FoodPrice,
     FoodRating,
     FoodId,
+    HotelName,
   } = props; // Assuming FoodId is passed as a prop
 
   let [showModal, setShowModal] = useState(false);
@@ -36,6 +37,7 @@ const Menucard = (props) => {
       FoodDesc,
       FoodName,
       FoodPrice,
+      HotelName,
     };
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];

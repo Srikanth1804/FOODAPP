@@ -1,6 +1,7 @@
 let CDBS = require("../../../Model/Cart.model");
 module.exports = (req, res) => {
-  let { FoodImg, FoodCategory, FoodDesc, FoodName, FoodPrice } = req.body;
+  let { FoodImg, FoodCategory, FoodDesc, FoodName, FoodPrice, HotelName } =
+    req.body;
 
   CDBS.create({
     foodimg: FoodImg,
@@ -8,6 +9,7 @@ module.exports = (req, res) => {
     fooddesc: FoodDesc,
     foodname: FoodName,
     foodprice: FoodPrice,
+    hotelname: HotelName,
   })
     .then((data) => {
       res.json({

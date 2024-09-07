@@ -146,6 +146,7 @@ const HotelDetails = () => {
                     FoodPrice={SH.FoodPrice}
                     FoodRating={SH.FoodRating}
                     FoodAvailable={SH.FoodAvailable}
+                    HotelName={name}
                   />
                 ))}
               </div>

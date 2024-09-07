@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
             .map(
               (item) => `
                <p><strong>Order ID:</strong> ${item._id}</p>
+                <p><strong>HotelName:</strong> ${item.HotelName}</p>
                <p><strong>Item:</strong> ${item.name}</p>
                <p><strong>Quantity:</strong> ${item.itemCount}</p>
                <p><strong>Price:</strong> ₹${item.price * item.itemCount}</p>

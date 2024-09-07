@@ -23,6 +23,9 @@ let CartSchema = new Mongoose.Schema({
   total: {
     type: Number,
   },
+  hotelname: {
+    type: String,
+  },
 });
 
 let CDBS = Mongoose.model("FoodCart", CartSchema);

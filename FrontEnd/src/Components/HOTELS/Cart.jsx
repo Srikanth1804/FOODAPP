@@ -24,6 +24,8 @@ const Cart = ({ setCl }) => {
       .get(`${API_EndPoint}/food/getcart`)
       .then((res) => {
         setCart(res.data.info || []);
+        console.log(res.data);
+
         const initialCounts = {};
         res.data.info.forEach((item) => {
           initialCounts[item._id] = 1; // Initialize count for each item
@@ -76,6 +78,7 @@ const Cart = ({ setCl }) => {
       email: email,
       address: address,
       total: totalSum,
+      HotelName: item.hotelname,
     }));
 
     console.log(orderData);

@@ -75,7 +75,7 @@ const Footer = () => {
         <div className="row mt-5">
           <div className="col">
             <p style={{ textAlign: "center", fontWeight: "500" }}>
-              © 2024 [Foodhub]. All Rights Reserved.
+              © 2024 [Foodyhub]. All Rights Reserved.
             </p>
           </div>
         </div>
