@@ -1,3 +1,3 @@
-export let API_EndPoint = "https://foodapp-z7fp.onrender.com";
-//https://foodapp-z7fp.onrender.com
+export let API_EndPoint = "https://foodapp-tjmu.onrender.com";
+//https://foodapp-tjmu.onrender.com
 //http://localhost:8000
